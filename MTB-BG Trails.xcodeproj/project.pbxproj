@@ -7,13 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000B82661B014756002ED8DF /* Trail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000B82651B014756002ED8DF /* Trail.swift */; };
+		000B82681B0148B2002ED8DF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000B82671B0148B2002ED8DF /* Constants.swift */; };
+		000B826A1B016ED1002ED8DF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000B82691B016ED1002ED8DF /* MapKit.framework */; };
 		00702E001B0138EF00A77F63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00702DFF1B0138EF00A77F63 /* AppDelegate.swift */; };
-		00702E021B0138EF00A77F63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00702E011B0138EF00A77F63 /* ViewController.swift */; };
+		00702E021B0138EF00A77F63 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00702E011B0138EF00A77F63 /* RootViewController.swift */; };
 		00702E051B0138EF00A77F63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00702E031B0138EF00A77F63 /* Main.storyboard */; };
 		00702E071B0138EF00A77F63 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00702E061B0138EF00A77F63 /* Images.xcassets */; };
 		00702E0A1B0138EF00A77F63 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00702E081B0138EF00A77F63 /* LaunchScreen.xib */; };
 		00702E161B0138EF00A77F63 /* MTB_BG_TrailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00702E151B0138EF00A77F63 /* MTB_BG_TrailsTests.swift */; };
 		00702E201B01392F00A77F63 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 00702E1F1B01392F00A77F63 /* .gitignore */; };
+		00FA37E81B0607FA007F9A23 /* TrailsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA37E71B0607FA007F9A23 /* TrailsLoader.swift */; };
+		BED760A8A14A0162C26B4F8D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC0B69294892105635FBE11D /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,10 +32,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		000B82651B014756002ED8DF /* Trail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trail.swift; sourceTree = "<group>"; };
+		000B82671B0148B2002ED8DF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		000B82691B016ED1002ED8DF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		00702DFA1B0138EF00A77F63 /* MTB-BG Trails.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MTB-BG Trails.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00702DFE1B0138EF00A77F63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00702DFF1B0138EF00A77F63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		00702E011B0138EF00A77F63 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		00702E011B0138EF00A77F63 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		00702E041B0138EF00A77F63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		00702E061B0138EF00A77F63 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "MTB-BG Trails/Images.xcassets"; sourceTree = "<group>"; };
 		00702E091B0138EF00A77F63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -38,6 +46,10 @@
 		00702E141B0138EF00A77F63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00702E151B0138EF00A77F63 /* MTB_BG_TrailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTB_BG_TrailsTests.swift; sourceTree = "<group>"; };
 		00702E1F1B01392F00A77F63 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		00FA37E71B0607FA007F9A23 /* TrailsLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailsLoader.swift; sourceTree = "<group>"; };
+		48646D3E766DA4CCEDC98008 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		939898062FF7EFBFBEAD94FC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		AC0B69294892105635FBE11D /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				000B826A1B016ED1002ED8DF /* MapKit.framework in Frameworks */,
+				BED760A8A14A0162C26B4F8D /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,13 +72,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		000B82641B014732002ED8DF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				000B82651B014756002ED8DF /* Trail.swift */,
+				00FA37E71B0607FA007F9A23 /* TrailsLoader.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		00702DF11B0138EF00A77F63 = {
 			isa = PBXGroup;
 			children = (
+				000B82691B016ED1002ED8DF /* MapKit.framework */,
 				00702E1F1B01392F00A77F63 /* .gitignore */,
 				00702DFC1B0138EF00A77F63 /* MTB-BG Trails */,
 				00702E121B0138EF00A77F63 /* MTB-BG TrailsTests */,
 				00702DFB1B0138EF00A77F63 /* Products */,
+				0E924C271108AD7433AE3C49 /* Pods */,
+				F70A74DE9D2FAFCF1100F6CF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,10 +106,11 @@
 		00702DFC1B0138EF00A77F63 /* MTB-BG Trails */ = {
 			isa = PBXGroup;
 			children = (
+				000B82641B014732002ED8DF /* Model */,
 				00702E211B013BB300A77F63 /* Interface */,
-				00702DFF1B0138EF00A77F63 /* AppDelegate.swift */,
 				00702E221B013BD100A77F63 /* Controllers */,
 				00702DFD1B0138EF00A77F63 /* Supporting Files */,
+				00702DFF1B0138EF00A77F63 /* AppDelegate.swift */,
 			);
 			path = "MTB-BG Trails";
 			sourceTree = "<group>";
@@ -92,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				00702DFE1B0138EF00A77F63 /* Info.plist */,
+				000B82671B0148B2002ED8DF /* Constants.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -117,8 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				00702E031B0138EF00A77F63 /* Main.storyboard */,
-				00702E061B0138EF00A77F63 /* Images.xcassets */,
 				00702E081B0138EF00A77F63 /* LaunchScreen.xib */,
+				00702E061B0138EF00A77F63 /* Images.xcassets */,
 			);
 			name = Interface;
 			path = ..;
@@ -127,9 +155,26 @@
 		00702E221B013BD100A77F63 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				00702E011B0138EF00A77F63 /* ViewController.swift */,
+				00702E011B0138EF00A77F63 /* RootViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		0E924C271108AD7433AE3C49 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				939898062FF7EFBFBEAD94FC /* Pods.debug.xcconfig */,
+				48646D3E766DA4CCEDC98008 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F70A74DE9D2FAFCF1100F6CF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AC0B69294892105635FBE11D /* Pods.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,9 +184,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00702E191B0138EF00A77F63 /* Build configuration list for PBXNativeTarget "MTB-BG Trails" */;
 			buildPhases = (
+				610CA329709EF72E5B1EF484 /* Check Pods Manifest.lock */,
 				00702DF61B0138EF00A77F63 /* Sources */,
 				00702DF71B0138EF00A77F63 /* Frameworks */,
 				00702DF81B0138EF00A77F63 /* Resources */,
+				9B22A0A2C408DBB1C0DB7FA2 /* Embed Pods Frameworks */,
+				81412F14B9AB0B0380F3E48D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -229,13 +277,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		610CA329709EF72E5B1EF484 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		81412F14B9AB0B0380F3E48D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B22A0A2C408DBB1C0DB7FA2 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		00702DF61B0138EF00A77F63 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00702E021B0138EF00A77F63 /* ViewController.swift in Sources */,
+				00FA37E81B0607FA007F9A23 /* TrailsLoader.swift in Sources */,
+				00702E021B0138EF00A77F63 /* RootViewController.swift in Sources */,
+				000B82661B014756002ED8DF /* Trail.swift in Sources */,
 				00702E001B0138EF00A77F63 /* AppDelegate.swift in Sources */,
+				000B82681B0148B2002ED8DF /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +463,7 @@
 		};
 		00702E1A1B0138EF00A77F63 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 939898062FF7EFBFBEAD94FC /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -378,6 +478,7 @@
 		};
 		00702E1B1B0138EF00A77F63 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48646D3E766DA4CCEDC98008 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
