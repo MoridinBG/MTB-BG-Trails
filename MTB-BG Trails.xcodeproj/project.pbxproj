@@ -10,6 +10,7 @@
 		000B82661B014756002ED8DF /* Trail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000B82651B014756002ED8DF /* Trail.swift */; };
 		000B82681B0148B2002ED8DF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000B82671B0148B2002ED8DF /* Constants.swift */; };
 		000B826A1B016ED1002ED8DF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000B82691B016ED1002ED8DF /* MapKit.framework */; };
+		000E25151B08C4B3007CA0D7 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 000E25141B08C4B3007CA0D7 /* Podfile */; };
 		006491951B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006491931B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift */; };
 		006491961B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006491941B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift */; };
 		00702E001B0138EF00A77F63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00702DFF1B0138EF00A77F63 /* AppDelegate.swift */; };
@@ -41,6 +42,7 @@
 		000B82651B014756002ED8DF /* Trail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trail.swift; sourceTree = "<group>"; };
 		000B82671B0148B2002ED8DF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		000B82691B016ED1002ED8DF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		000E25141B08C4B3007CA0D7 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 		006491931B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GPXTrackPoint+MapKit.swift"; sourceTree = "<group>"; };
 		006491941B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GPXTrackSegment+MapKit.swift"; sourceTree = "<group>"; };
 		00702DFA1B0138EF00A77F63 /* MTB-BG Trails.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MTB-BG Trails.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +145,7 @@
 		00702DFD1B0138EF00A77F63 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				000E25141B08C4B3007CA0D7 /* Podfile */,
 				00702DFE1B0138EF00A77F63 /* Info.plist */,
 				000B82671B0148B2002ED8DF /* Constants.swift */,
 				00FA37EC1B062201007F9A23 /* MarqueeLabel.swift */,
@@ -298,6 +301,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				000E25151B08C4B3007CA0D7 /* Podfile in Resources */,
 				00702E201B01392F00A77F63 /* .gitignore in Resources */,
 				00702E051B0138EF00A77F63 /* Main.storyboard in Resources */,
 				00702E0A1B0138EF00A77F63 /* LaunchScreen.xib in Resources */,
