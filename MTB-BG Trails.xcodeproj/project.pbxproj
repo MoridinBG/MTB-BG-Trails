@@ -10,6 +10,8 @@
 		000B82661B014756002ED8DF /* Trail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000B82651B014756002ED8DF /* Trail.swift */; };
 		000B82681B0148B2002ED8DF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000B82671B0148B2002ED8DF /* Constants.swift */; };
 		000B826A1B016ED1002ED8DF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000B82691B016ED1002ED8DF /* MapKit.framework */; };
+		006491951B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006491931B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift */; };
+		006491961B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006491941B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift */; };
 		00702E001B0138EF00A77F63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00702DFF1B0138EF00A77F63 /* AppDelegate.swift */; };
 		00702E021B0138EF00A77F63 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00702E011B0138EF00A77F63 /* RootViewController.swift */; };
 		00702E051B0138EF00A77F63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00702E031B0138EF00A77F63 /* Main.storyboard */; };
@@ -17,7 +19,11 @@
 		00702E0A1B0138EF00A77F63 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00702E081B0138EF00A77F63 /* LaunchScreen.xib */; };
 		00702E161B0138EF00A77F63 /* MTB_BG_TrailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00702E151B0138EF00A77F63 /* MTB_BG_TrailsTests.swift */; };
 		00702E201B01392F00A77F63 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 00702E1F1B01392F00A77F63 /* .gitignore */; };
+		008B463F1B062D900033539D /* GPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008B463E1B062D900033539D /* GPX.framework */; };
+		00B141421B06BF2D0075D694 /* RootViewController+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B141411B06BF2D0075D694 /* RootViewController+Map.swift */; };
 		00FA37E81B0607FA007F9A23 /* TrailsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA37E71B0607FA007F9A23 /* TrailsLoader.swift */; };
+		00FA37EB1B06198E007F9A23 /* TrailTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA37EA1B06198E007F9A23 /* TrailTableCell.swift */; };
+		00FA37ED1B062201007F9A23 /* MarqueeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA37EC1B062201007F9A23 /* MarqueeLabel.swift */; };
 		BED760A8A14A0162C26B4F8D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC0B69294892105635FBE11D /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -35,6 +41,8 @@
 		000B82651B014756002ED8DF /* Trail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trail.swift; sourceTree = "<group>"; };
 		000B82671B0148B2002ED8DF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		000B82691B016ED1002ED8DF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		006491931B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GPXTrackPoint+MapKit.swift"; sourceTree = "<group>"; };
+		006491941B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GPXTrackSegment+MapKit.swift"; sourceTree = "<group>"; };
 		00702DFA1B0138EF00A77F63 /* MTB-BG Trails.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MTB-BG Trails.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00702DFE1B0138EF00A77F63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00702DFF1B0138EF00A77F63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -46,7 +54,12 @@
 		00702E141B0138EF00A77F63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00702E151B0138EF00A77F63 /* MTB_BG_TrailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTB_BG_TrailsTests.swift; sourceTree = "<group>"; };
 		00702E1F1B01392F00A77F63 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		008B463E1B062D900033539D /* GPX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GPX.framework; sourceTree = "<group>"; };
+		00B141411B06BF2D0075D694 /* RootViewController+Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Map.swift"; sourceTree = "<group>"; };
 		00FA37E71B0607FA007F9A23 /* TrailsLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailsLoader.swift; sourceTree = "<group>"; };
+		00FA37EA1B06198E007F9A23 /* TrailTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailTableCell.swift; sourceTree = "<group>"; };
+		00FA37EC1B062201007F9A23 /* MarqueeLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarqueeLabel.swift; sourceTree = "<group>"; };
+		00FA37EE1B0629F7007F9A23 /* ObjectiveCBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectiveCBridgingHeader.h; sourceTree = "<group>"; };
 		48646D3E766DA4CCEDC98008 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		939898062FF7EFBFBEAD94FC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		AC0B69294892105635FBE11D /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +72,7 @@
 			files = (
 				000B826A1B016ED1002ED8DF /* MapKit.framework in Frameworks */,
 				BED760A8A14A0162C26B4F8D /* Pods.framework in Frameworks */,
+				008B463F1B062D900033539D /* GPX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +93,15 @@
 				00FA37E71B0607FA007F9A23 /* TrailsLoader.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		006491971B0647A700A5ACDB /* GPX */ = {
+			isa = PBXGroup;
+			children = (
+				006491931B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift */,
+				006491941B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift */,
+			);
+			name = GPX;
 			sourceTree = "<group>";
 		};
 		00702DF11B0138EF00A77F63 = {
@@ -106,9 +129,11 @@
 		00702DFC1B0138EF00A77F63 /* MTB-BG Trails */ = {
 			isa = PBXGroup;
 			children = (
+				006491971B0647A700A5ACDB /* GPX */,
+				00FA37E91B061972007F9A23 /* Cells */,
 				000B82641B014732002ED8DF /* Model */,
-				00702E211B013BB300A77F63 /* Interface */,
 				00702E221B013BD100A77F63 /* Controllers */,
+				00702E211B013BB300A77F63 /* Interface */,
 				00702DFD1B0138EF00A77F63 /* Supporting Files */,
 				00702DFF1B0138EF00A77F63 /* AppDelegate.swift */,
 			);
@@ -120,6 +145,8 @@
 			children = (
 				00702DFE1B0138EF00A77F63 /* Info.plist */,
 				000B82671B0148B2002ED8DF /* Constants.swift */,
+				00FA37EC1B062201007F9A23 /* MarqueeLabel.swift */,
+				00FA37EE1B0629F7007F9A23 /* ObjectiveCBridgingHeader.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -156,8 +183,17 @@
 			isa = PBXGroup;
 			children = (
 				00702E011B0138EF00A77F63 /* RootViewController.swift */,
+				00B141411B06BF2D0075D694 /* RootViewController+Map.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		00FA37E91B061972007F9A23 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				00FA37EA1B06198E007F9A23 /* TrailTableCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		0E924C271108AD7433AE3C49 /* Pods */ = {
@@ -172,6 +208,7 @@
 		F70A74DE9D2FAFCF1100F6CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				008B463E1B062D900033539D /* GPX.framework */,
 				AC0B69294892105635FBE11D /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -334,7 +371,12 @@
 				00702E021B0138EF00A77F63 /* RootViewController.swift in Sources */,
 				000B82661B014756002ED8DF /* Trail.swift in Sources */,
 				00702E001B0138EF00A77F63 /* AppDelegate.swift in Sources */,
+				006491951B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift in Sources */,
+				00FA37ED1B062201007F9A23 /* MarqueeLabel.swift in Sources */,
 				000B82681B0148B2002ED8DF /* Constants.swift in Sources */,
+				006491961B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift in Sources */,
+				00FA37EB1B06198E007F9A23 /* TrailTableCell.swift in Sources */,
+				00B141421B06BF2D0075D694 /* RootViewController+Map.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,11 +510,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "MTB-BG Trails/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MTB-BG Trails/ObjectiveCBridgingHeader.h";
 			};
 			name = Debug;
 		};
@@ -483,11 +530,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "MTB-BG Trails/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MTB-BG Trails/ObjectiveCBridgingHeader.h";
 			};
 			name = Release;
 		};

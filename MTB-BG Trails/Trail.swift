@@ -8,8 +8,7 @@
 
 import Foundation
 
-
-struct Trail: Printable
+class Trail: Printable
 {
 	var name: String?
 	var date: NSDate?
@@ -23,6 +22,8 @@ struct Trail: Printable
 	var food: String?
 	var terrains: [String:Double]?
 	var traces: [NSURL]?
+	
+	var gpxRoot: GPXRoot?
 	
 	var description: String
 	{
