@@ -24,4 +24,13 @@ extension RootViewController: MKMapViewDelegate
 		
 		return polylineRenderer
 	}
+	
+	func fitTrailsInMap()
+	{
+		if let region = trailsLoader.region
+		{
+			let mapViewRegion = mapView.regionThatFits(region)
+			mapView.setRegion(mapViewRegion, animated: true)
+		}
+	}
 }

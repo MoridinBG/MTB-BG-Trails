@@ -13,21 +13,29 @@ import MapKit
 class RootViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TrailsLoaderDelegate
 {
 
-	private var trails = [Trail]()
-	private let trailsLoader = TrailsLoader()
+	var trails = [Trail]()
+	let trailsLoader = TrailsLoader()
 	
 	@IBOutlet weak var tracksTable: UITableView!
 	@IBOutlet weak var tableScrollView: UIScrollView!
+	@IBOutlet weak var containerView: UIView!
 	@IBOutlet weak var mapView: MKMapView!
+	@IBOutlet var mapHeight: NSLayoutConstraint!
+	@IBOutlet weak var mapFullHeight: NSLayoutConstraint!
 	
 	@IBAction func mapClicked(sender: UIButton)
 	{
 		self.navigationItem.leftBarButtonItem?.enabled = true
 		self.navigationItem.leftBarButtonItem?.tintColor = nil
 		
-		UIView.animateWithDuration(1, animations: {self.tableScrollView.frame.origin.y += 600}, completion: { (success) in
-			self.view.bringSubviewToFront(self.mapView)
-		})
+		UIView.animateWithDuration(1, animations: {
+			self.containerView.bringSubviewToFront(self.mapView)
+			self.containerView.removeConstraint(self.mapHeight)
+			self.mapView.layoutIfNeeded()
+			},
+			completion: { (success) in
+				self.fitTrailsInMap()
+			})
 	}
 	
 	@IBAction func backClicked(sender: UIBarButtonItem)
@@ -35,11 +43,14 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 		self.navigationItem.leftBarButtonItem?.enabled = false
 		self.navigationItem.leftBarButtonItem?.tintColor = UIColor.clearColor()
 		
-		self.view.bringSubviewToFront(self.tableScrollView)
 		UIView.animateWithDuration(1, animations: {
-			self.tableScrollView.frame.origin.y -= 600
-			}
-			, completion: nil)
+			self.containerView.bringSubviewToFront(self.tableScrollView)
+			self.containerView.addConstraint(self.mapHeight)
+			self.mapView.layoutIfNeeded()
+			},
+			completion: { (success) in
+				self.fitTrailsInMap()
+		})
 	}
 	
 	override func viewDidLoad()
@@ -47,7 +58,6 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 		super.viewDidLoad()
 		
 		tracksTable.dataSource = self
-		tableScrollView.delegate = self
 		mapView.delegate = self
 		
 		self.navigationItem.leftBarButtonItem?.enabled = false
@@ -137,11 +147,17 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 	
 	func scrollViewDidScroll(scrollView: UIScrollView)
 	{
-		if scrollView == tableScrollView
+		if scrollView == tracksTable
 		{
-			if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.frame.size.height
+			if scrollView.contentOffset.y < 0
 			{
-				scrollView.contentOffset = CGPointMake(0, scrollView.contentSize.height - scrollView.frame.size.height)
+				if scrollView.contentOffset.y < -79
+				{
+					mapClicked(UIButton())
+				} else
+				{
+					mapHeight.constant = scrollView.contentOffset.y
+				}
 			}
 		}
 	}
@@ -163,11 +179,7 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 			}
 		}
 		
-		if let region = trailsLoader.region
-		{
-			let mapViewRegion = mapView.regionThatFits(region)
-			mapView.setRegion(mapViewRegion, animated: true)
-		}
+		self.fitTrailsInMap()
 	}
 }
 
