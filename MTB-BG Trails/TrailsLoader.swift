@@ -12,7 +12,7 @@ import MapKit
 
 protocol TrailsLoaderDelegate
 {
-	func allGPXLoaded()
+	func gpxLoaded(gpx: GPXRoot)
 }
 
 class TrailsLoader
@@ -21,20 +21,20 @@ class TrailsLoader
 	
 	var region: MKCoordinateRegion?
 	var delegate: TrailsLoaderDelegate?
+	var gpxLoaded = 0
 	
-	private var gpxLoadedCount = 0
 	private var upper = CLLocationCoordinate2DMake(-91.0, -181.0)
 	private var lower = CLLocationCoordinate2DMake(91.0, 181.0)
 	
 	func loadTrails(url: NSURL, onLoadFinished: (([Trail]) -> Void)?)
 	{
+		gpxLoaded = 0
 		trails = [Trail]()
-		gpxLoadedCount = 0
 		requestTrails(url, onComplete: { (data, error) in
 			if let jsonData = data
 			{
 				let json = JSON(data: jsonData)
-				
+				let trailsCount = json["routes"].count
 				for(index: String, subJson: JSON) in json["routes"]
 				{
 					var trail = Trail()
@@ -88,12 +88,10 @@ class TrailsLoader
 					
 					if let traces = trail.traces
 					{
-						if traces.count > 0
-						{
-							let url = traces[0]
-							self.requestGPXFile(url) { (root) in
-								trail.gpxRoot = root
-							}
+						self.loadGPXFromTrail(trail) { gpx in
+							dispatch_async(dispatch_get_main_queue(), {
+								self.delegate?.gpxLoaded(gpx)
+							})
 						}
 					}
 					
@@ -110,8 +108,82 @@ class TrailsLoader
 		})
 	}
 	
+	private func loadGPXFromTrail(theTrail: Trail, onLoadFinished: (gpx: GPXRoot) -> Void)
+	{
+		if let traces = theTrail.traces
+		{
+			if traces.count > 0
+			{
+				let url = traces[0]
+				let documentsPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as! String
+				var filename = url.lastPathComponent!
+				
+				if filename.rangeOfString(".zip") != nil
+				{
+					filename = filename.stringByReplacingOccurrencesOfString(".zip", withString: ".gpx", options: .CaseInsensitiveSearch, range: nil)
+				}
+				
+				if filename == "gpstrack0025_tracks.gpx"
+				{
+					filename = "gpstrack0025_Kremikovci-Yablanica.gpx"
+				} else if filename == "gpstrack0027.gpx"
+				{
+					filename = "gpstrack0027_Bakiovo-Yablanica.gpx"
+				} else if filename == "gpstrack0023_Zeleni-rid.gpx"
+				{
+					filename = "gpstrack0023_Zeleni-Rid.gpx"
+				} else if filename == "gpstrack0028_lakatishka_Rila.gpx"
+				{
+					filename = "gpstrack0028_Lakatishka_Rila.gpx"
+				} else if filename == "gpstrack0042_batak-peshtera.gpx"
+				{
+					filename = "gpstrack042_batak-peshtera.gpx"
+				}
+				
+				filename = documentsPath.stringByAppendingPathComponent(filename)
+				if NSFileManager.defaultManager().fileExistsAtPath(filename)
+				{
+					let root = GPXParser.parseGPXAtPath(filename)
+					updateMapRegionWithTrack(root)
+					onLoadFinished(gpx: root)
+				} else
+				{
+					println("Requesting unavailable GPX \(url)")
+					self.requestGPXFile(url) { (root) in
+						self.updateMapRegionWithTrack(root)
+						onLoadFinished(gpx: root)
+					}
+				}
+			}
+		}
+	}
+	
 	private func requestTrails(url: NSURL, onComplete: (data: NSData?, error: NSError?) -> Void)
 	{
+		let reachability = Reachability.reachabilityForInternetConnection()
+		
+		
+		let documentsPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as! String
+
+		let tracksFile = documentsPath.stringByAppendingPathComponent(Constants.Values.vJSONTrailsFilename)
+		
+		if !reachability.isReachable()
+		{
+			var error: NSError? = nil
+			let documentsFiles = NSFileManager.defaultManager().contentsOfDirectoryAtPath(documentsPath, error: &error)
+			
+			for file in documentsFiles as! [String]
+			{
+				if file == "trails.json"
+				{
+					let data = NSData(contentsOfFile: tracksFile)
+					onComplete(data: data, error: nil)
+					
+					return
+				}
+			}
+		}
+		
 		let session = NSURLSession.sharedSession()
 		//Use NSURLSession to get data from an NSURL
 		let loadDataTask = session.dataTaskWithURL(NSURL(string:Constants.Values.vJSONTrailsURL)!, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
@@ -127,6 +199,7 @@ class TrailsLoader
 					onComplete(data: nil, error: statusError)
 				} else
 				{
+					data.writeToFile(tracksFile, atomically: false)
 					onComplete(data: data, error: nil)
 				}
 			}
@@ -137,13 +210,6 @@ class TrailsLoader
 	
 	private func requestGPXFile(url: NSURL, processFile: (gpxRoot: GPXRoot) -> Void)
 	{
-		self.gpxLoadedCount++
-		let string = url.absoluteString!
-		if string.rangeOfString(".zip", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) != nil
-		{
-			return
-		}
-		
 		let session = NSURLSession.sharedSession()
 		//Use NSURLSession to get data from an NSURL
 		let loadDataTask = session.dataTaskWithURL(url, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
@@ -158,55 +224,93 @@ class TrailsLoader
 					println("Bad HTTP status code when loading GPX: \(httpResponse.statusCode)")
 				} else
 				{
-					let root = GPXParser.parseGPXWithData(data)
+					let root: GPXRoot
+					let documentsPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as! String
+					var file = documentsPath.stringByAppendingPathComponent(url.lastPathComponent!)
 					
-					for track in root.tracks as! [GPXTrack]
+					if url.absoluteString?.rangeOfString(".zip", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) != nil
 					{
-						for segment in track.tracksegments as! [GPXTrackSegment]
+						data.writeToFile(file, atomically: false)
+						SSZipArchive.unzipFileAtPath(file, toDestination: documentsPath)
+						
+						var filename = url.lastPathComponent!
+						if filename.rangeOfString(".zip") != nil
 						{
-							for point in segment.trackpoints as! [GPXTrackPoint]
-							{
-								if point.latitude > self.upper.latitude
-								{
-									self.upper.latitude = point.latitude
-								}
-								if point.latitude < self.lower.latitude
-								{
-									self.lower.latitude = point.latitude
-								}
-								
-								if point.longitude > self.upper.longitude
-								{
-									self.upper.longitude = point.longitude
-								}
-								if point.longitude < self.lower.longitude
-								{
-									self.lower.longitude = point.longitude
-								}
-							}
+							filename = filename.stringByReplacingOccurrencesOfString(".zip", withString: ".gpx", options: .CaseInsensitiveSearch, range: nil)
 						}
-					}
-					
-					let trailsSpan = MKCoordinateSpanMake((self.upper.latitude - self.lower.latitude) * 1.1,
-															(self.upper.longitude - self.lower.longitude) * 1.1)
-					let trailsCenter = CLLocationCoordinate2DMake((self.upper.latitude + self.lower.latitude) / 2,
-																	(self.upper.longitude + self.lower.longitude) / 2)
-					self.region = MKCoordinateRegionMake(trailsCenter, trailsSpan)
-					
-					if self.gpxLoadedCount == self.trails.count
+						
+						if filename == "gpstrack0025_tracks.gpx"
+						{
+							filename = "gpstrack0025_Kremikovci-Yablanica.gpx"
+						} else if filename == "gpstrack0027.gpx"
+						{
+							filename = "gpstrack0027_Bakiovo-Yablanica.gpx"
+						} else if filename == "gpstrack0023_Zeleni-rid.gpx"
+						{
+							filename = "gpstrack0023_Zeleni-Rid.gpx"
+						} else if filename == "gpstrack0028_lakatishka_Rila.gpx"
+						{
+							filename = "gpstrack0028_Lakatishka_Rila.gpx"
+						} else if filename == "gpstrack0042_batak-peshtera.gpx"
+						{
+							filename = "gpstrack042_batak-peshtera.gpx"
+						}
+						
+						filename = documentsPath.stringByAppendingPathComponent(filename)
+						root = GPXParser.parseGPXAtPath(filename)
+						
+						filename = filename.stringByReplacingOccurrencesOfString(".gpx", withString: ".gdb")
+						if NSFileManager.defaultManager().fileExistsAtPath(filename)
+						{
+							NSFileManager.defaultManager().removeItemAtPath(filename, error: nil)
+						}
+						NSFileManager.defaultManager().removeItemAtPath(file, error: nil)
+						
+					} else
 					{
-						dispatch_async(dispatch_get_main_queue(), { () -> Void in
-							self.delegate?.allGPXLoaded()
-						})
+						data.writeToFile(file, atomically: false)
+						root = GPXParser.parseGPXWithData(data)
 					}
-					
 					processFile(gpxRoot: root)
 				}
 			}
 		})
-		
 		loadDataTask.resume()
-
 	}
-
+	
+	private func updateMapRegionWithTrack(gpx: GPXRoot)
+	{
+		for track in gpx.tracks as! [GPXTrack]
+		{
+			for segment in track.tracksegments as! [GPXTrackSegment]
+			{
+				for point in segment.trackpoints as! [GPXTrackPoint]
+				{
+					if point.latitude > self.upper.latitude
+					{
+						self.upper.latitude = point.latitude
+					}
+					if point.latitude < self.lower.latitude
+					{
+						self.lower.latitude = point.latitude
+					}
+					
+					if point.longitude > self.upper.longitude
+					{
+						self.upper.longitude = point.longitude
+					}
+					if point.longitude < self.lower.longitude
+					{
+						self.lower.longitude = point.longitude
+					}
+				}
+			}
+		}
+		
+		let trailsSpan = MKCoordinateSpanMake((self.upper.latitude - self.lower.latitude) * 1.1,
+			(self.upper.longitude - self.lower.longitude) * 1.1)
+		let trailsCenter = CLLocationCoordinate2DMake((self.upper.latitude + self.lower.latitude) / 2,
+			(self.upper.longitude + self.lower.longitude) / 2)
+		self.region = MKCoordinateRegionMake(trailsCenter, trailsSpan)
+	}
 }

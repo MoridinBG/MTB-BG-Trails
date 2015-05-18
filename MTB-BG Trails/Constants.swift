@@ -17,5 +17,6 @@ struct Constants
 	struct Values
 	{
 		static let vJSONTrailsURL = "https://raw.githubusercontent.com/karamanolev/mtb-index/master/preprocessor/input.json"
+		static let vJSONTrailsFilename = "trails.json"
 	}
 }

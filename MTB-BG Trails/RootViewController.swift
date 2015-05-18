@@ -162,20 +162,14 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 		}
 	}
 	
-	func allGPXLoaded()
+	func gpxLoaded(gpx: GPXRoot)
 	{
-		for trail in trails
+		for track in gpx.tracks as! [GPXTrack]
 		{
-			if let gpxRoot = trail.gpxRoot
+			for segment in track.tracksegments as! [GPXTrackSegment]
 			{
-				for track in gpxRoot.tracks as! [GPXTrack]
-				{
-					for segment in track.tracksegments as! [GPXTrackSegment]
-					{
-						let overlay = segment.overlay
-						self.mapView.addOverlay(overlay, level: .AboveLabels)
-					}
-				}
+				let overlay = segment.overlay
+				self.mapView.addOverlay(overlay, level: .AboveLabels)
 			}
 		}
 		

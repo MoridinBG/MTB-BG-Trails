@@ -21,7 +21,15 @@
 		00702E161B0138EF00A77F63 /* MTB_BG_TrailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00702E151B0138EF00A77F63 /* MTB_BG_TrailsTests.swift */; };
 		00702E201B01392F00A77F63 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 00702E1F1B01392F00A77F63 /* .gitignore */; };
 		008B463F1B062D900033539D /* GPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008B463E1B062D900033539D /* GPX.framework */; };
+		008C34C71B08CBF700597B0D /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 008C34BD1B08CBF700597B0D /* ioapi.c */; };
+		008C34C81B08CBF700597B0D /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 008C34BF1B08CBF700597B0D /* mztools.c */; };
+		008C34C91B08CBF700597B0D /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 008C34C11B08CBF700597B0D /* unzip.c */; };
+		008C34CA1B08CBF700597B0D /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 008C34C31B08CBF700597B0D /* zip.c */; };
+		008C34CB1B08CBF700597B0D /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 008C34C61B08CBF700597B0D /* SSZipArchive.m */; };
+		008C34CD1B08D0A900597B0D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008C34CC1B08D0A900597B0D /* SystemConfiguration.framework */; };
+		008C34CF1B08D16E00597B0D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C34CE1B08D16E00597B0D /* Reachability.swift */; };
 		00B141421B06BF2D0075D694 /* RootViewController+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B141411B06BF2D0075D694 /* RootViewController+Map.swift */; };
+		00F845AA1B08C9BD00660FA6 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F845A91B08C9BD00660FA6 /* libz.dylib */; };
 		00FA37E81B0607FA007F9A23 /* TrailsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA37E71B0607FA007F9A23 /* TrailsLoader.swift */; };
 		00FA37EB1B06198E007F9A23 /* TrailTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA37EA1B06198E007F9A23 /* TrailTableCell.swift */; };
 		00FA37ED1B062201007F9A23 /* MarqueeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA37EC1B062201007F9A23 /* MarqueeLabel.swift */; };
@@ -57,7 +65,21 @@
 		00702E151B0138EF00A77F63 /* MTB_BG_TrailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTB_BG_TrailsTests.swift; sourceTree = "<group>"; };
 		00702E1F1B01392F00A77F63 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		008B463E1B062D900033539D /* GPX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GPX.framework; sourceTree = "<group>"; };
+		008C34BC1B08CBF700597B0D /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		008C34BD1B08CBF700597B0D /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		008C34BE1B08CBF700597B0D /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		008C34BF1B08CBF700597B0D /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		008C34C01B08CBF700597B0D /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		008C34C11B08CBF700597B0D /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		008C34C21B08CBF700597B0D /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		008C34C31B08CBF700597B0D /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		008C34C41B08CBF700597B0D /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		008C34C51B08CBF700597B0D /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
+		008C34C61B08CBF700597B0D /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
+		008C34CC1B08D0A900597B0D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		008C34CE1B08D16E00597B0D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		00B141411B06BF2D0075D694 /* RootViewController+Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Map.swift"; sourceTree = "<group>"; };
+		00F845A91B08C9BD00660FA6 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		00FA37E71B0607FA007F9A23 /* TrailsLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailsLoader.swift; sourceTree = "<group>"; };
 		00FA37EA1B06198E007F9A23 /* TrailTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailTableCell.swift; sourceTree = "<group>"; };
 		00FA37EC1B062201007F9A23 /* MarqueeLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarqueeLabel.swift; sourceTree = "<group>"; };
@@ -72,6 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				008C34CD1B08D0A900597B0D /* SystemConfiguration.framework in Frameworks */,
+				00F845AA1B08C9BD00660FA6 /* libz.dylib in Frameworks */,
 				000B826A1B016ED1002ED8DF /* MapKit.framework in Frameworks */,
 				BED760A8A14A0162C26B4F8D /* Pods.framework in Frameworks */,
 				008B463F1B062D900033539D /* GPX.framework in Frameworks */,
@@ -145,11 +169,13 @@
 		00702DFD1B0138EF00A77F63 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				008C34BA1B08CBF700597B0D /* SSZipArchive */,
 				000E25141B08C4B3007CA0D7 /* Podfile */,
 				00702DFE1B0138EF00A77F63 /* Info.plist */,
 				000B82671B0148B2002ED8DF /* Constants.swift */,
 				00FA37EC1B062201007F9A23 /* MarqueeLabel.swift */,
 				00FA37EE1B0629F7007F9A23 /* ObjectiveCBridgingHeader.h */,
+				008C34CE1B08D16E00597B0D /* Reachability.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -191,6 +217,32 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		008C34BA1B08CBF700597B0D /* SSZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				008C34BB1B08CBF700597B0D /* minizip */,
+				008C34C51B08CBF700597B0D /* SSZipArchive.h */,
+				008C34C61B08CBF700597B0D /* SSZipArchive.m */,
+			);
+			path = SSZipArchive;
+			sourceTree = "<group>";
+		};
+		008C34BB1B08CBF700597B0D /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				008C34BC1B08CBF700597B0D /* crypt.h */,
+				008C34BD1B08CBF700597B0D /* ioapi.c */,
+				008C34BE1B08CBF700597B0D /* ioapi.h */,
+				008C34BF1B08CBF700597B0D /* mztools.c */,
+				008C34C01B08CBF700597B0D /* mztools.h */,
+				008C34C11B08CBF700597B0D /* unzip.c */,
+				008C34C21B08CBF700597B0D /* unzip.h */,
+				008C34C31B08CBF700597B0D /* zip.c */,
+				008C34C41B08CBF700597B0D /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
 		00FA37E91B061972007F9A23 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +263,8 @@
 		F70A74DE9D2FAFCF1100F6CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				008C34CC1B08D0A900597B0D /* SystemConfiguration.framework */,
+				00F845A91B08C9BD00660FA6 /* libz.dylib */,
 				008B463E1B062D900033539D /* GPX.framework */,
 				AC0B69294892105635FBE11D /* Pods.framework */,
 			);
@@ -373,13 +427,19 @@
 			files = (
 				00FA37E81B0607FA007F9A23 /* TrailsLoader.swift in Sources */,
 				00702E021B0138EF00A77F63 /* RootViewController.swift in Sources */,
+				008C34C81B08CBF700597B0D /* mztools.c in Sources */,
 				000B82661B014756002ED8DF /* Trail.swift in Sources */,
+				008C34C91B08CBF700597B0D /* unzip.c in Sources */,
 				00702E001B0138EF00A77F63 /* AppDelegate.swift in Sources */,
 				006491951B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift in Sources */,
 				00FA37ED1B062201007F9A23 /* MarqueeLabel.swift in Sources */,
 				000B82681B0148B2002ED8DF /* Constants.swift in Sources */,
 				006491961B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift in Sources */,
+				008C34C71B08CBF700597B0D /* ioapi.c in Sources */,
+				008C34CB1B08CBF700597B0D /* SSZipArchive.m in Sources */,
+				008C34CA1B08CBF700597B0D /* zip.c in Sources */,
 				00FA37EB1B06198E007F9A23 /* TrailTableCell.swift in Sources */,
+				008C34CF1B08D16E00597B0D /* Reachability.swift in Sources */,
 				00B141421B06BF2D0075D694 /* RootViewController+Map.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,6 +572,7 @@
 			baseConfigurationReference = 939898062FF7EFBFBEAD94FC /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -532,6 +593,7 @@
 			baseConfigurationReference = 48646D3E766DA4CCEDC98008 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (

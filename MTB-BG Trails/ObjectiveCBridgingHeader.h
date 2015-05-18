@@ -10,5 +10,6 @@
 #define MTB_BG_Trails_ObjectiveCBridgingHeader_h
 
 #import <GPX/GPX.h>
+#import "SSZipArchive/SSZipArchive.h"
 
 #endif
