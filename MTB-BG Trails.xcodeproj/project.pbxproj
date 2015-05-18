@@ -10,17 +10,15 @@
 		000B82661B014756002ED8DF /* Trail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000B82651B014756002ED8DF /* Trail.swift */; };
 		000B82681B0148B2002ED8DF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000B82671B0148B2002ED8DF /* Constants.swift */; };
 		000B826A1B016ED1002ED8DF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000B82691B016ED1002ED8DF /* MapKit.framework */; };
-		000E25151B08C4B3007CA0D7 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 000E25141B08C4B3007CA0D7 /* Podfile */; };
 		006491951B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006491931B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift */; };
 		006491961B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006491941B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift */; };
+		006E9D351B0A03AD0023244E /* GPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006E9D301B0A017C0023244E /* GPX.framework */; };
+		006E9D361B0A03AD0023244E /* GPX.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 006E9D301B0A017C0023244E /* GPX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		00702E001B0138EF00A77F63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00702DFF1B0138EF00A77F63 /* AppDelegate.swift */; };
 		00702E021B0138EF00A77F63 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00702E011B0138EF00A77F63 /* RootViewController.swift */; };
-		00702E051B0138EF00A77F63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00702E031B0138EF00A77F63 /* Main.storyboard */; };
 		00702E071B0138EF00A77F63 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00702E061B0138EF00A77F63 /* Images.xcassets */; };
-		00702E0A1B0138EF00A77F63 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00702E081B0138EF00A77F63 /* LaunchScreen.xib */; };
-		00702E161B0138EF00A77F63 /* MTB_BG_TrailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00702E151B0138EF00A77F63 /* MTB_BG_TrailsTests.swift */; };
 		00702E201B01392F00A77F63 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 00702E1F1B01392F00A77F63 /* .gitignore */; };
-		008B463F1B062D900033539D /* GPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008B463E1B062D900033539D /* GPX.framework */; };
+		007D1C5D1B0A005D00934769 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007D1C5C1B0A005D00934769 /* SwiftyJSON.swift */; };
 		008C34C71B08CBF700597B0D /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 008C34BD1B08CBF700597B0D /* ioapi.c */; };
 		008C34C81B08CBF700597B0D /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 008C34BF1B08CBF700597B0D /* mztools.c */; };
 		008C34C91B08CBF700597B0D /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 008C34C11B08CBF700597B0D /* unzip.c */; };
@@ -28,31 +26,38 @@
 		008C34CB1B08CBF700597B0D /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 008C34C61B08CBF700597B0D /* SSZipArchive.m */; };
 		008C34CD1B08D0A900597B0D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008C34CC1B08D0A900597B0D /* SystemConfiguration.framework */; };
 		008C34CF1B08D16E00597B0D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C34CE1B08D16E00597B0D /* Reachability.swift */; };
+		008C34D11B097AFD00597B0D /* TrailsTableHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C34D01B097AFD00597B0D /* TrailsTableHeaderCell.swift */; };
+		008C34D31B09ECEB00597B0D /* NSDate+Compare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C34D21B09ECEB00597B0D /* NSDate+Compare.swift */; };
+		00A802B21B09FF070022731B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00702E031B0138EF00A77F63 /* Main.storyboard */; };
+		00A802B31B09FF090022731B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00702E081B0138EF00A77F63 /* LaunchScreen.xib */; };
 		00B141421B06BF2D0075D694 /* RootViewController+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B141411B06BF2D0075D694 /* RootViewController+Map.swift */; };
 		00F845AA1B08C9BD00660FA6 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F845A91B08C9BD00660FA6 /* libz.dylib */; };
 		00FA37E81B0607FA007F9A23 /* TrailsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA37E71B0607FA007F9A23 /* TrailsLoader.swift */; };
 		00FA37EB1B06198E007F9A23 /* TrailTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA37EA1B06198E007F9A23 /* TrailTableCell.swift */; };
 		00FA37ED1B062201007F9A23 /* MarqueeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA37EC1B062201007F9A23 /* MarqueeLabel.swift */; };
-		BED760A8A14A0162C26B4F8D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC0B69294892105635FBE11D /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		00702E101B0138EF00A77F63 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00702DF21B0138EF00A77F63 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 00702DF91B0138EF00A77F63;
-			remoteInfo = "MTB-BG Trails";
+/* Begin PBXCopyFilesBuildPhase section */
+		006E9D371B0A03AD0023244E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				006E9D361B0A03AD0023244E /* GPX.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXContainerItemProxy section */
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		000B82651B014756002ED8DF /* Trail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trail.swift; sourceTree = "<group>"; };
 		000B82671B0148B2002ED8DF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		000B82691B016ED1002ED8DF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		000E25141B08C4B3007CA0D7 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 		006491931B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GPXTrackPoint+MapKit.swift"; sourceTree = "<group>"; };
 		006491941B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GPXTrackSegment+MapKit.swift"; sourceTree = "<group>"; };
+		006E9D301B0A017C0023244E /* GPX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GPX.framework; sourceTree = "<group>"; };
 		00702DFA1B0138EF00A77F63 /* MTB-BG Trails.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MTB-BG Trails.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00702DFE1B0138EF00A77F63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00702DFF1B0138EF00A77F63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,11 +65,8 @@
 		00702E041B0138EF00A77F63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		00702E061B0138EF00A77F63 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "MTB-BG Trails/Images.xcassets"; sourceTree = "<group>"; };
 		00702E091B0138EF00A77F63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		00702E0F1B0138EF00A77F63 /* MTB-BG TrailsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MTB-BG TrailsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		00702E141B0138EF00A77F63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00702E151B0138EF00A77F63 /* MTB_BG_TrailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTB_BG_TrailsTests.swift; sourceTree = "<group>"; };
 		00702E1F1B01392F00A77F63 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		008B463E1B062D900033539D /* GPX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GPX.framework; sourceTree = "<group>"; };
+		007D1C5C1B0A005D00934769 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		008C34BC1B08CBF700597B0D /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		008C34BD1B08CBF700597B0D /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
 		008C34BE1B08CBF700597B0D /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
@@ -78,6 +80,8 @@
 		008C34C61B08CBF700597B0D /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
 		008C34CC1B08D0A900597B0D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		008C34CE1B08D16E00597B0D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		008C34D01B097AFD00597B0D /* TrailsTableHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailsTableHeaderCell.swift; sourceTree = "<group>"; };
+		008C34D21B09ECEB00597B0D /* NSDate+Compare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Compare.swift"; sourceTree = "<group>"; };
 		00B141411B06BF2D0075D694 /* RootViewController+Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Map.swift"; sourceTree = "<group>"; };
 		00F845A91B08C9BD00660FA6 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		00FA37E71B0607FA007F9A23 /* TrailsLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailsLoader.swift; sourceTree = "<group>"; };
@@ -86,7 +90,6 @@
 		00FA37EE1B0629F7007F9A23 /* ObjectiveCBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectiveCBridgingHeader.h; sourceTree = "<group>"; };
 		48646D3E766DA4CCEDC98008 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		939898062FF7EFBFBEAD94FC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		AC0B69294892105635FBE11D /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,18 +97,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				006E9D351B0A03AD0023244E /* GPX.framework in Frameworks */,
 				008C34CD1B08D0A900597B0D /* SystemConfiguration.framework in Frameworks */,
 				00F845AA1B08C9BD00660FA6 /* libz.dylib in Frameworks */,
 				000B826A1B016ED1002ED8DF /* MapKit.framework in Frameworks */,
-				BED760A8A14A0162C26B4F8D /* Pods.framework in Frameworks */,
-				008B463F1B062D900033539D /* GPX.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		00702E0C1B0138EF00A77F63 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,10 +128,8 @@
 		00702DF11B0138EF00A77F63 = {
 			isa = PBXGroup;
 			children = (
-				000B82691B016ED1002ED8DF /* MapKit.framework */,
 				00702E1F1B01392F00A77F63 /* .gitignore */,
 				00702DFC1B0138EF00A77F63 /* MTB-BG Trails */,
-				00702E121B0138EF00A77F63 /* MTB-BG TrailsTests */,
 				00702DFB1B0138EF00A77F63 /* Products */,
 				0E924C271108AD7433AE3C49 /* Pods */,
 				F70A74DE9D2FAFCF1100F6CF /* Frameworks */,
@@ -147,7 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				00702DFA1B0138EF00A77F63 /* MTB-BG Trails.app */,
-				00702E0F1B0138EF00A77F63 /* MTB-BG TrailsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,29 +162,13 @@
 			isa = PBXGroup;
 			children = (
 				008C34BA1B08CBF700597B0D /* SSZipArchive */,
-				000E25141B08C4B3007CA0D7 /* Podfile */,
+				007D1C5B1B0A005D00934769 /* SwiftyJSON */,
 				00702DFE1B0138EF00A77F63 /* Info.plist */,
 				000B82671B0148B2002ED8DF /* Constants.swift */,
 				00FA37EC1B062201007F9A23 /* MarqueeLabel.swift */,
 				00FA37EE1B0629F7007F9A23 /* ObjectiveCBridgingHeader.h */,
 				008C34CE1B08D16E00597B0D /* Reachability.swift */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		00702E121B0138EF00A77F63 /* MTB-BG TrailsTests */ = {
-			isa = PBXGroup;
-			children = (
-				00702E151B0138EF00A77F63 /* MTB_BG_TrailsTests.swift */,
-				00702E131B0138EF00A77F63 /* Supporting Files */,
-			);
-			path = "MTB-BG TrailsTests";
-			sourceTree = "<group>";
-		};
-		00702E131B0138EF00A77F63 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				00702E141B0138EF00A77F63 /* Info.plist */,
+				008C34D21B09ECEB00597B0D /* NSDate+Compare.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -215,6 +191,14 @@
 				00B141411B06BF2D0075D694 /* RootViewController+Map.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		007D1C5B1B0A005D00934769 /* SwiftyJSON */ = {
+			isa = PBXGroup;
+			children = (
+				007D1C5C1B0A005D00934769 /* SwiftyJSON.swift */,
+			);
+			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
 		008C34BA1B08CBF700597B0D /* SSZipArchive */ = {
@@ -247,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				00FA37EA1B06198E007F9A23 /* TrailTableCell.swift */,
+				008C34D01B097AFD00597B0D /* TrailsTableHeaderCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -263,10 +248,10 @@
 		F70A74DE9D2FAFCF1100F6CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				006E9D301B0A017C0023244E /* GPX.framework */,
+				000B82691B016ED1002ED8DF /* MapKit.framework */,
 				008C34CC1B08D0A900597B0D /* SystemConfiguration.framework */,
 				00F845A91B08C9BD00660FA6 /* libz.dylib */,
-				008B463E1B062D900033539D /* GPX.framework */,
-				AC0B69294892105635FBE11D /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -278,12 +263,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00702E191B0138EF00A77F63 /* Build configuration list for PBXNativeTarget "MTB-BG Trails" */;
 			buildPhases = (
-				610CA329709EF72E5B1EF484 /* Check Pods Manifest.lock */,
 				00702DF61B0138EF00A77F63 /* Sources */,
 				00702DF71B0138EF00A77F63 /* Frameworks */,
 				00702DF81B0138EF00A77F63 /* Resources */,
-				9B22A0A2C408DBB1C0DB7FA2 /* Embed Pods Frameworks */,
-				81412F14B9AB0B0380F3E48D /* Copy Pods Resources */,
+				006E9D371B0A03AD0023244E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -293,24 +276,6 @@
 			productName = "MTB-BG Trails";
 			productReference = 00702DFA1B0138EF00A77F63 /* MTB-BG Trails.app */;
 			productType = "com.apple.product-type.application";
-		};
-		00702E0E1B0138EF00A77F63 /* MTB-BG TrailsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00702E1C1B0138EF00A77F63 /* Build configuration list for PBXNativeTarget "MTB-BG TrailsTests" */;
-			buildPhases = (
-				00702E0B1B0138EF00A77F63 /* Sources */,
-				00702E0C1B0138EF00A77F63 /* Frameworks */,
-				00702E0D1B0138EF00A77F63 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00702E111B0138EF00A77F63 /* PBXTargetDependency */,
-			);
-			name = "MTB-BG TrailsTests";
-			productName = "MTB-BG TrailsTests";
-			productReference = 00702E0F1B0138EF00A77F63 /* MTB-BG TrailsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -324,10 +289,6 @@
 					00702DF91B0138EF00A77F63 = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = W9JC833V6E;
-					};
-					00702E0E1B0138EF00A77F63 = {
-						CreatedOnToolsVersion = 6.3.1;
-						TestTargetID = 00702DF91B0138EF00A77F63;
 					};
 				};
 			};
@@ -345,7 +306,6 @@
 			projectRoot = "";
 			targets = (
 				00702DF91B0138EF00A77F63 /* MTB-BG Trails */,
-				00702E0E1B0138EF00A77F63 /* MTB-BG TrailsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -355,70 +315,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				000E25151B08C4B3007CA0D7 /* Podfile in Resources */,
+				00A802B31B09FF090022731B /* LaunchScreen.xib in Resources */,
+				00A802B21B09FF070022731B /* Main.storyboard in Resources */,
 				00702E201B01392F00A77F63 /* .gitignore in Resources */,
-				00702E051B0138EF00A77F63 /* Main.storyboard in Resources */,
-				00702E0A1B0138EF00A77F63 /* LaunchScreen.xib in Resources */,
 				00702E071B0138EF00A77F63 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		00702E0D1B0138EF00A77F63 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		610CA329709EF72E5B1EF484 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		81412F14B9AB0B0380F3E48D /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9B22A0A2C408DBB1C0DB7FA2 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		00702DF61B0138EF00A77F63 /* Sources */ = {
@@ -432,10 +336,13 @@
 				008C34C91B08CBF700597B0D /* unzip.c in Sources */,
 				00702E001B0138EF00A77F63 /* AppDelegate.swift in Sources */,
 				006491951B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift in Sources */,
+				007D1C5D1B0A005D00934769 /* SwiftyJSON.swift in Sources */,
 				00FA37ED1B062201007F9A23 /* MarqueeLabel.swift in Sources */,
 				000B82681B0148B2002ED8DF /* Constants.swift in Sources */,
 				006491961B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift in Sources */,
+				008C34D11B097AFD00597B0D /* TrailsTableHeaderCell.swift in Sources */,
 				008C34C71B08CBF700597B0D /* ioapi.c in Sources */,
+				008C34D31B09ECEB00597B0D /* NSDate+Compare.swift in Sources */,
 				008C34CB1B08CBF700597B0D /* SSZipArchive.m in Sources */,
 				008C34CA1B08CBF700597B0D /* zip.c in Sources */,
 				00FA37EB1B06198E007F9A23 /* TrailTableCell.swift in Sources */,
@@ -444,23 +351,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		00702E0B1B0138EF00A77F63 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00702E161B0138EF00A77F63 /* MTB_BG_TrailsTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		00702E111B0138EF00A77F63 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 00702DF91B0138EF00A77F63 /* MTB-BG Trails */;
-			targetProxy = 00702E101B0138EF00A77F63 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		00702E031B0138EF00A77F63 /* Main.storyboard */ = {
@@ -569,7 +460,6 @@
 		};
 		00702E1A1B0138EF00A77F63 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 939898062FF7EFBFBEAD94FC /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -590,7 +480,6 @@
 		};
 		00702E1B1B0138EF00A77F63 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 48646D3E766DA4CCEDC98008 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -606,40 +495,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MTB-BG Trails/ObjectiveCBridgingHeader.h";
-			};
-			name = Release;
-		};
-		00702E1D1B0138EF00A77F63 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "MTB-BG TrailsTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MTB-BG Trails.app/MTB-BG Trails";
-			};
-			name = Debug;
-		};
-		00702E1E1B0138EF00A77F63 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "MTB-BG TrailsTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MTB-BG Trails.app/MTB-BG Trails";
 			};
 			name = Release;
 		};
@@ -660,15 +515,6 @@
 			buildConfigurations = (
 				00702E1A1B0138EF00A77F63 /* Debug */,
 				00702E1B1B0138EF00A77F63 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		00702E1C1B0138EF00A77F63 /* Build configuration list for PBXNativeTarget "MTB-BG TrailsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00702E1D1B0138EF00A77F63 /* Debug */,
-				00702E1E1B0138EF00A77F63 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

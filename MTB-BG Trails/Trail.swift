@@ -27,6 +27,6 @@ class Trail: Printable
 	
 	var description: String
 	{
-		return "Name: \(name)\n Date: \(date)\n Link: \(link)\n Length: \(length)\n Ascent: \(ascent)\n Difficulty: \(difficulty)\n Strenouousness: \(strenuousness)\n Duration: \(duration)\n Water: \(water)\n Food: \(food)\n Terrains: \(terrains)\n Traces: \(traces)\n"
+		return "Name: \(name)\n Date: \(date)\n Link: \(link)\n Length: \(length)\n Ascent: \(ascent)\n Difficulty: \(difficulty)\n Strenuousness: \(strenuousness)\n Duration: \(duration)\n Water: \(water)\n Food: \(food)\n Terrains: \(terrains)\n Traces: \(traces)\n"
 	}
 }

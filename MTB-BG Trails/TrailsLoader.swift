@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 import MapKit
 
 protocol TrailsLoaderDelegate
@@ -15,9 +14,19 @@ protocol TrailsLoaderDelegate
 	func gpxLoaded(gpx: GPXRoot)
 }
 
+struct Statistics
+{
+	var date = (min: NSDate(timeIntervalSinceNow: 0), max:NSDate(timeIntervalSince1970: 0))
+	var length = (min: 1000.0, max: 0.0)
+	var ascent = (min: 3000.0, max: -3000.0)
+	var strenuousness = (min: 10.0, max: 0.0)
+}
+
 class TrailsLoader
 {
 	var trails = [Trail]()
+	
+	var statistics = Statistics()
 	
 	var region: MKCoordinateRegion?
 	var delegate: TrailsLoaderDelegate?
@@ -26,6 +35,7 @@ class TrailsLoader
 	private var upper = CLLocationCoordinate2DMake(-91.0, -181.0)
 	private var lower = CLLocationCoordinate2DMake(91.0, 181.0)
 	
+	//Loads the trails from JSON data
 	func loadTrails(url: NSURL, onLoadFinished: (([Trail]) -> Void)?)
 	{
 		gpxLoaded = 0
@@ -47,6 +57,19 @@ class TrailsLoader
 						dateFormatter.locale = locale
 						dateFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss"
 						trail.date = dateFormatter.dateFromString(dateString)
+						
+						if let date = trail.date
+						{
+							if date < self.statistics.date.min
+							{
+								self.statistics.date.min = date
+							}
+							
+							if date > self.statistics.date.max
+							{
+								self.statistics.date.max = date
+							}
+						}
 					}
 					
 					if let linkString = subJson["link"].string
@@ -54,8 +77,65 @@ class TrailsLoader
 						trail.link = NSURL(string: linkString)
 					}
 					
-					trail.length = subJson["length"].double
-					trail.ascent = subJson["ascent"].double
+					if let length = subJson["length"].double
+					{
+						trail.length = length
+						
+						if length < self.statistics.length.min
+						{
+							self.statistics.length.min = length
+						}
+						
+						if length > self.statistics.length.max
+						{
+							self.statistics.length.max = length
+						}
+					}
+					
+					if let ascent = subJson["ascent"].double
+					{
+						trail.ascent = ascent
+						
+						if ascent < self.statistics.ascent.min
+						{
+							self.statistics.ascent.min = ascent
+						}
+						
+						if ascent > self.statistics.ascent.max
+						{
+							self.statistics.ascent.max = ascent
+						}
+					}
+					
+					for(index: String, diff: JSON) in subJson["difficulty"]
+					{
+						if trail.difficulty == nil
+						{
+							trail.difficulty = [String]()
+						}
+						
+						if let diff = diff.string
+						{
+							trail.difficulty!.append(diff)
+						}
+					}
+					
+					if let stren = subJson["strenuousness"].double
+					{
+						trail.strenuousness = stren
+						
+						if stren < self.statistics.strenuousness.min
+						{
+							self.statistics.strenuousness.min = stren
+						}
+						
+						if stren > self.statistics.strenuousness.max
+						{
+							self.statistics.strenuousness.max = stren
+						}
+	
+					}
+					
 					trail.duration = subJson["duration"].string
 					trail.water = subJson["water"].string
 					trail.food = subJson["food"].string
@@ -94,12 +174,13 @@ class TrailsLoader
 							})
 						}
 					}
-					
+
 					self.trails.append(trail)
-					if let onLoadFinished = onLoadFinished
-					{
-						onLoadFinished(self.trails)
-					}
+				}
+				
+				if let onLoadFinished = onLoadFinished
+				{
+					onLoadFinished(self.trails)
 				}
 			} else
 			{

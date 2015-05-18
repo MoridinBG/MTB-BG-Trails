@@ -1,0 +1,6 @@
+framework module GPX {
+  umbrella header "GPX.h"
+
+  export *
+  module * { export * }
+}

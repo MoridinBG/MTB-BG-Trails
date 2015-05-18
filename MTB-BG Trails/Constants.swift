@@ -13,6 +13,7 @@ struct Constants
 	struct Keys
 	{
 		static let kCellIdTracks = "TrackCell"
+		static let kCellIdTracksHeader = "TracksHeaderCell"
 	}
 	struct Values
 	{

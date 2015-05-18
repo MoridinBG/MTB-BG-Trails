@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 
-class RootViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TrailsLoaderDelegate
+class RootViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TrailsLoaderDelegate, TrailsHeaderDelegate
 {
 
 	var trails = [Trail]()
@@ -66,6 +66,11 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 		trailsLoader.delegate = self
 		trailsLoader.loadTrails(NSURL(string:Constants.Values.vJSONTrailsURL)!) { (trails) in
 			self.trails = trails
+			println(self.trailsLoader.statistics.date)
+			println(self.trailsLoader.statistics.length)
+			println(self.trailsLoader.statistics.ascent)
+			println(self.trailsLoader.statistics.strenuousness)
+			println()
 			dispatch_async(dispatch_get_main_queue(), { () -> Void in
 				self.tracksTable.reloadData()
 			})
@@ -76,6 +81,11 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 	{
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
+	}
+	
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+	{
+		return trails.count
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
@@ -140,9 +150,12 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 		
 		return cell
 	}
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+	
+	func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
 	{
-		return trails.count
+		let headerCell = tracksTable.dequeueReusableCellWithIdentifier(Constants.Keys.kCellIdTracksHeader) as! TrailsTableHeaderCell
+		
+		return headerCell
 	}
 	
 	func scrollViewDidScroll(scrollView: UIScrollView)
@@ -174,6 +187,15 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 		}
 		
 		self.fitTrailsInMap()
+	}
+	
+	func sortTrails()
+	{
+	}
+	
+	func filterTrails()
+	{
+		
 	}
 }
 
