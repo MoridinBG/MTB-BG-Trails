@@ -14,6 +14,8 @@ struct Constants
 	{
 		static let kCellIdTracks = "TrackCell"
 		static let kCellIdTracksHeader = "TracksHeaderCell"
+		
+		static let kSegueIdTracksFilterPopover = "TracksFilterPopoverSegue"
 	}
 	struct Values
 	{

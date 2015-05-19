@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MapKit
 
 class Trail: Printable
 {
@@ -23,7 +24,8 @@ class Trail: Printable
 	var terrains: [String:Double]?
 	var traces: [NSURL]?
 	
-	var gpxRoot: GPXRoot?
+	var gpxOverlays: [MKOverlay]?
+	var overlaysShown = false
 	
 	var description: String
 	{

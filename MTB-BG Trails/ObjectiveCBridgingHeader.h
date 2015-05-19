@@ -11,5 +11,6 @@
 
 #import <GPX/GPX.h>
 #import "SSZipArchive/SSZipArchive.h"
+#import "NMRangeSlider.h"
 
 #endif

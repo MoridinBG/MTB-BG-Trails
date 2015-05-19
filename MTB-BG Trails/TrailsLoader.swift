@@ -11,7 +11,7 @@ import MapKit
 
 protocol TrailsLoaderDelegate
 {
-	func gpxLoaded(gpx: GPXRoot)
+	func loadGPXOverlays(overlays: [MKOverlay])
 }
 
 struct Statistics
@@ -123,7 +123,7 @@ class TrailsLoader
 					if let stren = subJson["strenuousness"].double
 					{
 						trail.strenuousness = stren
-						
+						println(stren)
 						if stren < self.statistics.strenuousness.min
 						{
 							self.statistics.strenuousness.min = stren
@@ -169,8 +169,16 @@ class TrailsLoader
 					if let traces = trail.traces
 					{
 						self.loadGPXFromTrail(trail) { gpx in
+							trail.gpxOverlays = [MKOverlay]()
+							for track in gpx.tracks as! [GPXTrack]
+							{
+								for segment in track.tracksegments as! [GPXTrackSegment]
+								{
+									trail.gpxOverlays?.append(segment.overlay)
+								}
+							}
 							dispatch_async(dispatch_get_main_queue(), {
-								self.delegate?.gpxLoaded(gpx)
+								self.delegate?.loadGPXOverlays(trail.gpxOverlays!)
 							})
 						}
 					}
@@ -229,7 +237,6 @@ class TrailsLoader
 					onLoadFinished(gpx: root)
 				} else
 				{
-					println("Requesting unavailable GPX \(url)")
 					self.requestGPXFile(url) { (root) in
 						self.updateMapRegionWithTrack(root)
 						onLoadFinished(gpx: root)
@@ -248,7 +255,7 @@ class TrailsLoader
 
 		let tracksFile = documentsPath.stringByAppendingPathComponent(Constants.Values.vJSONTrailsFilename)
 		
-		if !reachability.isReachable()
+		if true//!reachability.isReachable()
 		{
 			var error: NSError? = nil
 			let documentsFiles = NSFileManager.defaultManager().contentsOfDirectoryAtPath(documentsPath, error: &error)

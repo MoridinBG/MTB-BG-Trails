@@ -10,20 +10,24 @@ import UIKit
 
 protocol TrailsHeaderDelegate
 {
-	func filterTrails()
-	func sortTrails()
+	func filterTrails(sender: UIButton)
+	func sortTrails(sender: UIButton)
 }
 
 class TrailsTableHeaderCell: UITableViewCell
 {
-
+	var delegate: TrailsHeaderDelegate?
+	
 	@IBAction func filter(sender: UIButton)
 	{
+		delegate?.filterTrails(sender)
 	}
 	
 	@IBAction func sort(sender: UIButton)
 	{
+		delegate?.sortTrails(sender)
 	}
+	
     override func awakeFromNib()
 	{
         super.awakeFromNib()

@@ -15,6 +15,7 @@ class TrailTableCell: UITableViewCell
 	@IBOutlet weak var dateLabel: UILabel!
 	@IBOutlet weak var lengthLabel: UILabel!
 	@IBOutlet weak var ascentLabel: UILabel!
+	@IBOutlet weak var strenLabel: UILabel!
 	@IBOutlet weak var diffLabel: UILabel!
 	@IBOutlet weak var durationLabel: UILabel!
 	

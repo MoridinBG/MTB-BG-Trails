@@ -1,0 +1,177 @@
+//
+//  TrailsFilterController.swift
+//  MTB-BG Trails
+//
+//  Created by Ivan Dilchovski on 5/19/15.
+//  Copyright (c) 2015 TechLight. All rights reserved.
+//
+
+import UIKit
+import SFRangeSliderUI
+
+protocol TrailsFilterDelegate
+{
+	func lengthChanged(min: Float, max: Float)
+	func ascentChanged(min: Float, max: Float)
+	func effortChanged(min: Float, max: Float)
+}
+
+class TrailsFilterController: UIViewController
+{
+	
+	@IBOutlet weak var minLength: UISlider!
+	@IBOutlet weak var maxLength: UISlider!
+	@IBOutlet weak var minLengthLabel: UILabel!
+	@IBOutlet weak var maxLengthLabel: UILabel!
+	
+	
+	@IBOutlet weak var minAscent: UISlider!
+	@IBOutlet weak var maxAscent: UISlider!
+	@IBOutlet weak var minAscentLabel: UILabel!
+	@IBOutlet weak var maxAscentLabel: UILabel!
+	
+	@IBOutlet weak var minEffort: UISlider!
+	@IBOutlet weak var maxEffort: UISlider!
+	@IBOutlet weak var minEffortLabel: UILabel!
+	@IBOutlet weak var maxEffortLabel: UILabel!
+	
+	var statistics = Statistics()
+	var delegate: TrailsFilterDelegate?
+	
+	private let ascentStep: Float = 1.0
+	private let lengthStep: Float = 0.5
+	private let effortStep: Float = 1.0
+	
+	@IBAction func minLengthChanged(sender: UISlider)
+	{
+		let newStep = roundf((minLength.value) / lengthStep)
+		minLength.value = newStep * lengthStep
+		
+		minLengthLabel.text = "\(minLength.value)km"
+		maxLength.minimumValue = minLength.value
+		
+		delegate?.lengthChanged(minLength.value, max: maxLength.value)
+	}
+	
+	@IBAction func maxLengthChanged(sender: UISlider)
+	{
+		let newStep = roundf((maxLength.value) / lengthStep)
+		maxLength.value = newStep * lengthStep
+		
+		maxLengthLabel.text = "\(maxLength.value)km"
+		minLength.maximumValue = maxLength.value
+		
+		delegate?.lengthChanged(minLength.value, max: maxLength.value)
+	}
+	
+	@IBAction func minAscentChanged(sender: UISlider)
+	{
+		let newStep = roundf((minAscent.value) / ascentStep)
+		minAscent.value = newStep * ascentStep
+		
+		minAscentLabel.text = "\(minAscent.value)m"
+		maxAscent.minimumValue = minAscent.value
+		
+		delegate?.ascentChanged(minAscent.value, max: maxAscent.value)
+	}
+	
+	@IBAction func maxAscentChanged(sender: UISlider)
+	{
+		let newStep = roundf((maxAscent.value) / ascentStep)
+		maxAscent.value = newStep * ascentStep
+		
+		maxAscentLabel.text = "\(maxAscent.value)m"
+		minAscent.maximumValue = maxAscent.value
+		
+		delegate?.ascentChanged(minAscent.value, max: maxAscent.value)
+	}
+	
+	@IBAction func minEffortChanged(sender: UISlider)
+	{
+		let newStep = roundf((minEffort.value) / effortStep)
+		minEffort.value = newStep * effortStep
+		
+		minEffortLabel.text = "\(minEffort.value)"
+		maxEffort.minimumValue = minEffort.value
+		
+		delegate?.effortChanged(minEffort.value, max: maxEffort.value)
+	}
+	
+	@IBAction func maxEffortChanged(sender: UISlider)
+	{
+		let newStep = roundf((maxEffort.value) / effortStep)
+		maxEffort.value = newStep * effortStep
+		
+		maxEffortLabel.text = "\(maxEffort.value)"
+		minEffort.maximumValue = maxEffort.value
+		
+		delegate?.effortChanged(minEffort.value, max: maxEffort.value)
+	}
+	
+	convenience init()
+	{
+		self.init(nibName: "TrailsFilterController", bundle: nil)
+	}
+	
+    override func viewDidLoad()
+	{
+        super.viewDidLoad()
+		
+		setupSliders()
+    }
+
+    override func didReceiveMemoryWarning()
+	{
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+	
+	private func setupSliders()
+	{
+		minLength.minimumValue = Float(statistics.length.min)
+		minLength.maximumValue = Float(statistics.length.max)
+		minLength.value = minLength.minimumValue
+		
+		maxLength.minimumValue = Float(statistics.length.min)
+		maxLength.maximumValue = Float(statistics.length.max)
+		maxLength.value = maxLength.maximumValue
+		
+		minLengthLabel.text = "\(minLength.value)m"
+		maxLengthLabel.text = "\(maxLength.value)m"
+		
+		
+		minAscent.minimumValue = Float(statistics.ascent.min)
+		minAscent.maximumValue = Float(statistics.ascent.max)
+		minAscent.value = minAscent.minimumValue
+		
+		maxAscent.minimumValue = Float(statistics.ascent.min)
+		maxAscent.maximumValue = Float(statistics.ascent.max)
+		maxAscent.value = maxAscent.maximumValue
+		
+		minAscentLabel.text = "\(minAscent.value)m"
+		maxAscentLabel.text = "\(maxAscent.value)m"
+		
+		
+		minEffort.minimumValue = Float(statistics.strenuousness.min - 1)
+		minEffort.maximumValue = Float(statistics.strenuousness.max)
+		minEffort.value = minEffort.minimumValue
+		
+		maxEffort.minimumValue = Float(statistics.strenuousness.min - 1)
+		maxEffort.maximumValue = Float(statistics.strenuousness.max)
+		maxEffort.value = maxEffort.maximumValue
+		
+		minEffortLabel.text = "\(minEffort.value)"
+		maxEffortLabel.text = "\(maxEffort.value)"
+	}
+}
