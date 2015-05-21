@@ -167,7 +167,7 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 			cell.diffLabel.text = ""
 			for diff in difficulty
 			{
-				cell.diffLabel.text! += diff + " "
+				cell.diffLabel.text! += Constants.Values.vTrailDifficultyClasses[diff] + " "
 			}
 		} else
 		{
@@ -243,7 +243,7 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 	{
 		filterPopoverAnchor = sender
 		filterPopoverController.modalPresentationStyle = UIModalPresentationStyle.Popover
-		filterPopoverController.preferredContentSize = CGSizeMake(500,308)
+        filterPopoverController.preferredContentSize = CGSizeMake(500,308)
 		filterPopoverController.statistics = trailsLoader.statistics
 		filterPopoverController.delegate = self
 		
@@ -257,113 +257,185 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 	}
 	
 	// MARK: - TrailsFilterDelegate
-	// TODO: Simplify & reduce redundancy
 	
-	func lengthChanged(min: Float, max: Float)
+	func applyFilters(filters: [TrailFilter])
 	{
 		filteredTrails.removeAll(keepCapacity: false)
 		for trail in trails
 		{
-			if let length = trail.length
+            var filtered = false
+			for filter in filters
 			{
-				if length > Double(max) || length < Double(min)
+                if filtered
+                {
+                    break
+                }
+                
+				switch filter
 				{
-					if trail.overlaysShown
-					{
-						if let overlays = trail.gpxOverlays
+					case .lengthFilter(let minLength, let maxLength):
+						if shouldFilter(trail,
+											filteredValue: trail.length,
+											minLimit: Double(minLength),
+											absoluteMinLimit: trailsLoader.statistics.length.min,
+											maxLimit: Double(maxLength),
+											absoluteMaxLimit: trailsLoader.statistics.length.max,
+											filtersNil: false)
+                        {
+                            filtered = true
+                        }
+					
+					case .ascentFilter(let minAscent, let maxAscent):
+						if shouldFilter(trail,
+                                            filteredValue: trail.ascent,
+                                            minLimit: Double(minAscent),
+                                            absoluteMinLimit: trailsLoader.statistics.ascent.min,
+                                            maxLimit: Double(maxAscent),
+                                            absoluteMaxLimit: trailsLoader.statistics.ascent.max,
+                                            filtersNil: false)
+                        {
+                            filtered = true
+                        }
+                    
+					case .effortFilter(let minEffort, let maxEffort):
+						if shouldFilter(trail,
+                                            filteredValue: trail.strenuousness,
+                                            minLimit: Double(minEffort),
+                                            absoluteMinLimit: trailsLoader.statistics.strenuousness.min,
+                                            maxLimit: Double(maxEffort),
+                                            absoluteMaxLimit: trailsLoader.statistics.strenuousness.max,
+                                            filtersNil: true)
+                        {
+                            filtered = true
+                        }
+                    
+					case .diffFilter(let minDiff, let maxDiff):
+						if let difficulties = trail.difficulty
 						{
-							trail.overlaysShown = false
-							for overlay in overlays
+							for difficulty in difficulties
 							{
-								mapView.removeOverlay(overlay)
+                                if filtered
+                                {
+                                    break
+                                }
+                                let optionalDiff: Double? = Double(difficulty)
+								if shouldFilter(trail,
+									filteredValue: optionalDiff,
+									minLimit: Double(minDiff),
+									absoluteMinLimit: Double(trailsLoader.statistics.difficulty.min),
+									maxLimit: Double(maxDiff),
+									absoluteMaxLimit: Double(trailsLoader.statistics.difficulty.max),
+									filtersNil: true)
+								{
+									filtered = true
+								}
 							}
-						}
-					}
-					continue
+						} else
+                        {
+                            if shouldFilter(trail,
+                                filteredValue: nil,
+                                minLimit: Double(minDiff),
+                                absoluteMinLimit: Double(trailsLoader.statistics.difficulty.min),
+                                maxLimit: Double(maxDiff),
+                                absoluteMaxLimit: Double(trailsLoader.statistics.difficulty.max),
+                                filtersNil: true)
+                            {
+                                filtered = true
+                            }
+                        }
 				}
 			}
-			
-			filteredTrails.append(trail)
-			if !trail.overlaysShown
-			{
-				if let overlays = trail.gpxOverlays
-				{
-					trail.overlaysShown = true
-					for overlay in overlays
-					{
-						mapView.addOverlay(overlay)
-					}
-				}
-			}
+            
+            if !filtered
+            {
+                if !trail.overlaysShown
+                {
+                    if let overlays = trail.gpxOverlays
+                    {
+                        trail.overlaysShown = true
+                        for overlay in overlays
+                        {
+                            mapView.addOverlay(overlay)
+                        }
+                    }
+                }
+                
+                filteredTrails.append(trail)
+            } else
+            {
+                if trail.overlaysShown
+                {
+                    if let overlays = trail.gpxOverlays
+                    {
+                        trail.overlaysShown = false
+                        for overlay in overlays
+                        {
+                            mapView.removeOverlay(overlay)
+                        }
+                    }
+                }
+            }
 		}
 		
 		trailsTable.reloadData()
 	}
 	
-	func ascentChanged(min: Float, max: Float)
+	func shouldFilter(	trail: Trail,
+						filteredValue: Double?,
+						minLimit: Double,
+						absoluteMinLimit: Double,
+						maxLimit: Double,
+						absoluteMaxLimit: Double,
+						filtersNil: Bool) -> Bool
 	{
-		filteredTrails.removeAll(keepCapacity: false)
-		for trail in trails
+		if let value = filteredValue
 		{
-			if let ascent = trail.ascent
+			if value < minLimit || value > maxLimit
 			{
-				if ascent > Double(max) || ascent < Double(min)
-				{
-					if trail.overlaysShown
-					{
-						if let overlays = trail.gpxOverlays
-						{
-							trail.overlaysShown = false
-							for overlay in overlays
-							{
-								mapView.removeOverlay(overlay)
-							}
-						}
-					}
-					continue
-				}
+				return true
 			}
-			
-			filteredTrails.append(trail)
-			if !trail.overlaysShown
-			{
-				if let overlays = trail.gpxOverlays
-				{
-					trail.overlaysShown = true
-					for overlay in overlays
-					{
-						mapView.addOverlay(overlay)
-					}
-				}
-			}
+		} else if filtersNil && absoluteMinLimit <= minLimit
+		{
+			return true
 		}
-		
-		trailsTable.reloadData()
+
+		return false
 	}
-	
-	func effortChanged(min: Float, max: Float)
+
+	func diffChanged(min: Float, max: Float, unfilteredTrails: [Trail]) -> [Trail]
 	{
 		filteredTrails.removeAll(keepCapacity: false)
+		
 		for trail in trails
 		{
-			if let strenuousness = trail.strenuousness
+			var removed = false
+			if let difficulties = trail.difficulty
 			{
-				if strenuousness > Double(max) || strenuousness < Double(min)
+				for difficulty in difficulties
 				{
-					if trail.overlaysShown
+					if difficulty > Int(max) || difficulty < Int(min)
 					{
-						if let overlays = trail.gpxOverlays
+						if trail.overlaysShown
 						{
-							trail.overlaysShown = false
-							for overlay in overlays
+							if let overlays = trail.gpxOverlays
 							{
-								mapView.removeOverlay(overlay)
+								trail.overlaysShown = false
+								for overlay in overlays
+								{
+									mapView.removeOverlay(overlay)
+								}
 							}
 						}
+						removed = true
+						break
 					}
+				}
+				
+				if removed
+				{
 					continue
 				}
-			} else if trailsLoader.statistics.strenuousness.min < Double(min)
+			} else if trailsLoader.statistics.difficulty.min <= Int(min)
 			{
 				if trail.overlaysShown
 				{
@@ -378,7 +450,6 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 				}
 				continue
 			}
-			
 			filteredTrails.append(trail)
 			if !trail.overlaysShown
 			{
@@ -394,6 +465,7 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 		}
 		
 		trailsTable.reloadData()
+		return [Trail]()
 	}
 }
 

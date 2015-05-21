@@ -30,6 +30,7 @@
 		008C34CF1B08D16E00597B0D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C34CE1B08D16E00597B0D /* Reachability.swift */; };
 		008C34D11B097AFD00597B0D /* TrailsTableHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C34D01B097AFD00597B0D /* TrailsTableHeaderCell.swift */; };
 		008C34D31B09ECEB00597B0D /* NSDate+Compare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C34D21B09ECEB00597B0D /* NSDate+Compare.swift */; };
+		0098EAF51B0C0229002DCFA1 /* Array+Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0098EAF41B0C0229002DCFA1 /* Array+Index.swift */; };
 		00A802B21B09FF070022731B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00702E031B0138EF00A77F63 /* Main.storyboard */; };
 		00A802B31B09FF090022731B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00702E081B0138EF00A77F63 /* LaunchScreen.xib */; };
 		00B141421B06BF2D0075D694 /* RootViewController+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B141411B06BF2D0075D694 /* RootViewController+Map.swift */; };
@@ -86,6 +87,7 @@
 		008C34CE1B08D16E00597B0D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		008C34D01B097AFD00597B0D /* TrailsTableHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailsTableHeaderCell.swift; sourceTree = "<group>"; };
 		008C34D21B09ECEB00597B0D /* NSDate+Compare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Compare.swift"; sourceTree = "<group>"; };
+		0098EAF41B0C0229002DCFA1 /* Array+Index.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Index.swift"; sourceTree = "<group>"; };
 		00B141411B06BF2D0075D694 /* RootViewController+Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Map.swift"; sourceTree = "<group>"; };
 		00F845A91B08C9BD00660FA6 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		00FA37E71B0607FA007F9A23 /* TrailsLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailsLoader.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				00FA37EE1B0629F7007F9A23 /* ObjectiveCBridgingHeader.h */,
 				008C34CE1B08D16E00597B0D /* Reachability.swift */,
 				008C34D21B09ECEB00597B0D /* NSDate+Compare.swift */,
+				0098EAF41B0C0229002DCFA1 /* Array+Index.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				006491961B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift in Sources */,
 				008C34D11B097AFD00597B0D /* TrailsTableHeaderCell.swift in Sources */,
 				008C34C71B08CBF700597B0D /* ioapi.c in Sources */,
+				0098EAF51B0C0229002DCFA1 /* Array+Index.swift in Sources */,
 				002D0ED11B0B351000FA024C /* TrailsFilterController.swift in Sources */,
 				008C34D31B09ECEB00597B0D /* NSDate+Compare.swift in Sources */,
 				008C34CB1B08CBF700597B0D /* SSZipArchive.m in Sources */,

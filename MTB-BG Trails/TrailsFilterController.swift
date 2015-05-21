@@ -7,13 +7,18 @@
 //
 
 import UIKit
-import SFRangeSliderUI
 
 protocol TrailsFilterDelegate
 {
-	func lengthChanged(min: Float, max: Float)
-	func ascentChanged(min: Float, max: Float)
-	func effortChanged(min: Float, max: Float)
+	func applyFilters(filters: [TrailFilter])
+}
+
+enum TrailFilter
+{
+	case lengthFilter(Float, Float)
+	case ascentFilter(Float, Float)
+	case effortFilter(Float, Float)
+	case diffFilter(Float, Float)
 }
 
 class TrailsFilterController: UIViewController
@@ -35,33 +40,77 @@ class TrailsFilterController: UIViewController
 	@IBOutlet weak var minEffortLabel: UILabel!
 	@IBOutlet weak var maxEffortLabel: UILabel!
 	
+	@IBOutlet weak var minDiff: UISlider!
+	@IBOutlet weak var maxDiff: UISlider!
+	@IBOutlet weak var minDiffLabel: UILabel!
+	@IBOutlet weak var maxDiffLabel: UILabel!
+	
 	var statistics = Statistics()
 	var delegate: TrailsFilterDelegate?
 	
-	private let ascentStep: Float = 1.0
 	private let lengthStep: Float = 0.5
+	private let ascentStep: Float = 1.0
 	private let effortStep: Float = 1.0
-	
+	private let diffStep:	Float = 1.0
+    
+    private var oldMinLength: Float = -1.23456789
+	private var oldMaxLength: Float = -1.23456789
+
+    private var oldMinAscent: Float = -1.23456789
+    private var oldMaxAscent: Float = -1.23456789
+    
+    private var oldMinEffort: Float = -1.23456789
+    private var oldMaxEffort: Float = -1.23456789
+    
+    private var oldMinDiff: Float = -1.23456789
+    private var oldMaxDiff: Float = -1.23456789
+    
 	@IBAction func minLengthChanged(sender: UISlider)
 	{
 		let newStep = roundf((minLength.value) / lengthStep)
 		minLength.value = newStep * lengthStep
 		
+        if minLength.value == oldMinLength
+        {
+            return
+        } else
+        {
+            oldMinLength = minLength.value
+        }
+        
 		minLengthLabel.text = "\(minLength.value)km"
 		maxLength.minimumValue = minLength.value
 		
-		delegate?.lengthChanged(minLength.value, max: maxLength.value)
+		let filters = [TrailFilter.lengthFilter(minLength.value, maxLength.value),
+						TrailFilter.ascentFilter(minAscent.value, maxAscent.value),
+						TrailFilter.effortFilter(minEffort.value, maxEffort.value),
+						TrailFilter.diffFilter(minDiff.value, maxDiff.value)]
+		
+		delegate?.applyFilters(filters)
 	}
 	
 	@IBAction func maxLengthChanged(sender: UISlider)
 	{
 		let newStep = roundf((maxLength.value) / lengthStep)
 		maxLength.value = newStep * lengthStep
+        
+        if maxLength.value == oldMaxLength
+        {
+            return
+        } else
+        {
+            oldMaxLength = maxLength.value
+        }
 		
 		maxLengthLabel.text = "\(maxLength.value)km"
 		minLength.maximumValue = maxLength.value
 		
-		delegate?.lengthChanged(minLength.value, max: maxLength.value)
+		let filters = [TrailFilter.lengthFilter(minLength.value, maxLength.value),
+			TrailFilter.ascentFilter(minAscent.value, maxAscent.value),
+			TrailFilter.effortFilter(minEffort.value, maxEffort.value),
+			TrailFilter.diffFilter(minDiff.value, maxDiff.value)]
+		
+		delegate?.applyFilters(filters)
 	}
 	
 	@IBAction func minAscentChanged(sender: UISlider)
@@ -69,10 +118,23 @@ class TrailsFilterController: UIViewController
 		let newStep = roundf((minAscent.value) / ascentStep)
 		minAscent.value = newStep * ascentStep
 		
+        if minAscent.value == oldMinAscent
+        {
+            return
+        } else
+        {
+            oldMinAscent = minAscent.value
+        }
+        
 		minAscentLabel.text = "\(minAscent.value)m"
 		maxAscent.minimumValue = minAscent.value
 		
-		delegate?.ascentChanged(minAscent.value, max: maxAscent.value)
+		let filters = [TrailFilter.lengthFilter(minLength.value, maxLength.value),
+			TrailFilter.ascentFilter(minAscent.value, maxAscent.value),
+			TrailFilter.effortFilter(minEffort.value, maxEffort.value),
+			TrailFilter.diffFilter(minDiff.value, maxDiff.value)]
+		
+		delegate?.applyFilters(filters)
 	}
 	
 	@IBAction func maxAscentChanged(sender: UISlider)
@@ -80,10 +142,23 @@ class TrailsFilterController: UIViewController
 		let newStep = roundf((maxAscent.value) / ascentStep)
 		maxAscent.value = newStep * ascentStep
 		
+        if maxAscent.value == oldMaxAscent
+        {
+            return
+        } else
+        {
+            oldMaxAscent = maxAscent.value
+        }
+        
 		maxAscentLabel.text = "\(maxAscent.value)m"
 		minAscent.maximumValue = maxAscent.value
 		
-		delegate?.ascentChanged(minAscent.value, max: maxAscent.value)
+		let filters = [TrailFilter.lengthFilter(minLength.value, maxLength.value),
+			TrailFilter.ascentFilter(minAscent.value, maxAscent.value),
+			TrailFilter.effortFilter(minEffort.value, maxEffort.value),
+			TrailFilter.diffFilter(minDiff.value, maxDiff.value)]
+		
+		delegate?.applyFilters(filters)
 	}
 	
 	@IBAction func minEffortChanged(sender: UISlider)
@@ -91,10 +166,23 @@ class TrailsFilterController: UIViewController
 		let newStep = roundf((minEffort.value) / effortStep)
 		minEffort.value = newStep * effortStep
 		
+        if minEffort.value == oldMinEffort
+        {
+            return
+        } else
+        {
+            oldMinEffort = minEffort.value
+        }
+        
 		minEffortLabel.text = "\(minEffort.value)"
 		maxEffort.minimumValue = minEffort.value
 		
-		delegate?.effortChanged(minEffort.value, max: maxEffort.value)
+		let filters = [TrailFilter.lengthFilter(minLength.value, maxLength.value),
+			TrailFilter.ascentFilter(minAscent.value, maxAscent.value),
+			TrailFilter.effortFilter(minEffort.value, maxEffort.value),
+			TrailFilter.diffFilter(minDiff.value, maxDiff.value)]
+		
+		delegate?.applyFilters(filters)
 	}
 	
 	@IBAction func maxEffortChanged(sender: UISlider)
@@ -102,10 +190,71 @@ class TrailsFilterController: UIViewController
 		let newStep = roundf((maxEffort.value) / effortStep)
 		maxEffort.value = newStep * effortStep
 		
+        if maxEffort.value == oldMaxEffort
+        {
+            return
+        } else
+        {
+            oldMaxEffort = maxEffort.value
+        }
+        
 		maxEffortLabel.text = "\(maxEffort.value)"
 		minEffort.maximumValue = maxEffort.value
 		
-		delegate?.effortChanged(minEffort.value, max: maxEffort.value)
+		let filters = [TrailFilter.lengthFilter(minLength.value, maxLength.value),
+			TrailFilter.ascentFilter(minAscent.value, maxAscent.value),
+			TrailFilter.effortFilter(minEffort.value, maxEffort.value),
+			TrailFilter.diffFilter(minDiff.value, maxDiff.value)]
+		
+		delegate?.applyFilters(filters)
+	}
+	
+	@IBAction func minDiffChanged(sender: UISlider)
+	{
+		let newStep = roundf((minDiff.value) / diffStep)
+		minDiff.value = newStep * diffStep
+		
+        if minDiff.value == oldMinDiff
+        {
+            return
+        } else
+        {
+            oldMinDiff = minDiff.value
+        }
+        
+		minDiffLabel.text = Constants.Values.vTrailDifficultyClasses[Int(minDiff.value)]
+		maxDiff.minimumValue = minDiff.value
+		
+		let filters = [TrailFilter.lengthFilter(minLength.value, maxLength.value),
+			TrailFilter.ascentFilter(minAscent.value, maxAscent.value),
+			TrailFilter.effortFilter(minEffort.value, maxEffort.value),
+			TrailFilter.diffFilter(minDiff.value, maxDiff.value)]
+		
+		delegate?.applyFilters(filters)
+	}
+	
+	@IBAction func maxDiffChanged(sender: UISlider)
+	{
+		let newStep = roundf((maxDiff.value) / diffStep)
+		maxDiff.value = newStep * diffStep
+		
+        if maxDiff.value == oldMaxDiff
+        {
+            return
+        } else
+        {
+            oldMaxDiff = maxDiff.value
+        }
+        
+		maxDiffLabel.text = Constants.Values.vTrailDifficultyClasses[Int(maxDiff.value)]
+		minDiff.maximumValue = maxDiff.value
+		
+		let filters = [TrailFilter.lengthFilter(minLength.value, maxLength.value),
+			TrailFilter.ascentFilter(minAscent.value, maxAscent.value),
+			TrailFilter.effortFilter(minEffort.value, maxEffort.value),
+			TrailFilter.diffFilter(minDiff.value, maxDiff.value)]
+		
+		delegate?.applyFilters(filters)
 	}
 	
 	convenience init()
@@ -173,5 +322,17 @@ class TrailsFilterController: UIViewController
 		
 		minEffortLabel.text = "\(minEffort.value)"
 		maxEffortLabel.text = "\(maxEffort.value)"
+		
+		
+		minDiff.minimumValue = Float(statistics.difficulty.min - 1)
+		minDiff.maximumValue = Float(statistics.difficulty.max)
+		minDiff.value = minDiff.minimumValue
+		
+		maxDiff.minimumValue = Float(statistics.difficulty.min - 1)
+		maxDiff.maximumValue = Float(statistics.difficulty.max)
+		maxDiff.value = maxDiff.maximumValue
+		
+		minDiffLabel.text = Constants.Values.vTrailDifficultyClasses[Int(minDiff.value)]
+		maxDiffLabel.text = Constants.Values.vTrailDifficultyClasses[Int(maxDiff.value)]
 	}
 }

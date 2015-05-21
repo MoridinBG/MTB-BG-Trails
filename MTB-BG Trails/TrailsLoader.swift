@@ -19,7 +19,8 @@ struct Statistics
 	var date = (min: NSDate(timeIntervalSinceNow: 0), max:NSDate(timeIntervalSince1970: 0))
 	var length = (min: 1000.0, max: 0.0)
 	var ascent = (min: 3000.0, max: -3000.0)
-	var strenuousness = (min: 10.0, max: 0.0)
+	var strenuousness = (min: 100.0, max: 0.0)
+	var	difficulty = (min: 11, max: 0)
 }
 
 class TrailsLoader
@@ -111,19 +112,32 @@ class TrailsLoader
 					{
 						if trail.difficulty == nil
 						{
-							trail.difficulty = [String]()
+							trail.difficulty = [Int]()
 						}
 						
-						if let diff = diff.string
+						if let difficulty = diff.string
 						{
-							trail.difficulty!.append(diff)
+							if let diffIndex = Constants.Values.vTrailDifficultyClasses.find({ item in
+								return item == difficulty})
+							{
+								trail.difficulty!.append(diffIndex)
+								
+								if diffIndex < self.statistics.difficulty.min
+								{
+									self.statistics.difficulty.min = diffIndex
+								}
+								
+								if diffIndex > self.statistics.difficulty.max
+								{
+									self.statistics.difficulty.max = diffIndex
+								}
+							}
 						}
 					}
 					
 					if let stren = subJson["strenuousness"].double
 					{
 						trail.strenuousness = stren
-						println(stren)
 						if stren < self.statistics.strenuousness.min
 						{
 							self.statistics.strenuousness.min = stren
@@ -177,6 +191,7 @@ class TrailsLoader
 									trail.gpxOverlays?.append(segment.overlay)
 								}
 							}
+                            trail.overlaysShown = true
 							dispatch_async(dispatch_get_main_queue(), {
 								self.delegate?.loadGPXOverlays(trail.gpxOverlays!)
 							})

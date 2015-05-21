@@ -16,7 +16,7 @@ class Trail: Printable
 	var link: NSURL?
 	var length: Double?
 	var ascent: Double?
-	var difficulty: [String]?
+	var difficulty: [Int]?
 	var strenuousness: Double?
 	var duration: String?
 	var water: String?

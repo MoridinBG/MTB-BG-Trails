@@ -50,8 +50,8 @@
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1gR-Jh-GLg" id="tHr-6c-0KF">
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VtC-hI-c32">
-                                                                            <rect key="frame" x="562" y="8" width="30" height="23"/>
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VtC-hI-c32">
+                                                                            <rect key="frame" x="562" y="8" width="30" height="27"/>
                                                                             <state key="normal" title="Sort">
                                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </state>
@@ -60,7 +60,7 @@
                                                                             </connections>
                                                                         </button>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEu-vH-iEZ">
-                                                                            <rect key="frame" x="8" y="8" width="40" height="23"/>
+                                                                            <rect key="frame" x="8" y="8" width="40" height="27"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="23" id="BAZ-Kb-IDq"/>
                                                                             </constraints>
@@ -68,6 +68,11 @@
                                                                             <state key="normal" title="Filter">
                                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </state>
+                                                                            <variation key="default">
+                                                                                <mask key="constraints">
+                                                                                    <exclude reference="BAZ-Kb-IDq"/>
+                                                                                </mask>
+                                                                            </variation>
                                                                             <connections>
                                                                                 <action selector="filter:" destination="1gR-Jh-GLg" eventType="touchUpInside" id="nkl-eD-Qga"/>
                                                                             </connections>
