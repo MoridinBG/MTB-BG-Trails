@@ -19,12 +19,12 @@ extension GPXTrackSegment
   
     // Returns a mapkit polyline with the points of the segment.
     // This polyline can be directly plotted on the map as an overlay
-    public var overlay:MKPolyline
+    var overlay: MKColoredPolyline
 	{
         get
 		{
             var coords = self.trackPointsToCoordinates()
-            let polyline = MKPolyline(coordinates: &coords, count:  coords.count)
+            let polyline = MKColoredPolyline(coordinates: &coords, count:  coords.count)
 			
             return polyline
 		}

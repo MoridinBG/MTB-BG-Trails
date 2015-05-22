@@ -46,6 +46,9 @@ class TrailsLoader
 			{
 				let json = JSON(data: jsonData)
 				let trailsCount = json["routes"].count
+                println("Request colours")
+                let colours = DistinctColourGenerator.generateDistinctColours(trailsCount, quality: 50, highPrecision: false)
+                println("Got colours")
 				for(index: String, subJson: JSON) in json["routes"]
 				{
 					var trail = Trail()
@@ -183,12 +186,19 @@ class TrailsLoader
 					if let traces = trail.traces
 					{
 						self.loadGPXFromTrail(trail) { gpx in
-							trail.gpxOverlays = [MKOverlay]()
+							trail.gpxOverlays = [MKColoredPolyline]()
+                            let colour = colours[index.toInt()!]
+                            let red = CGFloat(colour.0 / 255)
+                            let green = CGFloat(colour.1 / 255)
+                            let blue = CGFloat(colour.2 / 255)
+                            
 							for track in gpx.tracks as! [GPXTrack]
 							{
 								for segment in track.tracksegments as! [GPXTrackSegment]
 								{
-									trail.gpxOverlays?.append(segment.overlay)
+                                    var overlay = segment.overlay
+                                    overlay.colour = UIColor(red: red, green: green, blue: blue, alpha: 0.6)
+									trail.gpxOverlays?.append(overlay)
 								}
 							}
                             trail.overlaysShown = true

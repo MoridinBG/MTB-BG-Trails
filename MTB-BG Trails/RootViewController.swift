@@ -30,6 +30,10 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 	
 	private var filterPopoverAnchor = UIButton()
 	private var filterPopoverController = TrailsFilterController()
+    private var allTrailOverlays = [MKOverlay]()
+    
+    private var renderOnlyFocused = false
+    private var mapZoomed = false
 	
 	// MARK: - IB Actions
 	
@@ -44,7 +48,14 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 			self.mapView.layoutIfNeeded()
 			},
 			completion: { (success) in
-				self.fitTrailsInMap()
+                self.mapZoomed = true
+                if let selectedIndex = self.trailsTable.indexPathForSelectedRow()
+                {
+                    self.fitTrailInMap(self.trails[selectedIndex.row])
+                } else
+                {
+                    self.fitTrailsInMap()
+                }
 			})
 	}
 	
@@ -53,14 +64,38 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 		self.navigationItem.leftBarButtonItem?.enabled = false
 		self.navigationItem.leftBarButtonItem?.tintColor = UIColor.clearColor()
 		
-		UIView.animateWithDuration(1, animations: {
-			self.containerView.bringSubviewToFront(self.tableScrollView)
-			self.containerView.addConstraint(self.mapHeight)
-			self.mapView.layoutIfNeeded()
-			},
-			completion: { (success) in
-				self.fitTrailsInMap()
-		})
+        if renderOnlyFocused
+        {
+            let selectedIndex = trailsTable.indexPathForSelectedRow()!
+            let trail = trails[selectedIndex.row]
+            
+            trailsTable.deselectRowAtIndexPath(selectedIndex, animated: false)
+            mapView.addOverlays(allTrailOverlays)
+            renderOnlyFocused = false
+            
+            for overlay in trail.gpxOverlays!
+            {
+                if let polyline = overlay as? MKColoredPolyline
+                {
+                    polyline.focused = false
+                }
+            }
+            
+            fitTrailsInMap()
+        }
+        
+        if mapZoomed
+        {
+            UIView.animateWithDuration(1, animations: {
+                self.containerView.bringSubviewToFront(self.tableScrollView)
+                self.containerView.addConstraint(self.mapHeight)
+                self.mapView.layoutIfNeeded()
+                },
+                completion: { (success) in
+                    self.mapZoomed = false
+                    self.fitTrailsInMap()
+            })
+        }
 	}
 	
 	// MARK: - Lifecycle
@@ -193,6 +228,24 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 		
 		return headerCell
 	}
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        self.navigationItem.leftBarButtonItem?.enabled = true
+        self.navigationItem.leftBarButtonItem?.tintColor = nil
+        
+        renderOnlyFocused = true
+        mapView.removeOverlays(mapView.overlays)
+        
+        let trail = trails[indexPath.row]
+        
+        for overlay in trail.gpxOverlays!
+        {
+            mapView.addOverlay(overlay)
+        }
+        
+        fitTrailInMap(trails[indexPath.row])
+    }
 	
 	// MARK: - UIScrollViewDelegate
 	
@@ -227,6 +280,7 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 		for overlay in overlays
 		{
 			self.mapView.addOverlay(overlay, level: .AboveLabels)
+            allTrailOverlays.append(overlay)
 		}
 		
 		self.fitTrailsInMap()
