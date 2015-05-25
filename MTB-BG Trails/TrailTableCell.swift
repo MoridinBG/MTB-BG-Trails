@@ -18,6 +18,8 @@ class TrailTableCell: UITableViewCell
 	@IBOutlet weak var strenLabel: UILabel!
 	@IBOutlet weak var diffLabel: UILabel!
 	@IBOutlet weak var durationLabel: UILabel!
+    
+    var trail: Trail!
 	
     override func awakeFromNib()
 	{

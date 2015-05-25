@@ -22,6 +22,7 @@ class TrailDetailsTableController: UITableViewController
     @IBOutlet weak var tarmacLabel: UILabel!
     @IBOutlet weak var roadsLabel: UILabel!
     @IBOutlet weak var trailsLabel: UILabel!
+    @IBOutlet weak var ascentProfileView: TrailAscentProfileView!
     
     var trail: Trail!
     
@@ -31,6 +32,9 @@ class TrailDetailsTableController: UITableViewController
         
         if let trail = self.trail
         {
+            ascentProfileView.track = trail.mainTrack
+            ascentProfileView.setNeedsDisplay()
+            
             if let length = trail.length
             {
                 lengthLabel.text = "\(length)km"

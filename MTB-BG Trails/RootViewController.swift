@@ -26,6 +26,7 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 	@IBOutlet weak var containerView: UIView!
 	@IBOutlet weak var mapView: MKMapView!
 	@IBOutlet var mapHeight: NSLayoutConstraint!
+    @IBOutlet weak var tableHeight: NSLayoutConstraint!
 	
 	private var filterPopoverAnchor = UIButton()
 	private var filterPopoverController = TrailsFilterController()
@@ -56,6 +57,7 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
         UIView.animateWithDuration(1, animations: {
                 self.containerView.bringSubviewToFront(self.tableScrollView)
                 self.containerView.addConstraint(self.mapHeight)
+                self.tableHeight.constant = 0
                 self.mapView.layoutIfNeeded()
             },
             completion: { (success) in
@@ -72,6 +74,8 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 		trailsTable.dataSource = self
 		mapView.delegate = self
 		
+        trailsTable.estimatedRowHeight = 44
+        
 		self.navigationItem.leftBarButtonItem?.enabled = false
 		self.navigationItem.leftBarButtonItem?.tintColor = UIColor.clearColor()
 		
@@ -107,8 +111,9 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 			}
 		} else if segue.identifier == Constants.Keys.kSegueIdTrailDetails
         {
+            let senderCell = sender as! TrailTableCell
             let dest = segue.destinationViewController as! TrailDetailsController
-            dest.trail = trails[trailsTable.indexPathForSelectedRow()!.row]
+            dest.trail = senderCell.trail
         }
 	}
 	
@@ -123,6 +128,7 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 	{
 		let cell = trailsTable.dequeueReusableCellWithIdentifier(Constants.Keys.kCellIdTracks) as! TrailTableCell
 		var trail = filteredTrails[indexPath.row]
+        cell.trail = trail
 		
 		cell.nameLabel.text = trail.name
 		cell.nameLabel.type = .Continuous
@@ -212,6 +218,7 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 				} else
 				{
 					mapHeight.constant = scrollView.contentOffset.y
+//                    tableHeight.constant = -scrollView.contentOffset.y
 				}
 			}
 		}
