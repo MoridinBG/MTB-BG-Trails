@@ -16,6 +16,12 @@ struct Constants
         static let kCellIdTracksHeader         = "TracksHeaderCell"
 
         static let kSegueIdTracksFilterPopover = "TracksFilterPopoverSegue"
+        static let kSegueIdTrailDetails        = "trailDetails"
+        static let kSegueIdTrailDetailsTable   = "trailDetailsTable"
+
+        static let kTrailTerrainTarmac         = "асфалт"
+        static let kTrailTerrainRoads          = "черни пътища"
+        static let kTrailTerrainTrails         = "пътеки"
 	}
 	struct Values
 	{

@@ -47,7 +47,7 @@ class TrailsLoader
 				let json = JSON(data: jsonData)
 				let trailsCount = json["routes"].count
                 println("Request colours")
-                let colours = DistinctColourGenerator.generateDistinctColours(trailsCount, quality: 50, highPrecision: false)
+                let colours = DistinctColourGenerator.generateDistinctColours(trailsCount, quality: 1, highPrecision: false)
                 println("Got colours")
 				for(index: String, subJson: JSON) in json["routes"]
 				{

@@ -1,40 +1,36 @@
 //
-//  RootViewController+Map.swift
+//  TrailDetailsController+Map.swift
 //  MTB-BG Trails
 //
-//  Created by Ivan Dilchovski on 5/16/15.
+//  Created by Ivan Dilchovski on 5/24/15.
 //  Copyright (c) 2015 TechLight. All rights reserved.
 //
 
 import Foundation
 import MapKit
 
-//TODO: Make into superclass for RootView and TrailDetails controllers
-extension RootViewController: MKMapViewDelegate
+extension TrailDetailsController: MKMapViewDelegate
 {
-	func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer!
-	{
-		if let polyline = overlay as? MKColoredPolyline
-        {            
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer!
+    {
+        if let polyline = overlay as? MKColoredPolyline
+        {
             let polylineRenderer = MKPolylineRenderer(overlay: overlay)
             polylineRenderer.strokeColor = polyline.colour
             polylineRenderer.lineWidth = 3
-		
+            
             return polylineRenderer
         } else
         {
             return nil
         }
-	}
-	
-	func fitTrailsInMap()
-	{
-		if let region = trailsLoader.region
-		{
-			let mapViewRegion = mapView.regionThatFits(region)
-			mapView.setRegion(mapViewRegion, animated: true)
-		}
-	}
+    }
+    
+    func fitTrailsInMapRegion(region: MKCoordinateRegion)
+    {
+        let mapViewRegion = mapView.regionThatFits(region)
+        mapView.setRegion(mapViewRegion, animated: true)
+    }
     
     func fitTrailInMap(trail: Trail)
     {
@@ -53,7 +49,7 @@ extension RootViewController: MKMapViewDelegate
                 {
                     coords.append(coordsPointer[i])
                 }
-
+                
                 coordsPointer.dealloc(polyline.pointCount)
                 
                 for point in coords
@@ -77,7 +73,7 @@ extension RootViewController: MKMapViewDelegate
                     }
                 }
                 
-
+                
             }
         }
         let trailsSpan = MKCoordinateSpanMake((upper.latitude - lower.latitude) * 1.1,

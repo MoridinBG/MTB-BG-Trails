@@ -29,8 +29,8 @@ class DistinctColourGenerator
             forceVectors.append((0, 0, 0))
         }
         
-        let repulsion = 0.3
-        let speed = 0.05
+        let repulsion = 0.9
+        let speed = 0.1
         let steps = quality * 20
         
         for i in 1...steps
@@ -49,12 +49,7 @@ class DistinctColourGenerator
                     let db = ba - bb
                     let d =  sqrt(pow(dl, 2) + pow(da, 2) + pow(db, 2));
                     
-                    if d < 0
-                    {
-                        println("Loool")
-                    }
-                    
-                    let repulsionForce = repulsion / pow(d, 2)
+                    let repulsionForce = repulsion / d
                     
                     let dlForce = dl * repulsionForce / d
                     let daForce = da * repulsionForce / d
@@ -77,15 +72,12 @@ class DistinctColourGenerator
             {
                 var (dlForce, daForce, dbForce) = forceVectors[index]
                 let displacement = speed * sqrt(pow(dlForce, 2) + pow(daForce, 2) + pow(dbForce, 2))
-                if displacement < 0
-                {
-                    println("Loool2")
-                }
                 let ratio = speed * min(0.1, displacement) / displacement
                 
                 let cl = l + dlForce * ratio
                 let ca = a + daForce * ratio
                 let cb = b + dbForce * ratio
+                
                 if isValidLABColour(cl, a: ca, b: cb)
                 {
                     labColours[index] = (cl, ca, cb)
