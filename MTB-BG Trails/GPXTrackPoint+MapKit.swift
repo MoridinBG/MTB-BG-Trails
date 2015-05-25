@@ -22,4 +22,8 @@ extension GPXTrackPoint {
         self.elevation = location.altitude
     }
     
+    func coordinate() -> CLLocationCoordinate2D
+    {
+        return CLLocationCoordinate2DMake(self.latitude, self.longitude)
+    }
 }

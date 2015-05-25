@@ -11,7 +11,7 @@ import MapKit
 
 protocol TrailsLoaderDelegate
 {
-	func loadGPXOverlays(overlays: [MKOverlay])
+	func loadGPXTracks(tracks: [AttributedTrack])
 }
 
 struct Statistics
@@ -186,24 +186,57 @@ class TrailsLoader
 					if let traces = trail.traces
 					{
 						self.loadGPXFromTrail(trail) { gpx in
-							trail.gpxOverlays = [MKColoredPolyline]()
-                            let colour = colours[index.toInt()!]
-                            let red = CGFloat(colour.0 / 255)
-                            let green = CGFloat(colour.1 / 255)
-                            let blue = CGFloat(colour.2 / 255)
+                            
+                            let colourElements = colours[index.toInt()!]
+                            let red = CGFloat(colourElements.0 / 255)
+                            let green = CGFloat(colourElements.1 / 255)
+                            let blue = CGFloat(colourElements.2 / 255)
+                            let colour = UIColor(red: red, green: green, blue: blue, alpha: 0.6)
+                            
+                            var tempTracks = [AttributedTrack]()
+                            var longestIndex = -1
                             
 							for track in gpx.tracks as! [GPXTrack]
 							{
+                                var (coordinates, elevations, length) = ([CLLocationCoordinate2D](), [CLLocationDistance](), 0.0)
 								for segment in track.tracksegments as! [GPXTrackSegment]
 								{
-                                    var overlay = segment.overlay
-                                    overlay.colour = UIColor(red: red, green: green, blue: blue, alpha: 0.6)
-									trail.gpxOverlays?.append(overlay)
+                                    var segmentPoints = segment.points
+                                    coordinates += segmentPoints.0
+                                    elevations += segmentPoints.1
+                                    length += segmentPoints.2
+									
 								}
+                                let attribTrack = AttributedTrack(coords: &coordinates, count: coordinates.count, pointElevations: elevations, length: length, colour: colour, name: track.name, optional: true)
+                                
+                                if longestIndex >= 0
+                                {
+                                    if length > tempTracks[longestIndex].length
+                                    {
+                                        longestIndex = tempTracks.count //This track is not added to the array yet! Will be added right after the outer If, so don't use count - 1
+                                    }
+                                } else
+                                {
+                                    longestIndex = 0
+                                }
+                                tempTracks.append(attribTrack)
 							}
+                            
+                            if longestIndex >= 0
+                            {
+                                trail.mainTrack = tempTracks[longestIndex]
+                                trail.mainTrack!.optional = false
+                                tempTracks.removeAtIndex(longestIndex)
+                            }
+                            
+                            if tempTracks.count > 0
+                            {
+                                trail.optionalTracks = tempTracks
+                            }
+                            
                             trail.overlaysShown = true
 							dispatch_async(dispatch_get_main_queue(), {
-								self.delegate?.loadGPXOverlays(trail.gpxOverlays!)
+								self.delegate?.loadGPXTracks([trail.mainTrack!] + trail.optionalTracks)
 							})
 						}
 					}

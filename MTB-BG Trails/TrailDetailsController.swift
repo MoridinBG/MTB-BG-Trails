@@ -20,6 +20,7 @@ class TrailDetailsController: UIViewController
     var trail: Trail!
     
     var isMapZoomed = false
+    var isRenderingOptionals = true
     
     
     @IBAction func mapClicked(sender: UIButton)
@@ -59,9 +60,10 @@ class TrailDetailsController: UIViewController
         super.viewDidLoad()
         
         mapView.delegate = self
-        for overlay in trail.gpxOverlays!
+        let trails = trail.gpsTracks()
+        for track in trails
         {
-            mapView.addOverlay(overlay)
+            mapView.addOverlay(track.trackPolyline)
         }
         fitTrailInMap(trail)
         // Do any additional setup after loading the view.

@@ -14,10 +14,10 @@ extension RootViewController: MKMapViewDelegate
 {
 	func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer!
 	{
-		if let polyline = overlay as? MKColoredPolyline
+		if let polyline = overlay as? MKAttribuedPolyline
         {            
             let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-            polylineRenderer.strokeColor = polyline.colour
+            polylineRenderer.strokeColor = polyline.attributes.colour
             polylineRenderer.lineWidth = 3
 		
             return polylineRenderer
@@ -41,43 +41,38 @@ extension RootViewController: MKMapViewDelegate
         var upper = CLLocationCoordinate2DMake(-91.0, -181.0)
         var lower = CLLocationCoordinate2DMake(91.0, 181.0)
         
-        for overlay in trail.gpxOverlays!
+        for track in trail.gpsTracks()
         {
-            if let polyline = overlay as? MKPolyline
+            var coordsPointer = UnsafeMutablePointer<CLLocationCoordinate2D>.alloc(track.trackPolyline.pointCount)
+            track.trackPolyline.getCoordinates(coordsPointer, range: NSMakeRange(0, track.trackPolyline.pointCount))
+            
+            var coords: [CLLocationCoordinate2D] = []
+            for i in 0..<track.trackPolyline.pointCount
             {
-                var coordsPointer = UnsafeMutablePointer<CLLocationCoordinate2D>.alloc(polyline.pointCount)
-                polyline.getCoordinates(coordsPointer, range: NSMakeRange(0, polyline.pointCount))
-                
-                var coords: [CLLocationCoordinate2D] = []
-                for i in 0..<polyline.pointCount
-                {
-                    coords.append(coordsPointer[i])
-                }
+                coords.append(coordsPointer[i])
+            }
 
-                coordsPointer.dealloc(polyline.pointCount)
-                
-                for point in coords
+            coordsPointer.dealloc(track.trackPolyline.pointCount)
+            
+            for point in coords
+            {
+                if point.latitude > upper.latitude
                 {
-                    if point.latitude > upper.latitude
-                    {
-                        upper.latitude = point.latitude
-                    }
-                    if point.latitude < lower.latitude
-                    {
-                        lower.latitude = point.latitude
-                    }
-                    
-                    if point.longitude > upper.longitude
-                    {
-                        upper.longitude = point.longitude
-                    }
-                    if point.longitude < lower.longitude
-                    {
-                        lower.longitude = point.longitude
-                    }
+                    upper.latitude = point.latitude
+                }
+                if point.latitude < lower.latitude
+                {
+                    lower.latitude = point.latitude
                 }
                 
-
+                if point.longitude > upper.longitude
+                {
+                    upper.longitude = point.longitude
+                }
+                if point.longitude < lower.longitude
+                {
+                    lower.longitude = point.longitude
+                }
             }
         }
         let trailsSpan = MKCoordinateSpanMake((upper.latitude - lower.latitude) * 1.1,

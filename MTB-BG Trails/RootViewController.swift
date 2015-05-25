@@ -226,12 +226,12 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 	
 	// MARK: - TrailsLoaderDelegate
 	
-	func loadGPXOverlays(overlays: [MKOverlay])
+	func loadGPXTracks(tracks: [AttributedTrack])
 	{
-		for overlay in overlays
+		for track in tracks
 		{
-			self.mapView.addOverlay(overlay, level: .AboveLabels)
-            allTrailOverlays.append(overlay)
+			self.mapView.addOverlay(track.trackPolyline, level: .AboveLabels)
+            allTrailOverlays.append(track.trackPolyline)
 		}
 		
 		self.fitTrailsInMap()
@@ -355,13 +355,10 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
             {
                 if !trail.overlaysShown
                 {
-                    if let overlays = trail.gpxOverlays
+                    trail.overlaysShown = true
+                    for track in trail.gpsTracks()
                     {
-                        trail.overlaysShown = true
-                        for overlay in overlays
-                        {
-                            mapView.addOverlay(overlay)
-                        }
+                        mapView.addOverlay(track.trackPolyline)
                     }
                 }
                 
@@ -370,13 +367,10 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
             {
                 if trail.overlaysShown
                 {
-                    if let overlays = trail.gpxOverlays
+                    trail.overlaysShown = false
+                    for track in trail.gpsTracks()
                     {
-                        trail.overlaysShown = false
-                        for overlay in overlays
-                        {
-                            mapView.removeOverlay(overlay)
-                        }
+                        mapView.removeOverlay(track.trackPolyline)
                     }
                 }
             }
@@ -405,72 +399,6 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 		}
 
 		return false
-	}
-
-	func diffChanged(min: Float, max: Float, unfilteredTrails: [Trail]) -> [Trail]
-	{
-		filteredTrails.removeAll(keepCapacity: false)
-		
-		for trail in trails
-		{
-			var removed = false
-			if let difficulties = trail.difficulty
-			{
-				for difficulty in difficulties
-				{
-					if difficulty > Int(max) || difficulty < Int(min)
-					{
-						if trail.overlaysShown
-						{
-							if let overlays = trail.gpxOverlays
-							{
-								trail.overlaysShown = false
-								for overlay in overlays
-								{
-									mapView.removeOverlay(overlay)
-								}
-							}
-						}
-						removed = true
-						break
-					}
-				}
-				
-				if removed
-				{
-					continue
-				}
-			} else if trailsLoader.statistics.difficulty.min <= Int(min)
-			{
-				if trail.overlaysShown
-				{
-					if let overlays = trail.gpxOverlays
-					{
-						trail.overlaysShown = false
-						for overlay in overlays
-						{
-							mapView.removeOverlay(overlay)
-						}
-					}
-				}
-				continue
-			}
-			filteredTrails.append(trail)
-			if !trail.overlaysShown
-			{
-				if let overlays = trail.gpxOverlays
-				{
-					trail.overlaysShown = true
-					for overlay in overlays
-					{
-						mapView.addOverlay(overlay)
-					}
-				}
-			}
-		}
-		
-		trailsTable.reloadData()
-		return [Trail]()
 	}
 }
 

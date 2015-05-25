@@ -24,11 +24,19 @@ class Trail: Printable
 	var terrains: [String:Double]?
 	var traces: [NSURL]?
 	
-	var gpxOverlays: [MKOverlay]?
+    var mainTrack: AttributedTrack?
+    var optionalTracks = [AttributedTrack]()
+    
+    var optionalsShown = true
 	var overlaysShown = false
 	
 	var description: String
 	{
 		return "Name: \(name)\n Date: \(date)\n Link: \(link)\n Length: \(length)\n Ascent: \(ascent)\n Difficulty: \(difficulty)\n Strenuousness: \(strenuousness)\n Duration: \(duration)\n Water: \(water)\n Food: \(food)\n Terrains: \(terrains)\n Traces: \(traces)\n"
 	}
+    
+    func gpsTracks() -> [AttributedTrack]
+    {
+        return optionalTracks + [mainTrack!]
+    }
 }

@@ -10,7 +10,7 @@
 		000B82661B014756002ED8DF /* Trail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000B82651B014756002ED8DF /* Trail.swift */; };
 		000B82681B0148B2002ED8DF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000B82671B0148B2002ED8DF /* Constants.swift */; };
 		000B826A1B016ED1002ED8DF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000B82691B016ED1002ED8DF /* MapKit.framework */; };
-		0021719C1B0F3F9000319147 /* MKColoredPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0021719B1B0F3F9000319147 /* MKColoredPolyline.swift */; };
+		0021719C1B0F3F9000319147 /* AttributedTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0021719B1B0F3F9000319147 /* AttributedTrack.swift */; };
 		002D0ECF1B0B2FE600FA024C /* TrailsFilterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 002D0ECE1B0B2FE600FA024C /* TrailsFilterController.xib */; };
 		002D0ED11B0B351000FA024C /* TrailsFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D0ED01B0B351000FA024C /* TrailsFilterController.swift */; };
 		006491951B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006491931B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift */; };
@@ -38,6 +38,7 @@
 		00C4C0411B0E4E8C0026AACD /* DistinctColorGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4C0401B0E4E8C0026AACD /* DistinctColorGenerator.swift */; };
 		00D58ABE1B1117BA0068B5FA /* TrailDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D58ABD1B1117BA0068B5FA /* TrailDetailsController.swift */; };
 		00EFD4211B13433C00F6459D /* TrailAscentProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFD4201B13433C00F6459D /* TrailAscentProfileView.swift */; };
+		00EFD4231B135FC700F6459D /* MKAttribuedPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFD4221B135FC700F6459D /* MKAttribuedPolyline.swift */; };
 		00F79F721B11C3080000496A /* TrailDetailsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F79F711B11C3080000496A /* TrailDetailsTableController.swift */; };
 		00F79F741B11EC6F0000496A /* TrailDetailsController+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F79F731B11EC6F0000496A /* TrailDetailsController+Map.swift */; };
 		00F845AA1B08C9BD00660FA6 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F845A91B08C9BD00660FA6 /* libz.dylib */; };
@@ -64,7 +65,7 @@
 		000B82651B014756002ED8DF /* Trail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trail.swift; sourceTree = "<group>"; };
 		000B82671B0148B2002ED8DF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		000B82691B016ED1002ED8DF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		0021719B1B0F3F9000319147 /* MKColoredPolyline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKColoredPolyline.swift; sourceTree = "<group>"; };
+		0021719B1B0F3F9000319147 /* AttributedTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedTrack.swift; sourceTree = "<group>"; };
 		002D0ECE1B0B2FE600FA024C /* TrailsFilterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TrailsFilterController.xib; path = "MTB-BG Trails/TrailsFilterController.xib"; sourceTree = "<group>"; };
 		002D0ED01B0B351000FA024C /* TrailsFilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailsFilterController.swift; sourceTree = "<group>"; };
 		006491931B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GPXTrackPoint+MapKit.swift"; sourceTree = "<group>"; };
@@ -99,6 +100,7 @@
 		00C4C0401B0E4E8C0026AACD /* DistinctColorGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistinctColorGenerator.swift; sourceTree = "<group>"; };
 		00D58ABD1B1117BA0068B5FA /* TrailDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailDetailsController.swift; sourceTree = "<group>"; };
 		00EFD4201B13433C00F6459D /* TrailAscentProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailAscentProfileView.swift; sourceTree = "<group>"; };
+		00EFD4221B135FC700F6459D /* MKAttribuedPolyline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKAttribuedPolyline.swift; sourceTree = "<group>"; };
 		00F79F711B11C3080000496A /* TrailDetailsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailDetailsTableController.swift; sourceTree = "<group>"; };
 		00F79F731B11EC6F0000496A /* TrailDetailsController+Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TrailDetailsController+Map.swift"; sourceTree = "<group>"; };
 		00F845A91B08C9BD00660FA6 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -134,13 +136,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		006491971B0647A700A5ACDB /* GPX */ = {
+		006491971B0647A700A5ACDB /* GPS */ = {
 			isa = PBXGroup;
 			children = (
+				0021719B1B0F3F9000319147 /* AttributedTrack.swift */,
+				00EFD4221B135FC700F6459D /* MKAttribuedPolyline.swift */,
 				006491931B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift */,
 				006491941B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift */,
 			);
-			name = GPX;
+			name = GPS;
 			sourceTree = "<group>";
 		};
 		00702DF11B0138EF00A77F63 = {
@@ -166,7 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				00EFD41F1B13411D00F6459D /* Views */,
-				006491971B0647A700A5ACDB /* GPX */,
+				006491971B0647A700A5ACDB /* GPS */,
 				00FA37E91B061972007F9A23 /* Cells */,
 				000B82641B014732002ED8DF /* Model */,
 				00702E221B013BD100A77F63 /* Controllers */,
@@ -189,7 +193,6 @@
 				008C34CE1B08D16E00597B0D /* Reachability.swift */,
 				008C34D21B09ECEB00597B0D /* NSDate+Compare.swift */,
 				0098EAF41B0C0229002DCFA1 /* Array+Index.swift */,
-				0021719B1B0F3F9000319147 /* MKColoredPolyline.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -373,7 +376,8 @@
 				008C34C91B08CBF700597B0D /* unzip.c in Sources */,
 				00D58ABE1B1117BA0068B5FA /* TrailDetailsController.swift in Sources */,
 				00702E001B0138EF00A77F63 /* AppDelegate.swift in Sources */,
-				0021719C1B0F3F9000319147 /* MKColoredPolyline.swift in Sources */,
+				00EFD4231B135FC700F6459D /* MKAttribuedPolyline.swift in Sources */,
+				0021719C1B0F3F9000319147 /* AttributedTrack.swift in Sources */,
 				006491951B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift in Sources */,
 				007D1C5D1B0A005D00934769 /* SwiftyJSON.swift in Sources */,
 				00C4C0411B0E4E8C0026AACD /* DistinctColorGenerator.swift in Sources */,
