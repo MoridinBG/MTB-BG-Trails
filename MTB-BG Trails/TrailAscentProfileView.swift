@@ -26,6 +26,7 @@ class TrailAscentProfileView: UIView
                     minHeight = point
                 }
             }
+            minHeight -= 100
             difference = maxHeight - minHeight
         }
     }
@@ -39,17 +40,22 @@ class TrailAscentProfileView: UIView
         if let track = track
         {
             let context = UIGraphicsGetCurrentContext()
-            CGContextSetFillColorWithColor(context, UIColor.greenColor().CGColor)
+            let heightFactor = rect.height * 0.95
+            let heightOffset = rect.height * 0.05
+            
+            CGContextSetFillColorWithColor(context, UIColor.brownColor().CGColor)
             if track.pointElevations.count > 0
             {
-                let start = CGFloat((maxHeight - track.pointElevations[0]) / difference) * rect.height
+                let start = CGFloat((maxHeight - track.pointElevations[0]) / difference) * heightFactor + heightOffset
                 let count = track.pointElevations.count
+                
                 CGContextMoveToPoint(context, 0, rect.height)
                 CGContextAddLineToPoint(context, 0, start)
+                
                 for (index, point) in enumerate(track.pointElevations[1..<count])
                 {
-                    var x = CGFloat(Double(index + 2) / Double(count)) * rect.width //+2 because zero based and we skip actual 0 index ([1..])
-                    var y = CGFloat((maxHeight - point) / difference) * rect.height
+                    var x = CGFloat(Double(index + 2) / Double(count)) * rect.width     //+2 because zero based and we skip actual 0 index ([1..])
+                    var y = CGFloat((maxHeight - point) / difference) * heightFactor + heightOffset
                     CGContextAddLineToPoint(context, x, y)
                 }
             }

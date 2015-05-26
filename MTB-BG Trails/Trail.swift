@@ -24,6 +24,8 @@ class Trail: Printable
 	var terrains: [String:Double]?
 	var traces: [NSURL]?
 	
+    var colour: UIColor = UIColor.whiteColor()
+    
     var mainTrack: AttributedTrack?
     var optionalTracks = [AttributedTrack]()
     

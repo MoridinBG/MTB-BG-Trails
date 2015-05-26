@@ -43,53 +43,44 @@
                                                     </button>
                                                     <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nj9-zE-Q3M">
                                                         <rect key="frame" x="0.0" y="146" width="600" height="341"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <view key="tableHeaderView" contentMode="scaleToFill" id="XLa-pg-V2Q">
+                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="32"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uu6-49-Fwb">
+                                                                    <rect key="frame" x="8" y="0.0" width="50" height="32"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                    <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                                                    <state key="normal" title="Filter">
+                                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <action selector="filterTrails:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zK6-B7-B9B"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzX-mj-kHc">
+                                                                    <rect key="frame" x="547" y="0.0" width="45" height="32"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                    <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                                                    <state key="normal" title="Sort">
+                                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </state>
+                                                                </button>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstItem="Uu6-49-Fwb" firstAttribute="top" secondItem="XLa-pg-V2Q" secondAttribute="top" id="45z-Xm-6CC"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Uu6-49-Fwb" secondAttribute="bottom" id="OH9-MP-swG"/>
+                                                                <constraint firstAttribute="bottom" secondItem="kzX-mj-kHc" secondAttribute="bottom" id="P3o-hk-NBG"/>
+                                                                <constraint firstAttribute="centerY" secondItem="kzX-mj-kHc" secondAttribute="centerY" id="XhM-NO-atl"/>
+                                                                <constraint firstItem="Uu6-49-Fwb" firstAttribute="leading" secondItem="XLa-pg-V2Q" secondAttribute="leading" constant="8" id="cXl-ag-m60"/>
+                                                                <constraint firstAttribute="trailing" secondItem="kzX-mj-kHc" secondAttribute="trailing" constant="8" id="cxu-He-yZf"/>
+                                                                <constraint firstAttribute="centerY" secondItem="Uu6-49-Fwb" secondAttribute="centerY" id="wKQ-oi-qd3"/>
+                                                                <constraint firstItem="kzX-mj-kHc" firstAttribute="top" secondItem="XLa-pg-V2Q" secondAttribute="top" id="xYb-eu-dre"/>
+                                                            </constraints>
+                                                        </view>
                                                         <prototypes>
-                                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TracksHeaderCell" id="1gR-Jh-GLg" customClass="TrailsTableHeaderCell" customModule="MTB_BG_Trails" customModuleProvider="target">
-                                                                <rect key="frame" x="160" y="208" width="600" height="89"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1gR-Jh-GLg" id="tHr-6c-0KF">
-                                                                    <autoresizingMask key="autoresizingMask"/>
-                                                                    <subviews>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VtC-hI-c32">
-                                                                            <rect key="frame" x="562" y="8" width="30" height="27"/>
-                                                                            <state key="normal" title="Sort">
-                                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                                            </state>
-                                                                            <connections>
-                                                                                <action selector="sort:" destination="1gR-Jh-GLg" eventType="touchUpInside" id="sdj-NN-sVU"/>
-                                                                            </connections>
-                                                                        </button>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEu-vH-iEZ">
-                                                                            <rect key="frame" x="8" y="8" width="40" height="27"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="23" id="BAZ-Kb-IDq"/>
-                                                                            </constraints>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                            <state key="normal" title="Filter">
-                                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                                            </state>
-                                                                            <variation key="default">
-                                                                                <mask key="constraints">
-                                                                                    <exclude reference="BAZ-Kb-IDq"/>
-                                                                                </mask>
-                                                                            </variation>
-                                                                            <connections>
-                                                                                <action selector="filter:" destination="1gR-Jh-GLg" eventType="touchUpInside" id="nkl-eD-Qga"/>
-                                                                            </connections>
-                                                                        </button>
-                                                                    </subviews>
-                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <constraints>
-                                                                        <constraint firstItem="WEu-vH-iEZ" firstAttribute="leading" secondItem="tHr-6c-0KF" secondAttribute="leadingMargin" id="0w1-LE-u1K"/>
-                                                                        <constraint firstItem="VtC-hI-c32" firstAttribute="top" secondItem="tHr-6c-0KF" secondAttribute="topMargin" id="5r6-6s-RlD"/>
-                                                                        <constraint firstAttribute="bottomMargin" secondItem="VtC-hI-c32" secondAttribute="bottom" id="95k-Co-kly"/>
-                                                                        <constraint firstAttribute="bottomMargin" secondItem="WEu-vH-iEZ" secondAttribute="bottom" id="Jco-9L-VUm"/>
-                                                                        <constraint firstAttribute="trailingMargin" secondItem="VtC-hI-c32" secondAttribute="trailing" id="LZ8-bh-T7L"/>
-                                                                        <constraint firstItem="WEu-vH-iEZ" firstAttribute="top" secondItem="tHr-6c-0KF" secondAttribute="topMargin" id="kUK-eU-hIA"/>
-                                                                    </constraints>
-                                                                </tableViewCellContentView>
-                                                            </tableViewCell>
                                                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TrackCell" rowHeight="89" id="myF-EP-gGk" customClass="TrailTableCell" customModule="MTB_BG_Trails" customModuleProvider="target">
                                                                 <rect key="frame" x="160" y="208" width="600" height="89"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -114,8 +105,8 @@
                                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeZ-62-aVC">
-                                                                            <rect key="frame" x="8" y="46" width="55" height="17"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeZ-62-aVC" customClass="MarqueeLabel" customModule="MTB_BG_Trails" customModuleProvider="target">
+                                                                            <rect key="frame" x="8" y="46" width="584" height="17"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -149,6 +140,7 @@
                                                                         <constraint firstItem="KMP-v8-c5d" firstAttribute="leading" secondItem="KkF-Vc-HNZ" secondAttribute="leadingMargin" id="N8m-yb-mno"/>
                                                                         <constraint firstItem="QeZ-62-aVC" firstAttribute="leading" secondItem="KkF-Vc-HNZ" secondAttribute="leadingMargin" id="Qlr-r0-is6"/>
                                                                         <constraint firstItem="jCR-M3-f8M" firstAttribute="top" secondItem="KkF-Vc-HNZ" secondAttribute="topMargin" id="VPS-xq-klf"/>
+                                                                        <constraint firstAttribute="trailingMargin" secondItem="QeZ-62-aVC" secondAttribute="trailing" id="XgR-3G-Qhx"/>
                                                                         <constraint firstItem="Ddj-7z-XJh" firstAttribute="leading" secondItem="KkF-Vc-HNZ" secondAttribute="leadingMargin" id="ZWF-0s-Ama"/>
                                                                         <constraint firstAttribute="bottomMargin" secondItem="Ddj-7z-XJh" secondAttribute="bottom" id="asZ-RM-DZ9"/>
                                                                         <constraint firstItem="3wr-13-O32" firstAttribute="leading" secondItem="qwt-89-yEG" secondAttribute="trailing" constant="8" id="b9O-xE-LFq"/>
@@ -170,7 +162,7 @@
                                                                     <outlet property="ascentLabel" destination="izL-Se-aeB" id="z0W-dh-ENu"/>
                                                                     <outlet property="dateLabel" destination="Ddj-7z-XJh" id="nBM-wN-GYH"/>
                                                                     <outlet property="diffLabel" destination="qwt-89-yEG" id="J8O-bM-F8z"/>
-                                                                    <outlet property="durationLabel" destination="QeZ-62-aVC" id="7Xe-Xj-9qs"/>
+                                                                    <outlet property="durationLabel" destination="QeZ-62-aVC" id="JOA-uQ-a6a"/>
                                                                     <outlet property="lengthLabel" destination="KMP-v8-c5d" id="rlA-DH-gQI"/>
                                                                     <outlet property="nameLabel" destination="jCR-M3-f8M" id="25U-zF-7GQ"/>
                                                                     <outlet property="strenLabel" destination="3wr-13-O32" id="5rI-sS-6Ru"/>
@@ -236,13 +228,12 @@
                                 <action selector="backClicked:" destination="BYZ-38-t0r" id="SZe-St-5bq"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="LMe-oh-p5Z"/>
                     </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="Wso-hv-17S" id="sth-Z1-8l9"/>
                         <outlet property="mapHeight" destination="4Nf-qI-7fd" id="cBM-Gs-2gd"/>
+                        <outlet property="mapMaskHeight" destination="FyS-qv-yWC" id="EPh-hY-xQf"/>
                         <outlet property="mapView" destination="vt8-7c-SF1" id="bJb-3r-imh"/>
-                        <outlet property="tableHeight" destination="419-bc-iBv" id="0bf-Ma-3pR"/>
                         <outlet property="tableScrollView" destination="6EP-Vs-Z2U" id="JDR-pp-F2j"/>
                         <outlet property="trailsTable" destination="nj9-zE-Q3M" id="cYr-SU-C5q"/>
                     </connections>
@@ -269,7 +260,7 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EOP-bM-seF" customClass="TrailAscentProfileView" customModule="MTB_BG_Trails" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="92"/>
-                                                    <color key="backgroundColor" red="0.36078431372549019" green="0.63921568627450975" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.71639516428018468" green="0.85119096598555455" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -381,19 +372,19 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="wXN-EI-8KV">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="wXN-EI-8KV">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wXN-EI-8KV" id="XdQ-h4-XeP">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fy7-8w-TMy">
-                                                    <rect key="frame" x="16" y="11" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fy7-8w-TMy">
+                                                    <rect key="frame" x="16" y="11" width="51" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16Z-3V-Dt4">
-                                                    <rect key="frame" x="66" y="22" width="0.0" height="0.0"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16Z-3V-Dt4" customClass="MarqueeLabel" customModule="MTB_BG_Trails" customModuleProvider="target">
+                                                    <rect key="frame" x="75" y="22" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -408,7 +399,27 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="54" id="72X-L1-D6l">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="54" id="Ymu-NF-naw">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ymu-NF-naw" id="ofz-qc-evt">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsY-dy-SYP" customClass="MarqueeLabel" customModule="MTB_BG_Trails" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="8" width="0.0" height="37"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.17886844499999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="FsY-dy-SYP" firstAttribute="top" secondItem="ofz-qc-evt" secondAttribute="topMargin" id="JaH-ii-tfj"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="FsY-dy-SYP" secondAttribute="trailing" constant="8" id="cRQ-J6-6ar"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="FsY-dy-SYP" secondAttribute="bottom" id="knR-jB-0O4"/>
+                                                <constraint firstItem="FsY-dy-SYP" firstAttribute="leading" secondItem="ofz-qc-evt" secondAttribute="leadingMargin" constant="8" id="z1i-cT-PrQ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="54" id="72X-L1-D6l">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="72X-L1-D6l" id="eWI-2B-eX2">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -446,7 +457,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekc-O1-WPf">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekc-O1-WPf" customClass="MarqueeLabel" customModule="MTB_BG_Trails" customModuleProvider="target">
                                                     <rect key="frame" x="94" y="22" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -473,7 +484,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDG-cN-ocw">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDG-cN-ocw" customClass="MarqueeLabel" customModule="MTB_BG_Trails" customModuleProvider="target">
                                                     <rect key="frame" x="69" y="22" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -500,7 +511,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUh-sz-EhY">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUh-sz-EhY" customClass="MarqueeLabel" customModule="MTB_BG_Trails" customModuleProvider="target">
                                                     <rect key="frame" x="74" y="22" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -516,7 +527,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="93" id="PLj-bB-uKL">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="93" id="PLj-bB-uKL">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PLj-bB-uKL" id="Vfn-xv-5cr">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -620,8 +631,9 @@
                         <outlet property="effortLabel" destination="KOU-5E-na6" id="Ukr-Ca-kQ4"/>
                         <outlet property="foodLabel" destination="mDG-cN-ocw" id="vxX-hN-YZt"/>
                         <outlet property="lengthLabel" destination="eXH-LL-bhj" id="eSN-wd-3wW"/>
+                        <outlet property="linkLabel" destination="FsY-dy-SYP" id="VHQ-tQ-kEj"/>
+                        <outlet property="nameLabel" destination="16Z-3V-Dt4" id="MzO-0a-w5J"/>
                         <outlet property="roadsLabel" destination="3ze-db-rLD" id="IE4-xf-3wu"/>
-                        <outlet property="startLabel" destination="16Z-3V-Dt4" id="9j5-ij-AJB"/>
                         <outlet property="tarmacLabel" destination="UyS-ZS-3lM" id="JXJ-ed-E42"/>
                         <outlet property="trailsLabel" destination="3n9-LS-xcy" id="0PE-CE-EW5"/>
                         <outlet property="waterLabel" destination="dUh-sz-EhY" id="Jcx-io-0ON"/>

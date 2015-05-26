@@ -17,7 +17,7 @@ class DistinctColourGenerator
         return (r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255)
     }
     
-    class func generateDistinctColours(count: Int, quality: Int, highPrecision: Bool) -> [(Double, Double, Double)]
+    class func generateDistinctColours(count: Int, quality: Int, highPrecision: Bool) -> [UIColor]
     {
         var labColours = [(Double, Double, Double)]()
         var forceVectors = [(Double, Double, Double)]()
@@ -85,10 +85,11 @@ class DistinctColourGenerator
             }
         }
         
-        var rgbColours = [(Double, Double, Double)]()
+        var rgbColours = [UIColor]()
         for (index, (l, a, b)) in enumerate(labColours)
         {
-            rgbColours.append(LabtoRGB(l, a: a, b: b))
+            let (R, G, B) = LabtoRGB(l, a: a, b: b)
+            rgbColours.append(UIColor(red: CGFloat(R / 255.0), green: CGFloat(G / 255.0), blue: CGFloat(B / 255.0), alpha: 1.0))
         }
         
         return rgbColours

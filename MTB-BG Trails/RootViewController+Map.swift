@@ -27,12 +27,12 @@ extension RootViewController: MKMapViewDelegate
         }
 	}
 	
-	func fitTrailsInMap()
+    func fitTrailsInMap(#animated: Bool)
 	{
 		if let region = trailsLoader.region
 		{
 			let mapViewRegion = mapView.regionThatFits(region)
-			mapView.setRegion(mapViewRegion, animated: true)
+			mapView.setRegion(mapViewRegion, animated: animated)
 		}
 	}
     

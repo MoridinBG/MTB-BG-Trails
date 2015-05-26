@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 
-class RootViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UIPopoverPresentationControllerDelegate, TrailsLoaderDelegate, TrailsHeaderDelegate, TrailsFilterDelegate
+class RootViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UIPopoverPresentationControllerDelegate, TrailsLoaderDelegate, TrailsFilterDelegate
 {
 
 	// MARK: - Properties
@@ -26,7 +26,8 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 	@IBOutlet weak var containerView: UIView!
 	@IBOutlet weak var mapView: MKMapView!
 	@IBOutlet var mapHeight: NSLayoutConstraint!
-    @IBOutlet weak var tableHeight: NSLayoutConstraint!
+    @IBOutlet weak var mapMaskHeight: NSLayoutConstraint!
+
 	
 	private var filterPopoverAnchor = UIButton()
 	private var filterPopoverController = TrailsFilterController()
@@ -34,6 +35,23 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 	
 	// MARK: - IB Actions
 	
+    @IBAction func filterTrails(sender: UIButton)
+    {
+        filterPopoverAnchor = sender
+        filterPopoverController.modalPresentationStyle = UIModalPresentationStyle.Popover
+        filterPopoverController.preferredContentSize = CGSizeMake(500,308)
+        filterPopoverController.statistics = trailsLoader.statistics
+        filterPopoverController.delegate = self
+        
+        if let popoverPresentation = filterPopoverController.popoverPresentationController
+        {
+            popoverPresentation.sourceView = sender
+            popoverPresentation.sourceRect = sender.frame
+            popoverPresentation.delegate = self
+            self.presentViewController(filterPopoverController, animated: true, completion: nil)
+        }
+    }
+    
 	@IBAction func mapClicked(sender: UIButton)
 	{
 		self.navigationItem.leftBarButtonItem?.enabled = true
@@ -45,7 +63,7 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 			self.mapView.layoutIfNeeded()
 			},
 			completion: { (success) in
-                    self.fitTrailsInMap()
+                self.fitTrailsInMap(animated: true)
 			})
 	}
 	
@@ -57,11 +75,10 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
         UIView.animateWithDuration(1, animations: {
                 self.containerView.bringSubviewToFront(self.tableScrollView)
                 self.containerView.addConstraint(self.mapHeight)
-                self.tableHeight.constant = 0
                 self.mapView.layoutIfNeeded()
             },
             completion: { (success) in
-                self.fitTrailsInMap()
+                self.fitTrailsInMap(animated: true)
         })
 	}
 	
@@ -72,9 +89,11 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 		super.viewDidLoad()
 		
 		trailsTable.dataSource = self
+        tableScrollView.delegate = self
 		mapView.delegate = self
 		
-        trailsTable.estimatedRowHeight = 44
+        trailsTable.estimatedRowHeight = 89
+        trailsTable.rowHeight = UITableViewAutomaticDimension
         
 		self.navigationItem.leftBarButtonItem?.enabled = false
 		self.navigationItem.leftBarButtonItem?.tintColor = UIColor.clearColor()
@@ -145,7 +164,7 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 			cell.dateLabel.text = dateFormatter.stringFromDate(date)
 		} else
 		{
-			cell.dateLabel.text = "n/a"
+			cell.dateLabel.text = ""
 		}
 		
 		if let length = trail.length
@@ -153,7 +172,7 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 			cell.lengthLabel.text = "\(length)km"
 		} else
 		{
-			cell.lengthLabel.text = "n/a"
+			cell.lengthLabel.text = ""
 		}
 		
 		if let ascent = trail.ascent
@@ -161,7 +180,7 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 			cell.ascentLabel.text = "\(ascent)m"
 		} else
 		{
-			cell.ascentLabel.text = "n/a"
+			cell.ascentLabel.text = ""
 		}
 		
 		if let stren = trail.strenuousness
@@ -169,7 +188,7 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 			cell.strenLabel.text = "\(stren)"
 		} else
 		{
-			cell.strenLabel.text = "n/a"
+			cell.strenLabel.text = ""
 		}
 		
 		if let difficulty = trail.difficulty
@@ -181,28 +200,27 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 			}
 		} else
 		{
-			cell.diffLabel.text = "n/a"
+			cell.diffLabel.text = ""
 		}
 		
 		if let duration = trail.duration
 		{
 			cell.durationLabel.text = duration
+            cell.durationLabel.type = .Continuous
+            cell.durationLabel.scrollDuration = 30.0
+            cell.durationLabel.animationCurve = .Linear
+            cell.durationLabel.fadeLength = 0
+            cell.durationLabel.leadingBuffer = 30.0
+            cell.durationLabel.trailingBuffer = 20.0
 		} else
 		{
-			cell.durationLabel.text = "n/a"
+			cell.durationLabel.text = ""
 		}
 		
 		
 		return cell
 	}
 	
-	func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
-	{
-		let headerCell = trailsTable.dequeueReusableCellWithIdentifier(Constants.Keys.kCellIdTracksHeader) as! TrailsTableHeaderCell
-		headerCell.delegate = self
-		
-		return headerCell
-	}
 	
 	// MARK: - UIScrollViewDelegate
 	
@@ -218,7 +236,7 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 				} else
 				{
 					mapHeight.constant = scrollView.contentOffset.y
-//                    tableHeight.constant = -scrollView.contentOffset.y
+                    self.fitTrailsInMap(animated: false)
 				}
 			}
 		}
@@ -241,31 +259,7 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
             allTrailOverlays.append(track.trackPolyline)
 		}
 		
-		self.fitTrailsInMap()
-	}
-	
-	// MARK: - TrailsHeaderDelegate
-	
-	func sortTrails(sender: UIButton)
-	{
-		
-	}
-	
-	func filterTrails(sender: UIButton)
-	{
-		filterPopoverAnchor = sender
-		filterPopoverController.modalPresentationStyle = UIModalPresentationStyle.Popover
-        filterPopoverController.preferredContentSize = CGSizeMake(500,308)
-		filterPopoverController.statistics = trailsLoader.statistics
-		filterPopoverController.delegate = self
-		
-		if let popoverPresentation = filterPopoverController.popoverPresentationController
-		{
-			popoverPresentation.sourceView = sender
-			popoverPresentation.sourceRect = sender.frame
-			popoverPresentation.delegate = self
-			self.presentViewController(filterPopoverController, animated: true, completion: nil)
-		}
+		self.fitTrailsInMap(animated: true)
 	}
 	
 	// MARK: - TrailsFilterDelegate

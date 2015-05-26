@@ -46,13 +46,14 @@ class TrailsLoader
 			{
 				let json = JSON(data: jsonData)
 				let trailsCount = json["routes"].count
-                println("Request colours")
                 let colours = DistinctColourGenerator.generateDistinctColours(trailsCount, quality: 1, highPrecision: false)
-                println("Got colours")
+                println("Start processing trails")
 				for(index: String, subJson: JSON) in json["routes"]
 				{
 					var trail = Trail()
+                    
 					trail.name = subJson["name"].string
+                    trail.colour = colours[index.toInt()!]
 					
 					if let dateString = subJson["date"].string
 					{
@@ -79,6 +80,7 @@ class TrailsLoader
 					if let linkString = subJson["link"].string
 					{
 						trail.link = NSURL(string: linkString)
+                        
 					}
 					
 					if let length = subJson["length"].double
@@ -186,13 +188,6 @@ class TrailsLoader
 					if let traces = trail.traces
 					{
 						self.loadGPXFromTrail(trail) { gpx in
-                            
-                            let colourElements = colours[index.toInt()!]
-                            let red = CGFloat(colourElements.0 / 255)
-                            let green = CGFloat(colourElements.1 / 255)
-                            let blue = CGFloat(colourElements.2 / 255)
-                            let colour = UIColor(red: red, green: green, blue: blue, alpha: 0.6)
-                            
                             var tempTracks = [AttributedTrack]()
                             var longestIndex = -1
                             
@@ -207,7 +202,7 @@ class TrailsLoader
                                     length += segmentPoints.2
 									
 								}
-                                let attribTrack = AttributedTrack(coords: &coordinates, count: coordinates.count, pointElevations: elevations, length: length, colour: colour, name: track.name, optional: true)
+                                let attribTrack = AttributedTrack(coords: &coordinates, count: coordinates.count, pointElevations: elevations, length: length, colour: trail.colour, name: track.name, optional: true)
                                 
                                 if longestIndex >= 0
                                 {
@@ -243,6 +238,7 @@ class TrailsLoader
 
 					self.trails.append(trail)
 				}
+                println("Finished processing trails")
 				
 				if let onLoadFinished = onLoadFinished
 				{

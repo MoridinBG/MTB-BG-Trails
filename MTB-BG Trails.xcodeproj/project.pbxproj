@@ -29,7 +29,6 @@
 		008C34CB1B08CBF700597B0D /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 008C34C61B08CBF700597B0D /* SSZipArchive.m */; };
 		008C34CD1B08D0A900597B0D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008C34CC1B08D0A900597B0D /* SystemConfiguration.framework */; };
 		008C34CF1B08D16E00597B0D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C34CE1B08D16E00597B0D /* Reachability.swift */; };
-		008C34D11B097AFD00597B0D /* TrailsTableHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C34D01B097AFD00597B0D /* TrailsTableHeaderCell.swift */; };
 		008C34D31B09ECEB00597B0D /* NSDate+Compare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C34D21B09ECEB00597B0D /* NSDate+Compare.swift */; };
 		0098EAF51B0C0229002DCFA1 /* Array+Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0098EAF41B0C0229002DCFA1 /* Array+Index.swift */; };
 		00A802B21B09FF070022731B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00702E031B0138EF00A77F63 /* Main.storyboard */; };
@@ -93,7 +92,6 @@
 		008C34C61B08CBF700597B0D /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
 		008C34CC1B08D0A900597B0D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		008C34CE1B08D16E00597B0D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		008C34D01B097AFD00597B0D /* TrailsTableHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailsTableHeaderCell.swift; sourceTree = "<group>"; };
 		008C34D21B09ECEB00597B0D /* NSDate+Compare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Compare.swift"; sourceTree = "<group>"; };
 		0098EAF41B0C0229002DCFA1 /* Array+Index.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Index.swift"; sourceTree = "<group>"; };
 		00B141411B06BF2D0075D694 /* RootViewController+Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Map.swift"; sourceTree = "<group>"; };
@@ -269,7 +267,6 @@
 			isa = PBXGroup;
 			children = (
 				00FA37EA1B06198E007F9A23 /* TrailTableCell.swift */,
-				008C34D01B097AFD00597B0D /* TrailsTableHeaderCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -384,7 +381,6 @@
 				00FA37ED1B062201007F9A23 /* MarqueeLabel.swift in Sources */,
 				000B82681B0148B2002ED8DF /* Constants.swift in Sources */,
 				006491961B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift in Sources */,
-				008C34D11B097AFD00597B0D /* TrailsTableHeaderCell.swift in Sources */,
 				008C34C71B08CBF700597B0D /* ioapi.c in Sources */,
 				0098EAF51B0C0229002DCFA1 /* Array+Index.swift in Sources */,
 				002D0ED11B0B351000FA024C /* TrailsFilterController.swift in Sources */,

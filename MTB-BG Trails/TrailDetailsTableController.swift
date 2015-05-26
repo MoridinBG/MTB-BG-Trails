@@ -14,17 +14,20 @@ class TrailDetailsTableController: UITableViewController
     @IBOutlet weak var lengthLabel: UILabel!
     @IBOutlet weak var ascentLabel: UILabel!
     @IBOutlet weak var effortLabel: UILabel!
-    @IBOutlet weak var startLabel: UILabel!
+    @IBOutlet weak var nameLabel: MarqueeLabel!
+    @IBOutlet weak var linkLabel: MarqueeLabel!
     @IBOutlet weak var difficultyLabel: UILabel!
-    @IBOutlet weak var durationLabel: UILabel!
-    @IBOutlet weak var foodLabel: UILabel!
-    @IBOutlet weak var waterLabel: UILabel!
+    @IBOutlet weak var durationLabel: MarqueeLabel!
+    @IBOutlet weak var foodLabel: MarqueeLabel!
+    @IBOutlet weak var waterLabel: MarqueeLabel!
     @IBOutlet weak var tarmacLabel: UILabel!
     @IBOutlet weak var roadsLabel: UILabel!
     @IBOutlet weak var trailsLabel: UILabel!
     @IBOutlet weak var ascentProfileView: TrailAscentProfileView!
     
     var trail: Trail!
+    
+    private var hiddenRows = [Int]()
     
     override func viewDidLoad()
     {
@@ -34,6 +37,32 @@ class TrailDetailsTableController: UITableViewController
         {
             ascentProfileView.track = trail.mainTrack
             ascentProfileView.setNeedsDisplay()
+            
+            if let name = trail.name
+            {
+                nameLabel.text = name
+                
+                nameLabel.type = .Continuous
+                nameLabel.scrollDuration = 30.0
+                nameLabel.animationCurve = .Linear
+                nameLabel.fadeLength = 0
+                nameLabel.leadingBuffer = 30.0
+                nameLabel.trailingBuffer = 20.0
+            }
+            
+            if let link = trail.link
+            {
+                let link = NSMutableAttributedString(string: link.absoluteString!)
+                link.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange(0, link.length))
+                linkLabel.attributedText = link
+                
+                linkLabel.type = .Continuous
+                linkLabel.scrollDuration = 30.0
+                linkLabel.animationCurve = .Linear
+                linkLabel.fadeLength = 0
+                linkLabel.leadingBuffer = 30.0
+                linkLabel.trailingBuffer = 20.0
+            }
             
             if let length = trail.length
             {
@@ -68,12 +97,19 @@ class TrailDetailsTableController: UITableViewController
                 }
             } else
             {
-                difficultyLabel.text = "n/a"
+                hiddenRows.append(4)
             }
             
             if let duration = trail.duration
             {
                 durationLabel.text = duration
+                
+                durationLabel.type = .Continuous
+                durationLabel.scrollDuration = 30.0
+                durationLabel.animationCurve = .Linear
+                durationLabel.fadeLength = 0
+                durationLabel.leadingBuffer = 30.0
+                durationLabel.trailingBuffer = 20.0
             } else
             {
                 durationLabel.text = "n/a"
@@ -82,6 +118,13 @@ class TrailDetailsTableController: UITableViewController
             if let food = trail.food
             {
                 foodLabel.text = food
+                
+                foodLabel.type = .Continuous
+                foodLabel.scrollDuration = 30.0
+                foodLabel.animationCurve = .Linear
+                foodLabel.fadeLength = 0
+                foodLabel.leadingBuffer = 30.0
+                foodLabel.trailingBuffer = 20.0
             } else
             {
                 foodLabel.text = "n/a"
@@ -90,6 +133,13 @@ class TrailDetailsTableController: UITableViewController
             if let water = trail.water
             {
                 waterLabel.text = water
+                
+                waterLabel.type = .Continuous
+                waterLabel.scrollDuration = 30.0
+                waterLabel.animationCurve = .Linear
+                waterLabel.fadeLength = 0
+                waterLabel.leadingBuffer = 30.0
+                waterLabel.trailingBuffer = 20.0
             } else
             {
                 waterLabel.text = "n/a"
@@ -97,30 +147,66 @@ class TrailDetailsTableController: UITableViewController
             
             if let terrains = trail.terrains
             {
+                var noTerrains = true
                 if let tarmac = terrains[Constants.Keys.kTrailTerrainTarmac]
                 {
                     tarmacLabel.text = "\(tarmac)km"
-                } else
-                {
-                    tarmacLabel.text = "n/a"
+                    
+                    noTerrains = false
                 }
                 
                 if let roads = terrains[Constants.Keys.kTrailTerrainRoads]
                 {
                     roadsLabel.text = "\(roads)km"
-                } else
-                {
-                    roadsLabel.text = "n/a"
+                    
+                    noTerrains = false
                 }
                 
                 if let trails = terrains[Constants.Keys.kTrailTerrainTrails]
                 {
                     trailsLabel.text = "\(trails)km"
-                } else
+                    
+                    noTerrains = false
+                }
+                
+                if noTerrains
                 {
-                    trailsLabel.text = "n/a"
+                    hiddenRows.append(8)
                 }
             }
+        }
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
+        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        var hideRow = false
+        
+        for index in hiddenRows
+        {
+            if indexPath.row == index
+            {
+                hideRow = true
+            }
+        }
+        
+        if hideRow
+        {
+            return 0
+        } else
+        {
+            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+        }
+        
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        println(indexPath.row)
+        if indexPath.row == 3 && trail.link != nil
+        {
+            let sharedApp = UIApplication.sharedApplication()
+            sharedApp.openURL(trail.link!)
         }
     }
 
