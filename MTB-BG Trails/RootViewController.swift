@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 
-class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UIPopoverPresentationControllerDelegate, TrailsLoaderDelegate, TrailsFilterDelegate
+class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UIPopoverPresentationControllerDelegate, TrailsLoaderDelegate, TrailsFilterDelegate, TrailColorSelectDelegate
 {
 
 	// MARK: - Properties
@@ -28,15 +28,16 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
     @IBOutlet weak var mapMaskHeight: NSLayoutConstraint!
 
 	
-	private var filterPopoverAnchor = UIButton()
+	private var popoverAnchor = UIButton()
 	private var filterPopoverController = TrailsFilterController()
+    private var colourPopoverController = TrailColorSelectController()
     private var allTrailOverlays = [MKOverlay]()
 	
 	// MARK: - IB Actions
 	
     @IBAction func filterTrails(sender: UIButton)
     {
-        filterPopoverAnchor = sender
+        popoverAnchor = sender
         filterPopoverController.modalPresentationStyle = UIModalPresentationStyle.Popover
         filterPopoverController.preferredContentSize = CGSizeMake(500,308)
         filterPopoverController.statistics = trailsLoader.statistics
@@ -50,6 +51,23 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
             self.presentViewController(filterPopoverController, animated: true, completion: nil)
         }
     }
+    
+    @IBAction func selectTrailColors(sender: UIButton)
+    {
+        popoverAnchor = sender
+        colourPopoverController.modalPresentationStyle = UIModalPresentationStyle.Popover
+        colourPopoverController.preferredContentSize = CGSizeMake(500,308)
+        colourPopoverController.delegate = self
+        
+        if let popoverPresentation = colourPopoverController.popoverPresentationController
+        {
+            popoverPresentation.sourceView = sender
+            popoverPresentation.sourceRect = sender.frame
+            popoverPresentation.delegate = self
+            self.presentViewController(colourPopoverController, animated: true, completion: nil)
+        }
+    }
+    
     
 	@IBAction func mapClicked(sender: UIButton)
 	{
@@ -124,13 +142,14 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 			{
 				println("Here")
 				popoverController.delegate = self
-				popoverController.sourceRect = filterPopoverAnchor.frame
-				popoverController.sourceView = filterPopoverAnchor
+				popoverController.sourceRect = popoverAnchor.frame
+				popoverController.sourceView = popoverAnchor
 			}
 		} else if segue.identifier == Constants.Keys.kSegueIdTrailDetails
         {
             let senderCell = sender as! TrailTableCell
             let dest = segue.destinationViewController as! TrailDetailsController
+            senderCell.trail.resetColours()
             dest.trail = senderCell.trail
         }
 	}
@@ -379,7 +398,7 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 		trailsTable.reloadData()
 	}
 	
-	func shouldFilter(	trail: Trail,
+	private func shouldFilter(	trail: Trail,
 						filteredValue: Double?,
 						minLimit: Double,
 						absoluteMinLimit: Double,
@@ -400,5 +419,79 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 
 		return false
 	}
+    
+    // MARK: - TrailColorSelectDelegate
+    
+    func selectedColor(selection: ColorSelection)
+    {
+        switch selection
+        {
+            case .Random:
+                for trail in trails
+                {
+                    trail.resetColours()
+                }
+            
+            case .Length:
+                let (min, max) = trailsLoader.statistics.length
+                let diff = max - min
+                
+                for trail in trails
+                {
+                    if let length = trail.length
+                    {
+                        let factor = (max - length) / diff
+                        let colour = UIColor.redColor().colorWithAlphaComponent(CGFloat(1 - factor))
+                        trail.mainTrack?.colour = colour
+                        for track in trail.optionalTracks
+                        {
+                            track.colour = colour
+                        }
+                    }
+                }
+            
+            case .Ascent:
+                let (min, max) = trailsLoader.statistics.ascent
+                let diff = max - min
+                
+                for trail in trails
+                {
+                    if let ascent = trail.ascent
+                    {
+                        let factor = (max - ascent) / diff
+                        let colour = UIColor.redColor().colorWithAlphaComponent(CGFloat(1 - factor))
+                        trail.mainTrack?.colour = colour
+                        for track in trail.optionalTracks
+                        {
+                            track.colour = colour
+                        }
+                    }
+                }
+            
+            case .Effort:
+                let (min, max) = trailsLoader.statistics.strenuousness
+                let diff = max - min
+                
+                for trail in trails
+                {
+                    if let stren = trail.strenuousness
+                    {
+                        let factor = (max - stren) / diff
+                        let colour = UIColor.redColor().colorWithAlphaComponent(CGFloat(1 - factor))
+                        trail.mainTrack?.colour = colour
+                        for track in trail.optionalTracks
+                        {
+                            track.colour = colour
+                        }
+                    }
+                }
+            default: ()
+        }
+        
+        let overlays = mapView.overlays
+        mapView.removeOverlays(overlays)
+        mapView.addOverlays(overlays)
+    }
+    
 }
 

@@ -174,7 +174,6 @@ class TrailsLoader
                             }
                             
                             trail.strenuousness = stren
-                            println(stren)
                             
                             if stren < self.statistics.strenuousness.min
                             {

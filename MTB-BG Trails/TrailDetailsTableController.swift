@@ -52,7 +52,7 @@ class TrailDetailsTableController: UITableViewController
             
             if let link = trail.link
             {
-                let link = NSMutableAttributedString(string: "@MTB Wep Page")
+                let link = NSMutableAttributedString(string: "@MTB Weб Page")
                 link.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange(0, link.length))
                 linkLabel.attributedText = link
             }

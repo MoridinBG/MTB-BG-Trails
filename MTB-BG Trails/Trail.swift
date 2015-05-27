@@ -41,4 +41,13 @@ class Trail: Printable
     {
         return optionalTracks + [mainTrack!]
     }
+    
+    func resetColours()
+    {
+        mainTrack?.colour = self.colour
+        for track in optionalTracks
+        {
+            track.colour = self.colour
+        }
+    }
 }

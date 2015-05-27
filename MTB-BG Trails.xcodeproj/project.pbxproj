@@ -37,6 +37,8 @@
 		00B141421B06BF2D0075D694 /* RootViewController+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B141411B06BF2D0075D694 /* RootViewController+Map.swift */; };
 		00C4C0411B0E4E8C0026AACD /* DistinctColorGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4C0401B0E4E8C0026AACD /* DistinctColorGenerator.swift */; };
 		00D58ABE1B1117BA0068B5FA /* TrailDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D58ABD1B1117BA0068B5FA /* TrailDetailsController.swift */; };
+		00D8E8011B155422004F5A91 /* TrailColorSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D8E7FF1B155422004F5A91 /* TrailColorSelectController.swift */; };
+		00D8E8061B155477004F5A91 /* TrailColorSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00D8E8051B155477004F5A91 /* TrailColorSelect.xib */; };
 		00EFD4211B13433C00F6459D /* TrailAscentProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFD4201B13433C00F6459D /* TrailAscentProfileView.swift */; };
 		00EFD4231B135FC700F6459D /* MKAttribuedPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFD4221B135FC700F6459D /* MKAttribuedPolyline.swift */; };
 		00F79F721B11C3080000496A /* TrailDetailsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F79F711B11C3080000496A /* TrailDetailsTableController.swift */; };
@@ -99,6 +101,8 @@
 		00B141411B06BF2D0075D694 /* RootViewController+Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Map.swift"; sourceTree = "<group>"; };
 		00C4C0401B0E4E8C0026AACD /* DistinctColorGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistinctColorGenerator.swift; sourceTree = "<group>"; };
 		00D58ABD1B1117BA0068B5FA /* TrailDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailDetailsController.swift; sourceTree = "<group>"; };
+		00D8E7FF1B155422004F5A91 /* TrailColorSelectController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailColorSelectController.swift; sourceTree = "<group>"; };
+		00D8E8051B155477004F5A91 /* TrailColorSelect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TrailColorSelect.xib; path = "MTB-BG Trails/TrailColorSelect.xib"; sourceTree = "<group>"; };
 		00EFD4201B13433C00F6459D /* TrailAscentProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailAscentProfileView.swift; sourceTree = "<group>"; };
 		00EFD4221B135FC700F6459D /* MKAttribuedPolyline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKAttribuedPolyline.swift; sourceTree = "<group>"; };
 		00F79F711B11C3080000496A /* TrailDetailsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailDetailsTableController.swift; sourceTree = "<group>"; };
@@ -210,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				002D0ECE1B0B2FE600FA024C /* TrailsFilterController.xib */,
+				00D8E8051B155477004F5A91 /* TrailColorSelect.xib */,
 				00702E031B0138EF00A77F63 /* Main.storyboard */,
 				00702E081B0138EF00A77F63 /* LaunchScreen.xib */,
 				00702E061B0138EF00A77F63 /* Images.xcassets */,
@@ -228,6 +233,7 @@
 				00D58ABD1B1117BA0068B5FA /* TrailDetailsController.swift */,
 				00F79F731B11EC6F0000496A /* TrailDetailsController+Map.swift */,
 				00F79F711B11C3080000496A /* TrailDetailsTableController.swift */,
+				00D8E7FF1B155422004F5A91 /* TrailColorSelectController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -365,6 +371,7 @@
 				00A802B21B09FF070022731B /* Main.storyboard in Resources */,
 				00702E201B01392F00A77F63 /* .gitignore in Resources */,
 				00702E071B0138EF00A77F63 /* Images.xcassets in Resources */,
+				00D8E8061B155477004F5A91 /* TrailColorSelect.xib in Resources */,
 				002D0ECF1B0B2FE600FA024C /* TrailsFilterController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,6 +400,7 @@
 				00FA37ED1B062201007F9A23 /* MarqueeLabel.swift in Sources */,
 				000B82681B0148B2002ED8DF /* Constants.swift in Sources */,
 				006491961B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift in Sources */,
+				00D8E8011B155422004F5A91 /* TrailColorSelectController.swift in Sources */,
 				008C34C71B08CBF700597B0D /* ioapi.c in Sources */,
 				0098EAF51B0C0229002DCFA1 /* Array+Index.swift in Sources */,
 				002D0ED11B0B351000FA024C /* TrailsFilterController.swift in Sources */,
