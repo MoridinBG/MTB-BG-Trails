@@ -99,8 +99,13 @@ class TrailsLoader
 						}
 					}
 					
-					if let ascent = subJson["ascent"].double
+					if var ascent = subJson["ascent"].double
 					{
+                        if ascent < 0
+                        {
+                            ascent = 0
+                        }
+                        
 						trail.ascent = ascent
 						
 						if ascent < self.statistics.ascent.min

@@ -46,7 +46,7 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
         if let popoverPresentation = filterPopoverController.popoverPresentationController
         {
             popoverPresentation.sourceView = sender
-            popoverPresentation.sourceRect = sender.frame
+            popoverPresentation.sourceRect = sender.bounds
             popoverPresentation.delegate = self
             self.presentViewController(filterPopoverController, animated: true, completion: nil)
         }
@@ -56,13 +56,13 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
     {
         popoverAnchor = sender
         colourPopoverController.modalPresentationStyle = UIModalPresentationStyle.Popover
-        colourPopoverController.preferredContentSize = CGSizeMake(500,308)
+        colourPopoverController.preferredContentSize = CGSizeMake(203,203)
         colourPopoverController.delegate = self
         
         if let popoverPresentation = colourPopoverController.popoverPresentationController
         {
             popoverPresentation.sourceView = sender
-            popoverPresentation.sourceRect = sender.frame
+            popoverPresentation.sourceRect = sender.bounds
             popoverPresentation.delegate = self
             self.presentViewController(colourPopoverController, animated: true, completion: nil)
         }
@@ -440,8 +440,14 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
                 {
                     if let length = trail.length
                     {
-                        let factor = (max - length) / diff
-                        let colour = UIColor.redColor().colorWithAlphaComponent(CGFloat(1 - factor))
+                        let factor = 1 - ((max - length) / diff)
+                        
+                        let b = 0.408333
+                        let a = -b
+                        let c = 1.23808
+                        
+                        let value = CGFloat(factor)
+                        let colour = UIColor(red: value, green: 1 - value, blue: 0, alpha: 1)
                         trail.mainTrack?.colour = colour
                         for track in trail.optionalTracks
                         {
@@ -458,8 +464,14 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
                 {
                     if let ascent = trail.ascent
                     {
-                        let factor = (max - ascent) / diff
-                        let colour = UIColor.redColor().colorWithAlphaComponent(CGFloat(1 - factor))
+                        let factor = 1 - ((max - ascent) / diff)
+                        
+                        let b = 0.408333
+                        let a = -b
+                        let c = 1.23808
+                        
+                        let value = CGFloat(factor)
+                        let colour = UIColor(red: value, green: 1 - value, blue: 0, alpha: 1)
                         trail.mainTrack?.colour = colour
                         for track in trail.optionalTracks
                         {
@@ -476,13 +488,54 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
                 {
                     if let stren = trail.strenuousness
                     {
-                        let factor = (max - stren) / diff
-                        let colour = UIColor.redColor().colorWithAlphaComponent(CGFloat(1 - factor))
+                        let factor = 1 - ((max - stren) / diff)
+                        
+                        let b = 0.408333
+                        let a = -b
+                        let c = 1.23808
+                        
+                        let value = CGFloat(factor)
+                        let colour = UIColor(red: value, green: 1 - value, blue: 0, alpha: 1)
                         trail.mainTrack?.colour = colour
                         for track in trail.optionalTracks
                         {
                             track.colour = colour
                         }
+                    }
+                }
+            case .Technicality:
+                let min = Double(trailsLoader.statistics.difficulty.min)
+                let max = Double(trailsLoader.statistics.difficulty.max)
+                let diff = max - min
+                for trail in trails
+                {
+                    var maxTech = min
+                    if let difficulties = trail.difficulty
+                    {
+                        for diff in difficulties
+                        {
+                            if Double(diff) > maxTech
+                            {
+                                maxTech = Double(diff)
+                            }
+                        }
+                    } else
+                    {
+                        maxTech = diff / 2
+                    }
+                    
+                    let factor = 1 - ((max - maxTech) / diff)
+                    
+                    let b = 0.408333
+                    let a = -b
+                    let c = 1.23808
+                    
+                    let value = CGFloat(factor)
+                    let colour = UIColor(red: value, green: 1 - value, blue: 0, alpha: 1)
+                    trail.mainTrack?.colour = colour
+                    for track in trail.optionalTracks
+                    {
+                        track.colour = colour
                     }
                 }
             default: ()

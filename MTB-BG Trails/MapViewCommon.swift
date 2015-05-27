@@ -26,7 +26,6 @@ class MapViewCommon: UIViewController
     
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer!
     {
-        println("suc")
         if let overlay = overlay as? MKTileOverlay
         {
             return MKTileOverlayRenderer(tileOverlay: overlay)
