@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 
-class RootViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UIPopoverPresentationControllerDelegate, TrailsLoaderDelegate, TrailsFilterDelegate
+class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UIPopoverPresentationControllerDelegate, TrailsLoaderDelegate, TrailsFilterDelegate
 {
 
 	// MARK: - Properties
@@ -24,7 +24,6 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 	@IBOutlet weak var trailsTable: UITableView!
 	@IBOutlet weak var tableScrollView: UIScrollView!
 	@IBOutlet weak var containerView: UIView!
-	@IBOutlet weak var mapView: MKMapView!
 	@IBOutlet var mapHeight: NSLayoutConstraint!
     @IBOutlet weak var mapMaskHeight: NSLayoutConstraint!
 
@@ -150,12 +149,12 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.trail = trail
 		
 		cell.nameLabel.text = trail.name
-		cell.nameLabel.type = .Continuous
-		cell.nameLabel.scrollDuration = 30.0
-		cell.nameLabel.animationCurve = .Linear
-		cell.nameLabel.fadeLength = 0
-		cell.nameLabel.leadingBuffer = 30.0
-		cell.nameLabel.trailingBuffer = 20.0
+//		cell.nameLabel.type = .Continuous
+//		cell.nameLabel.scrollDuration = 30.0
+//		cell.nameLabel.animationCurve = .Linear
+//		cell.nameLabel.fadeLength = 0
+//		cell.nameLabel.leadingBuffer = 30.0
+//		cell.nameLabel.trailingBuffer = 20.0
 		
 		if let date = trail.date
 		{
@@ -206,12 +205,12 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
 		if let duration = trail.duration
 		{
 			cell.durationLabel.text = duration
-            cell.durationLabel.type = .Continuous
-            cell.durationLabel.scrollDuration = 30.0
-            cell.durationLabel.animationCurve = .Linear
-            cell.durationLabel.fadeLength = 0
-            cell.durationLabel.leadingBuffer = 30.0
-            cell.durationLabel.trailingBuffer = 20.0
+//            cell.durationLabel.type = .Continuous
+//            cell.durationLabel.scrollDuration = 30.0
+//            cell.durationLabel.animationCurve = .Linear
+//            cell.durationLabel.fadeLength = 0
+//            cell.durationLabel.leadingBuffer = 30.0
+//            cell.durationLabel.trailingBuffer = 20.0
 		} else
 		{
 			cell.durationLabel.text = ""

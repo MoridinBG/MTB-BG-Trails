@@ -13,6 +13,7 @@
 		0021719C1B0F3F9000319147 /* AttributedTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0021719B1B0F3F9000319147 /* AttributedTrack.swift */; };
 		002D0ECF1B0B2FE600FA024C /* TrailsFilterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 002D0ECE1B0B2FE600FA024C /* TrailsFilterController.xib */; };
 		002D0ED11B0B351000FA024C /* TrailsFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D0ED01B0B351000FA024C /* TrailsFilterController.swift */; };
+		003F88281B14D45200BD51E4 /* MapViewCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F88271B14D45200BD51E4 /* MapViewCommon.swift */; };
 		006491951B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006491931B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift */; };
 		006491961B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006491941B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift */; };
 		006E9D351B0A03AD0023244E /* GPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006E9D301B0A017C0023244E /* GPX.framework */; };
@@ -67,6 +68,7 @@
 		0021719B1B0F3F9000319147 /* AttributedTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedTrack.swift; sourceTree = "<group>"; };
 		002D0ECE1B0B2FE600FA024C /* TrailsFilterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TrailsFilterController.xib; path = "MTB-BG Trails/TrailsFilterController.xib"; sourceTree = "<group>"; };
 		002D0ED01B0B351000FA024C /* TrailsFilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailsFilterController.swift; sourceTree = "<group>"; };
+		003F88271B14D45200BD51E4 /* MapViewCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewCommon.swift; sourceTree = "<group>"; };
 		006491931B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GPXTrackPoint+MapKit.swift"; sourceTree = "<group>"; };
 		006491941B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GPXTrackSegment+MapKit.swift"; sourceTree = "<group>"; };
 		006E9D301B0A017C0023244E /* GPX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GPX.framework; sourceTree = "<group>"; };
@@ -134,6 +136,20 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		003F88261B14D3F900BD51E4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				008C34BA1B08CBF700597B0D /* SSZipArchive */,
+				007D1C5B1B0A005D00934769 /* SwiftyJSON */,
+				00FA37EC1B062201007F9A23 /* MarqueeLabel.swift */,
+				008C34CE1B08D16E00597B0D /* Reachability.swift */,
+				008C34D21B09ECEB00597B0D /* NSDate+Compare.swift */,
+				0098EAF41B0C0229002DCFA1 /* Array+Index.swift */,
+				003F88271B14D45200BD51E4 /* MapViewCommon.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		006491971B0647A700A5ACDB /* GPS */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +189,7 @@
 				000B82641B014732002ED8DF /* Model */,
 				00702E221B013BD100A77F63 /* Controllers */,
 				00702E211B013BB300A77F63 /* Interface */,
+				003F88261B14D3F900BD51E4 /* Helpers */,
 				00702DFD1B0138EF00A77F63 /* Supporting Files */,
 				00702DFF1B0138EF00A77F63 /* AppDelegate.swift */,
 			);
@@ -182,15 +199,9 @@
 		00702DFD1B0138EF00A77F63 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				008C34BA1B08CBF700597B0D /* SSZipArchive */,
-				007D1C5B1B0A005D00934769 /* SwiftyJSON */,
 				00702DFE1B0138EF00A77F63 /* Info.plist */,
 				000B82671B0148B2002ED8DF /* Constants.swift */,
-				00FA37EC1B062201007F9A23 /* MarqueeLabel.swift */,
 				00FA37EE1B0629F7007F9A23 /* ObjectiveCBridgingHeader.h */,
-				008C34CE1B08D16E00597B0D /* Reachability.swift */,
-				008C34D21B09ECEB00597B0D /* NSDate+Compare.swift */,
-				0098EAF41B0C0229002DCFA1 /* Array+Index.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -365,6 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				003F88281B14D45200BD51E4 /* MapViewCommon.swift in Sources */,
 				00FA37E81B0607FA007F9A23 /* TrailsLoader.swift in Sources */,
 				00702E021B0138EF00A77F63 /* RootViewController.swift in Sources */,
 				008C34C81B08CBF700597B0D /* mztools.c in Sources */,

@@ -43,7 +43,8 @@ class TrailAscentProfileView: UIView
             let heightFactor = rect.height * 0.95
             let heightOffset = rect.height * 0.05
             
-            CGContextSetFillColorWithColor(context, UIColor.brownColor().CGColor)
+            let color = UIColor(red: 51/255.0, green: 153/255.0, blue: 51/255.0, alpha: 1)
+            CGContextSetFillColorWithColor(context, color.CGColor)
             if track.pointElevations.count > 0
             {
                 let start = CGFloat((maxHeight - track.pointElevations[0]) / difference) * heightFactor + heightOffset

@@ -15,7 +15,7 @@ class TrailDetailsTableController: UITableViewController
     @IBOutlet weak var ascentLabel: UILabel!
     @IBOutlet weak var effortLabel: UILabel!
     @IBOutlet weak var nameLabel: MarqueeLabel!
-    @IBOutlet weak var linkLabel: MarqueeLabel!
+    @IBOutlet weak var linkLabel: UILabel!
     @IBOutlet weak var difficultyLabel: UILabel!
     @IBOutlet weak var durationLabel: MarqueeLabel!
     @IBOutlet weak var foodLabel: MarqueeLabel!
@@ -52,16 +52,9 @@ class TrailDetailsTableController: UITableViewController
             
             if let link = trail.link
             {
-                let link = NSMutableAttributedString(string: link.absoluteString!)
+                let link = NSMutableAttributedString(string: "@MTB Wep Page")
                 link.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange(0, link.length))
                 linkLabel.attributedText = link
-                
-                linkLabel.type = .Continuous
-                linkLabel.scrollDuration = 30.0
-                linkLabel.animationCurve = .Linear
-                linkLabel.fadeLength = 0
-                linkLabel.leadingBuffer = 30.0
-                linkLabel.trailingBuffer = 20.0
             }
             
             if let length = trail.length
@@ -147,32 +140,23 @@ class TrailDetailsTableController: UITableViewController
             
             if let terrains = trail.terrains
             {
-                var noTerrains = true
                 if let tarmac = terrains[Constants.Keys.kTrailTerrainTarmac]
                 {
                     tarmacLabel.text = "\(tarmac)km"
-                    
-                    noTerrains = false
                 }
                 
                 if let roads = terrains[Constants.Keys.kTrailTerrainRoads]
                 {
                     roadsLabel.text = "\(roads)km"
-                    
-                    noTerrains = false
                 }
                 
                 if let trails = terrains[Constants.Keys.kTrailTerrainTrails]
                 {
                     trailsLabel.text = "\(trails)km"
-                    
-                    noTerrains = false
                 }
-                
-                if noTerrains
-                {
-                    hiddenRows.append(8)
-                }
+            } else
+            {
+                hiddenRows.append(8)
             }
         }
     }

@@ -50,6 +50,7 @@ class TrailsLoader
                 println("Start processing trails")
 				for(index: String, subJson: JSON) in json["routes"]
 				{
+                    println("Processing trail \(index)")
 					var trail = Trail()
                     
 					trail.name = subJson["name"].string
@@ -153,7 +154,39 @@ class TrailsLoader
 							self.statistics.strenuousness.max = stren
 						}
 	
-					}
+					} else
+                    {
+                        if let ascent = trail.ascent, length = trail.length
+                        {
+                            var stren = length / 10 + (ascent / (length * 1000)) * 100.0
+                            
+                            if stren < 0
+                            {
+                                stren = 0
+                            }
+
+                            if stren - Double(Int(stren)) >= 0.5
+                            {
+                                stren = ceil(stren)
+                            } else
+                            {
+                                stren = floor(stren)
+                            }
+                            
+                            trail.strenuousness = stren
+                            println(stren)
+                            
+                            if stren < self.statistics.strenuousness.min
+                            {
+                                self.statistics.strenuousness.min = stren
+                            }
+                            
+                            if stren > self.statistics.strenuousness.max
+                            {
+                                self.statistics.strenuousness.max = stren
+                            }
+                        }
+                    }
 					
 					trail.duration = subJson["duration"].string
 					trail.water = subJson["water"].string

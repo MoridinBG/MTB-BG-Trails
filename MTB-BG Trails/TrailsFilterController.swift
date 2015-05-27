@@ -312,11 +312,11 @@ class TrailsFilterController: UIViewController
 		maxAscentLabel.text = "\(maxAscent.value)m"
 		
 		
-		minEffort.minimumValue = Float(statistics.strenuousness.min - 1)
+		minEffort.minimumValue = Float(statistics.strenuousness.min)
 		minEffort.maximumValue = Float(statistics.strenuousness.max)
 		minEffort.value = minEffort.minimumValue
 		
-		maxEffort.minimumValue = Float(statistics.strenuousness.min - 1)
+		maxEffort.minimumValue = Float(statistics.strenuousness.min)
 		maxEffort.maximumValue = Float(statistics.strenuousness.max)
 		maxEffort.value = maxEffort.maximumValue
 		

@@ -9,9 +9,8 @@
 import UIKit
 import MapKit
 
-class TrailDetailsController: UIViewController
+class TrailDetailsController: MapViewCommon
 {
-    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var tableContainer: UIScrollView!
     @IBOutlet var mapHeight: NSLayoutConstraint!
