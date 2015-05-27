@@ -168,12 +168,12 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
         cell.trail = trail
 		
 		cell.nameLabel.text = trail.name
-//		cell.nameLabel.type = .Continuous
-//		cell.nameLabel.scrollDuration = 30.0
-//		cell.nameLabel.animationCurve = .Linear
-//		cell.nameLabel.fadeLength = 0
-//		cell.nameLabel.leadingBuffer = 30.0
-//		cell.nameLabel.trailingBuffer = 20.0
+		cell.nameLabel.type = .Continuous
+		cell.nameLabel.scrollDuration = 30.0
+		cell.nameLabel.animationCurve = .Linear
+		cell.nameLabel.fadeLength = 0
+		cell.nameLabel.leadingBuffer = 30.0
+		cell.nameLabel.trailingBuffer = 20.0
 		
 		if let date = trail.date
 		{
@@ -224,12 +224,12 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 		if let duration = trail.duration
 		{
 			cell.durationLabel.text = duration
-//            cell.durationLabel.type = .Continuous
-//            cell.durationLabel.scrollDuration = 30.0
-//            cell.durationLabel.animationCurve = .Linear
-//            cell.durationLabel.fadeLength = 0
-//            cell.durationLabel.leadingBuffer = 30.0
-//            cell.durationLabel.trailingBuffer = 20.0
+            cell.durationLabel.type = .Continuous
+            cell.durationLabel.scrollDuration = 30.0
+            cell.durationLabel.animationCurve = .Linear
+            cell.durationLabel.fadeLength = 0
+            cell.durationLabel.leadingBuffer = 30.0
+            cell.durationLabel.trailingBuffer = 20.0
 		} else
 		{
 			cell.durationLabel.text = ""
@@ -440,14 +440,9 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
                 {
                     if let length = trail.length
                     {
-                        let factor = 1 - ((max - length) / diff)
+                        let factor = CGFloat((max - length) / diff)
                         
-                        let b = 0.408333
-                        let a = -b
-                        let c = 1.23808
-                        
-                        let value = CGFloat(factor)
-                        let colour = UIColor(red: value, green: 1 - value, blue: 0, alpha: 1)
+                        let colour = UIColor(hue: factor * 0.4, saturation: 1, brightness: 0.9, alpha: 0.9)
                         trail.mainTrack?.colour = colour
                         for track in trail.optionalTracks
                         {
@@ -464,14 +459,9 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
                 {
                     if let ascent = trail.ascent
                     {
-                        let factor = 1 - ((max - ascent) / diff)
+                        let factor = CGFloat((max - ascent) / diff)
                         
-                        let b = 0.408333
-                        let a = -b
-                        let c = 1.23808
-                        
-                        let value = CGFloat(factor)
-                        let colour = UIColor(red: value, green: 1 - value, blue: 0, alpha: 1)
+                        let colour = UIColor(hue: factor * 0.4, saturation: 1, brightness: 0.9, alpha: 0.9)
                         trail.mainTrack?.colour = colour
                         for track in trail.optionalTracks
                         {
@@ -488,14 +478,9 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
                 {
                     if let stren = trail.strenuousness
                     {
-                        let factor = 1 - ((max - stren) / diff)
+                        let factor = CGFloat((max - stren) / diff)
                         
-                        let b = 0.408333
-                        let a = -b
-                        let c = 1.23808
-                        
-                        let value = CGFloat(factor)
-                        let colour = UIColor(red: value, green: 1 - value, blue: 0, alpha: 1)
+                        let colour = UIColor(hue: factor * 0.4, saturation: 1, brightness: 0.9, alpha: 0.9)
                         trail.mainTrack?.colour = colour
                         for track in trail.optionalTracks
                         {
@@ -521,17 +506,12 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
                         }
                     } else
                     {
-                        maxTech = diff / 2
+                        maxTech = diff / 2 //Default to mid difficulty for trails without
                     }
                     
-                    let factor = 1 - ((max - maxTech) / diff)
+                    let factor = CGFloat((max - maxTech) / diff)
                     
-                    let b = 0.408333
-                    let a = -b
-                    let c = 1.23808
-                    
-                    let value = CGFloat(factor)
-                    let colour = UIColor(red: value, green: 1 - value, blue: 0, alpha: 1)
+                    let colour = UIColor(hue: factor * 0.4, saturation: 1, brightness: 0.9, alpha: 0.9)
                     trail.mainTrack?.colour = colour
                     for track in trail.optionalTracks
                     {

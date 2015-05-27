@@ -14,12 +14,12 @@ class TrailDetailsTableController: UITableViewController
     @IBOutlet weak var lengthLabel: UILabel!
     @IBOutlet weak var ascentLabel: UILabel!
     @IBOutlet weak var effortLabel: UILabel!
-    @IBOutlet weak var nameLabel: MarqueeLabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var linkLabel: UILabel!
     @IBOutlet weak var difficultyLabel: UILabel!
-    @IBOutlet weak var durationLabel: MarqueeLabel!
-    @IBOutlet weak var foodLabel: MarqueeLabel!
-    @IBOutlet weak var waterLabel: MarqueeLabel!
+    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var foodLabel: UILabel!
+    @IBOutlet weak var waterLabel: UILabel!
     @IBOutlet weak var tarmacLabel: UILabel!
     @IBOutlet weak var roadsLabel: UILabel!
     @IBOutlet weak var trailsLabel: UILabel!
@@ -33,6 +33,9 @@ class TrailDetailsTableController: UITableViewController
     {
         super.viewDidLoad()
         
+        tableView.estimatedRowHeight = 89
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         if let trail = self.trail
         {
             ascentProfileView.track = trail.mainTrack
@@ -41,13 +44,13 @@ class TrailDetailsTableController: UITableViewController
             if let name = trail.name
             {
                 nameLabel.text = name
-                
-                nameLabel.type = .Continuous
-                nameLabel.scrollDuration = 30.0
-                nameLabel.animationCurve = .Linear
-                nameLabel.fadeLength = 0
-                nameLabel.leadingBuffer = 30.0
-                nameLabel.trailingBuffer = 20.0
+//                
+//                nameLabel.type = .Continuous
+//                nameLabel.scrollDuration = 30.0
+//                nameLabel.animationCurve = .Linear
+//                nameLabel.fadeLength = 0
+//                nameLabel.leadingBuffer = 30.0
+//                nameLabel.trailingBuffer = 20.0
             }
             
             if let link = trail.link
@@ -96,13 +99,13 @@ class TrailDetailsTableController: UITableViewController
             if let duration = trail.duration
             {
                 durationLabel.text = duration
-                
-                durationLabel.type = .Continuous
-                durationLabel.scrollDuration = 30.0
-                durationLabel.animationCurve = .Linear
-                durationLabel.fadeLength = 0
-                durationLabel.leadingBuffer = 30.0
-                durationLabel.trailingBuffer = 20.0
+//                
+//                durationLabel.type = .Continuous
+//                durationLabel.scrollDuration = 30.0
+//                durationLabel.animationCurve = .Linear
+//                durationLabel.fadeLength = 0
+//                durationLabel.leadingBuffer = 30.0
+//                durationLabel.trailingBuffer = 20.0
             } else
             {
                 durationLabel.text = "n/a"
@@ -111,13 +114,13 @@ class TrailDetailsTableController: UITableViewController
             if let food = trail.food
             {
                 foodLabel.text = food
-                
-                foodLabel.type = .Continuous
-                foodLabel.scrollDuration = 30.0
-                foodLabel.animationCurve = .Linear
-                foodLabel.fadeLength = 0
-                foodLabel.leadingBuffer = 30.0
-                foodLabel.trailingBuffer = 20.0
+//                
+//                foodLabel.type = .Continuous
+//                foodLabel.scrollDuration = 30.0
+//                foodLabel.animationCurve = .Linear
+//                foodLabel.fadeLength = 0
+//                foodLabel.leadingBuffer = 30.0
+//                foodLabel.trailingBuffer = 20.0
             } else
             {
                 foodLabel.text = "n/a"
@@ -126,13 +129,13 @@ class TrailDetailsTableController: UITableViewController
             if let water = trail.water
             {
                 waterLabel.text = water
-                
-                waterLabel.type = .Continuous
-                waterLabel.scrollDuration = 30.0
-                waterLabel.animationCurve = .Linear
-                waterLabel.fadeLength = 0
-                waterLabel.leadingBuffer = 30.0
-                waterLabel.trailingBuffer = 20.0
+//                
+//                waterLabel.type = .Continuous
+//                waterLabel.scrollDuration = 30.0
+//                waterLabel.animationCurve = .Linear
+//                waterLabel.fadeLength = 0
+//                waterLabel.leadingBuffer = 30.0
+//                waterLabel.trailingBuffer = 20.0
             } else
             {
                 waterLabel.text = "n/a"

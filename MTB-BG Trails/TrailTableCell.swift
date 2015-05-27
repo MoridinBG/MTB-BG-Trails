@@ -11,13 +11,13 @@ import UIKit
 class TrailTableCell: UITableViewCell
 {
 
-	@IBOutlet weak var nameLabel: UILabel!
+	@IBOutlet weak var nameLabel: MarqueeLabel!
 	@IBOutlet weak var dateLabel: UILabel!
 	@IBOutlet weak var lengthLabel: UILabel!
 	@IBOutlet weak var ascentLabel: UILabel!
 	@IBOutlet weak var strenLabel: UILabel!
 	@IBOutlet weak var diffLabel: UILabel!
-	@IBOutlet weak var durationLabel: UILabel!
+	@IBOutlet weak var durationLabel: MarqueeLabel!
     
     var trail: Trail!
 	
