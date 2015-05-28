@@ -99,6 +99,17 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
         })
 	}
 	
+    @IBAction func settingsClicked(sender: UIBarButtonItem)
+    {
+        let destination = UIStoryboard(name: Constants.Values.vStoryboardSettings, bundle: nil).instantiateInitialViewController() as! UIViewController
+        let segue = UIStoryboardSegue(identifier: nil, source: self, destination: destination) {
+            self.navigationController?.pushViewController(destination, animated: true)
+        }
+        
+        self.prepareForSegue(segue, sender: self)
+        segue.perform()
+        
+    }
 	// MARK: - Lifecycle
 	
 	override func viewDidLoad()

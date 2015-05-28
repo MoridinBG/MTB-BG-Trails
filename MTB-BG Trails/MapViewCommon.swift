@@ -13,15 +13,89 @@ class MapViewCommon: UIViewController
 {
     @IBOutlet weak var mapView: MKMapView!
     
+    var tileOverlay: MKTileOverlay?
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
         
-        let template = "http://b.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png"
-        let overlay = MKTileOverlay(URLTemplate: template)
-        overlay.canReplaceMapContent = true
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let mapStyle = defaults.objectForKey(Constants.Keys.kDefaultsMapStyle) as! String
+        let template: String
         
-        self.mapView.addOverlay(overlay)
+        switch mapStyle
+        {
+            case Constants.Values.vDefaultsMapStyleOCM:
+                template = Constants.Values.vMapTilesOCM
+                
+            case Constants.Values.vDefaultsMapStyleOSMStd:
+                template = Constants.Values.vMapTilesOSM
+                
+            case Constants.Values.vDefaultsMapStyleOSMOut:
+                template = Constants.Values.vMapTilesOSMOut
+
+            case Constants.Values.vDefaultsMapStyleOSMLand:
+                template = Constants.Values.vMapTilesOSMLand
+                
+            
+            
+            case Constants.Values.vDefaultsMapStyleAppleStd:
+                template = Constants.Values.vDefaultsMapStyleAppleStd
+                
+            case Constants.Values.vDefaultsMapStyleAppleSat:
+                template = Constants.Values.vDefaultsMapStyleAppleSat
+                
+            case Constants.Values.vDefaultsMapStyleAppleHyb:
+                template = Constants.Values.vDefaultsMapStyleAppleHyb
+            
+            default:
+                println("Weird value for Map Style in Settings")
+                template = Constants.Values.vDefaultsMapStyleOCM
+        }
+        
+        switch template
+        {
+            case Constants.Values.vDefaultsMapStyleAppleStd:
+                mapView.mapType = .Standard
+                if let tileOverlay = tileOverlay
+                {
+                    self.mapView.removeOverlay(tileOverlay)
+                }
+            
+            case Constants.Values.vDefaultsMapStyleAppleSat:
+                mapView.mapType = .Satellite
+                if let tileOverlay = tileOverlay
+                {
+                    self.mapView.removeOverlay(tileOverlay)
+                }
+            
+            case Constants.Values.vDefaultsMapStyleAppleHyb:
+                mapView.mapType = .Hybrid
+                if let tileOverlay = tileOverlay
+                {
+                    self.mapView.removeOverlay(tileOverlay)
+                }
+            
+            default:
+                if let tileOverlay = tileOverlay
+                {
+                    self.mapView.removeOverlay(tileOverlay)
+                }
+                
+                let overlays = mapView.overlays
+                mapView.removeOverlays(overlays)
+                
+                tileOverlay = MKTileOverlay(URLTemplate: template)
+                tileOverlay!.canReplaceMapContent = true
+                self.mapView.addOverlay(tileOverlay!)
+            
+                self.mapView.addOverlays(overlays)
+        }
     }
     
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer!
