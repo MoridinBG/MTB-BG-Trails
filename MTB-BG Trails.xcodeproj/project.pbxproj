@@ -37,6 +37,8 @@
 		00A802B21B09FF070022731B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00702E031B0138EF00A77F63 /* Main.storyboard */; };
 		00A802B31B09FF090022731B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00702E081B0138EF00A77F63 /* LaunchScreen.xib */; };
 		00B141421B06BF2D0075D694 /* RootViewController+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B141411B06BF2D0075D694 /* RootViewController+Map.swift */; };
+		00BEF8B81B186E5500FBB93D /* CachingTileOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BEF8B71B186E5500FBB93D /* CachingTileOverlay.swift */; };
+		00BEF8BA1B188D6300FBB93D /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00BEF8B91B188D6300FBB93D /* SDWebImage.framework */; };
 		00C4C0411B0E4E8C0026AACD /* DistinctColorGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4C0401B0E4E8C0026AACD /* DistinctColorGenerator.swift */; };
 		00D58ABE1B1117BA0068B5FA /* TrailDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D58ABD1B1117BA0068B5FA /* TrailDetailsController.swift */; };
 		00D8E8011B155422004F5A91 /* TrailColorSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D8E7FF1B155422004F5A91 /* TrailColorSelectController.swift */; };
@@ -103,6 +105,8 @@
 		008C34D21B09ECEB00597B0D /* NSDate+Compare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Compare.swift"; sourceTree = "<group>"; };
 		0098EAF41B0C0229002DCFA1 /* Array+Index.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Index.swift"; sourceTree = "<group>"; };
 		00B141411B06BF2D0075D694 /* RootViewController+Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Map.swift"; sourceTree = "<group>"; };
+		00BEF8B71B186E5500FBB93D /* CachingTileOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachingTileOverlay.swift; sourceTree = "<group>"; };
+		00BEF8B91B188D6300FBB93D /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
 		00C4C0401B0E4E8C0026AACD /* DistinctColorGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistinctColorGenerator.swift; sourceTree = "<group>"; };
 		00D58ABD1B1117BA0068B5FA /* TrailDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailDetailsController.swift; sourceTree = "<group>"; };
 		00D8E7FF1B155422004F5A91 /* TrailColorSelectController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailColorSelectController.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00BEF8BA1B188D6300FBB93D /* SDWebImage.framework in Frameworks */,
 				006E9D351B0A03AD0023244E /* GPX.framework in Frameworks */,
 				008C34CD1B08D0A900597B0D /* SystemConfiguration.framework in Frameworks */,
 				00F845AA1B08C9BD00660FA6 /* libz.dylib in Frameworks */,
@@ -164,6 +169,7 @@
 				00EFD4221B135FC700F6459D /* MKAttribuedPolyline.swift */,
 				006491931B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift */,
 				006491941B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift */,
+				00BEF8B71B186E5500FBB93D /* CachingTileOverlay.swift */,
 			);
 			name = GPS;
 			sourceTree = "<group>";
@@ -306,6 +312,7 @@
 		F70A74DE9D2FAFCF1100F6CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				00BEF8B91B188D6300FBB93D /* SDWebImage.framework */,
 				006E9D301B0A017C0023244E /* GPX.framework */,
 				000B82691B016ED1002ED8DF /* MapKit.framework */,
 				008C34CC1B08D0A900597B0D /* SystemConfiguration.framework */,
@@ -414,6 +421,7 @@
 				002D0ED11B0B351000FA024C /* TrailsFilterController.swift in Sources */,
 				008C34D31B09ECEB00597B0D /* NSDate+Compare.swift in Sources */,
 				008C34CB1B08CBF700597B0D /* SSZipArchive.m in Sources */,
+				00BEF8B81B186E5500FBB93D /* CachingTileOverlay.swift in Sources */,
 				008C34CA1B08CBF700597B0D /* zip.c in Sources */,
 				00F79F721B11C3080000496A /* TrailDetailsTableController.swift in Sources */,
 				00F79F741B11EC6F0000496A /* TrailDetailsController+Map.swift in Sources */,
