@@ -44,13 +44,6 @@ class TrailDetailsTableController: UITableViewController
             if let name = trail.name
             {
                 nameLabel.text = name
-//                
-//                nameLabel.type = .Continuous
-//                nameLabel.scrollDuration = 30.0
-//                nameLabel.animationCurve = .Linear
-//                nameLabel.fadeLength = 0
-//                nameLabel.leadingBuffer = 30.0
-//                nameLabel.trailingBuffer = 20.0
             }
             
             if let link = trail.link
@@ -99,46 +92,25 @@ class TrailDetailsTableController: UITableViewController
             if let duration = trail.duration
             {
                 durationLabel.text = duration
-//                
-//                durationLabel.type = .Continuous
-//                durationLabel.scrollDuration = 30.0
-//                durationLabel.animationCurve = .Linear
-//                durationLabel.fadeLength = 0
-//                durationLabel.leadingBuffer = 30.0
-//                durationLabel.trailingBuffer = 20.0
             } else
             {
-                durationLabel.text = "n/a"
+                hiddenRows.append(5)
             }
             
             if let food = trail.food
             {
                 foodLabel.text = food
-//                
-//                foodLabel.type = .Continuous
-//                foodLabel.scrollDuration = 30.0
-//                foodLabel.animationCurve = .Linear
-//                foodLabel.fadeLength = 0
-//                foodLabel.leadingBuffer = 30.0
-//                foodLabel.trailingBuffer = 20.0
             } else
             {
-                foodLabel.text = "n/a"
+                hiddenRows.append(6)
             }
             
             if let water = trail.water
             {
                 waterLabel.text = water
-//                
-//                waterLabel.type = .Continuous
-//                waterLabel.scrollDuration = 30.0
-//                waterLabel.animationCurve = .Linear
-//                waterLabel.fadeLength = 0
-//                waterLabel.leadingBuffer = 30.0
-//                waterLabel.trailingBuffer = 20.0
             } else
             {
-                waterLabel.text = "n/a"
+                hiddenRows.append(7)
             }
             
             if let terrains = trail.terrains

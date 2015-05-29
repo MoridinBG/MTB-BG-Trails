@@ -26,7 +26,7 @@ class TrailAscentProfileView: UIView
                     minHeight = point
                 }
             }
-            minHeight -= 100
+//            minHeight -= 100
             difference = maxHeight - minHeight
         }
     }
@@ -63,6 +63,45 @@ class TrailAscentProfileView: UIView
             CGContextAddLineToPoint(context, rect.width, rect.height)
             CGContextClosePath(context)
             CGContextFillPath(context)
+            
+            let font = UIFont.systemFontOfSize(10)
+            let textColour = UIColor.blackColor()
+            let textAttributes = [NSFontAttributeName : font, NSForegroundColorAttributeName : textColour]
+            
+            var text = NSAttributedString(string: "\(Int(minHeight))", attributes: textAttributes)
+            let textHeight = text.size().height
+            let textSpacing = CGFloat((rect.height - (5 * textHeight)) / 4)
+            
+            let altitudeStep = fabs((maxHeight - minHeight) / 4)
+            
+            var height = CGFloat(rect.height - textHeight)
+            text.drawAtPoint(CGPointMake(0, height))
+            
+            text = NSAttributedString(string: "\(Int(maxHeight))", attributes: textAttributes)
+            let lineStart = text.size().width * 1.1
+            
+            for i in 1...4
+            {
+                var altitude = Int(minHeight + Double(i) * altitudeStep)
+                text = NSAttributedString(string: "\(altitude)", attributes: textAttributes)
+                
+                height = height - (textSpacing + textHeight)
+                CGContextMoveToPoint(context, lineStart, height + textHeight / 2)
+                CGContextAddLineToPoint(context, rect.width, height + textHeight / 2)
+                
+                text.drawAtPoint(CGPointMake(0, height))
+            }
+            
+            CGContextSetStrokeColorWithColor(context, UIColor.grayColor().colorWithAlphaComponent(0.5).CGColor)
+            CGContextSetLineWidth(context, 1)
+            
+            CGContextStrokePath(context)
         }
+    }
+    
+    private func drawElevations(inrect rect: CGRect)
+    {
+        let context = UIGraphicsGetCurrentContext()
+
     }
 }

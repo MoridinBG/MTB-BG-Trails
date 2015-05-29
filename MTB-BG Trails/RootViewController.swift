@@ -33,6 +33,9 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
     private var colourPopoverController = TrailColorSelectController()
     private var allTrailOverlays = [MKOverlay]()
 	
+    private var currentFilters = [TrailFilter]()
+    
+    
 	// MARK: - IB Actions
 	
     @IBAction func filterTrails(sender: UIButton)
@@ -127,14 +130,7 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 		self.navigationItem.leftBarButtonItem?.tintColor = UIColor.clearColor()
 		
 		trailsLoader.delegate = self
-		trailsLoader.loadTrails(NSURL(string:Constants.Values.vJSONTrailsURL)!) { (trails) in
-			self.trails = trails
-			self.filteredTrails = trails
-
-			dispatch_async(dispatch_get_main_queue(), { () -> Void in
-				self.trailsTable.reloadData()
-			})
-		}
+		trailsLoader.requestTrails(NSURL(string:Constants.Values.vJSONTrailsURL)!, sender: self)
 	}
 
 	override func didReceiveMemoryWarning()
@@ -280,7 +276,7 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 	
 	// MARK: - TrailsLoaderDelegate
 	
-	func loadGPXTracks(tracks: [AttributedTrack])
+	func processedGPXIntoTracks(tracks: [AttributedTrack])
 	{
 		for track in tracks
 		{
@@ -288,13 +284,21 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
             allTrailOverlays.append(track.trackPolyline)
 		}
 		
-		self.fitTrailsInMap(animated: true)
+		self.fitTrailsInMap(animated: false)
 	}
+    
+    func loadedTrail(trail: Trail)
+    {
+        self.trails.append(trail)
+        self.filteredTrails.append(trail)
+        trailsTable.reloadData()
+    }
 	
 	// MARK: - TrailsFilterDelegate
 	
 	func applyFilters(filters: [TrailFilter])
 	{
+        currentFilters = filters
 		filteredTrails.removeAll(keepCapacity: false)
 		for trail in trails
 		{

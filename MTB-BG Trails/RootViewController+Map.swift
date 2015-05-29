@@ -29,7 +29,7 @@ extension RootViewController: MKMapViewDelegate
 	
     func fitTrailsInMap(#animated: Bool)
 	{
-		if let region = trailsLoader.region
+		if let region = trailsLoader.mapRegion
 		{
 			let mapViewRegion = mapView.regionThatFits(region)
 			mapView.setRegion(mapViewRegion, animated: animated)

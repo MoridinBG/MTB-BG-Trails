@@ -16,16 +16,17 @@ class Trail: Printable
 	var link: NSURL?
 	var length: Double?
 	var ascent: Double?
+    var strenuousness: Double?
+    var traces: [NSURL]?
+    
+    //MTB-BG Specific properties
 	var difficulty: [Int]?
-	var strenuousness: Double?
 	var duration: String?
 	var water: String?
 	var food: String?
 	var terrains: [String:Double]?
-	var traces: [NSURL]?
 	
     var colour: UIColor = UIColor.whiteColor()
-    
     var mainTrack: AttributedTrack?
     var optionalTracks = [AttributedTrack]()
     
