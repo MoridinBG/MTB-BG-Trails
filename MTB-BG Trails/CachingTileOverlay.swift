@@ -8,23 +8,34 @@
 
 import UIKit
 import MapKit
+import IDDataCache
 
 class CachingTileOverlay: MKTileOverlay
 {
-    let cache = NSCache()
+    let cache = IDDataCache(namespace: Constants.Keys.kCacheMapGeneral)
     let operationQueue = NSOperationQueue()
     
     
     override func loadTileAtPath(path: MKTileOverlayPath, result: ((NSData!, NSError!) -> Void)!)
     {
-        if let cachedData = self.cache.objectForKey(URLForTilePath(path)) as? NSData
+        
+        let urlstr = URLForTilePath(path).absoluteString!
+        if let cachedData = self.cache.dataFromDiskCacheForKey(urlstr)
         {
+            println("Cached")
             result(cachedData, nil)
         } else
         {
             let request = NSURLRequest(URL: URLForTilePath(path))
+            println("Not cached")
             NSURLConnection.sendAsynchronousRequest(request, queue: operationQueue) { response, data, error in
-                self.cache.setObject(data, forKey: self.URLForTilePath(path))
+                if data != nil
+                {
+                    self.cache.storeData(data, forKey: urlstr)
+                } else
+                {
+                    println("Panic")
+                }
                 result(data, error)
             }
         }

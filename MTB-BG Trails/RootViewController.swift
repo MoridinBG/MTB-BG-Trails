@@ -22,10 +22,8 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 	// MARK: - IB Outlets
 	
 	@IBOutlet weak var trailsTable: UITableView!
-	@IBOutlet weak var tableScrollView: UIScrollView!
 	@IBOutlet weak var containerView: UIView!
 	@IBOutlet var mapHeight: NSLayoutConstraint!
-    @IBOutlet weak var mapMaskHeight: NSLayoutConstraint!
 
 	
 	private var popoverAnchor = UIButton()
@@ -93,7 +91,7 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 		self.navigationItem.leftBarButtonItem?.tintColor = UIColor.clearColor()
         
         UIView.animateWithDuration(1, animations: {
-                self.containerView.bringSubviewToFront(self.tableScrollView)
+                self.containerView.bringSubviewToFront(self.containerView)
                 self.containerView.addConstraint(self.mapHeight)
                 self.mapView.layoutIfNeeded()
             },
@@ -120,7 +118,6 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 		super.viewDidLoad()
 		
 		trailsTable.dataSource = self
-        tableScrollView.delegate = self
 		mapView.delegate = self
 		
         trailsTable.estimatedRowHeight = 89

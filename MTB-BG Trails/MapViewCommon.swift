@@ -90,7 +90,7 @@ class MapViewCommon: UIViewController
                 let overlays = mapView.overlays
                 mapView.removeOverlays(overlays)
                 
-                tileOverlay = MKTileOverlay(URLTemplate: template)
+                tileOverlay = CachingTileOverlay(URLTemplate: template)
                 tileOverlay!.canReplaceMapContent = true
                 self.mapView.addOverlay(tileOverlay!)
             

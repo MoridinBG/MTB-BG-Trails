@@ -49,6 +49,9 @@ struct Constants
         static let kTrailTerrainTrails         = "пътеки"
         
         static let kDefaultsMapStyle           = "defaults.mapStyle"
+        
+        static let kCacheMapGeneral            = "mapcache.general"
+        static let kCacheMapPersistant         = "mapcache.persistant"
 	}
     
 	struct Values
