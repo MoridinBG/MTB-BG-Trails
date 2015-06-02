@@ -79,7 +79,7 @@ class TrailsLoader
 				for(index: String, trailJson: JSON) in json["routes"]
 				{
                     self.processTrailFromJSON(trailJson, index: index, colorForTrail: colours[index.toInt()!])
-                    if index == "15"
+                    if index == "10"
                     {
                         break
                     }

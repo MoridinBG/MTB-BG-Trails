@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LzN-0Y-2Wc">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LzN-0Y-2Wc" userLabel="UIKit Bug Avoid View">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vt8-7c-SF1">
@@ -38,57 +38,56 @@
                                                     <action selector="mapClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YQ5-x9-A0B"/>
                                                 </connections>
                                             </button>
-                                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="102" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nj9-zE-Q3M">
-                                                <rect key="frame" x="0.0" y="146" width="600" height="341"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XLa-pg-V2Q">
+                                                <rect key="frame" x="0.0" y="146" width="600" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uu6-49-Fwb">
+                                                        <rect key="frame" x="8" y="0.0" width="50" height="30"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                                        <state key="normal" title="Filter">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="filterTrails:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zK6-B7-B9B"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzX-mj-kHc">
+                                                        <rect key="frame" x="547" y="0.0" width="45" height="30"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                                        <state key="normal" title="Sort">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evm-ua-h26">
+                                                        <rect key="frame" x="278" y="0.0" width="45" height="30"/>
+                                                        <state key="normal" title="Colors">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="selectTrailColors:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pdO-vk-RwU"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <view key="tableHeaderView" contentMode="scaleToFill" id="XLa-pg-V2Q">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="32"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uu6-49-Fwb">
-                                                            <rect key="frame" x="8" y="0.0" width="50" height="32"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
-                                                            <state key="normal" title="Filter">
-                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </state>
-                                                            <connections>
-                                                                <action selector="filterTrails:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zK6-B7-B9B"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzX-mj-kHc">
-                                                            <rect key="frame" x="547" y="0.0" width="45" height="32"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
-                                                            <state key="normal" title="Sort">
-                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </state>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evm-ua-h26">
-                                                            <rect key="frame" x="278" y="0.0" width="45" height="32"/>
-                                                            <state key="normal" title="Colors">
-                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </state>
-                                                            <connections>
-                                                                <action selector="selectTrailColors:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pdO-vk-RwU"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstItem="Uu6-49-Fwb" firstAttribute="top" secondItem="XLa-pg-V2Q" secondAttribute="top" id="45z-Xm-6CC"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Uu6-49-Fwb" secondAttribute="bottom" id="OH9-MP-swG"/>
-                                                        <constraint firstAttribute="bottom" secondItem="kzX-mj-kHc" secondAttribute="bottom" id="P3o-hk-NBG"/>
-                                                        <constraint firstAttribute="centerY" secondItem="kzX-mj-kHc" secondAttribute="centerY" id="XhM-NO-atl"/>
-                                                        <constraint firstAttribute="bottom" secondItem="evm-ua-h26" secondAttribute="bottom" id="aWY-4I-TJ7"/>
-                                                        <constraint firstItem="Uu6-49-Fwb" firstAttribute="leading" secondItem="XLa-pg-V2Q" secondAttribute="leading" constant="8" id="cXl-ag-m60"/>
-                                                        <constraint firstAttribute="trailing" secondItem="kzX-mj-kHc" secondAttribute="trailing" constant="8" id="cxu-He-yZf"/>
-                                                        <constraint firstItem="evm-ua-h26" firstAttribute="top" secondItem="XLa-pg-V2Q" secondAttribute="top" id="fDK-PY-zf6"/>
-                                                        <constraint firstAttribute="centerX" secondItem="evm-ua-h26" secondAttribute="centerX" id="jr9-Xm-w4G"/>
-                                                        <constraint firstAttribute="centerY" secondItem="Uu6-49-Fwb" secondAttribute="centerY" id="wKQ-oi-qd3"/>
-                                                        <constraint firstItem="kzX-mj-kHc" firstAttribute="top" secondItem="XLa-pg-V2Q" secondAttribute="top" id="xYb-eu-dre"/>
-                                                    </constraints>
-                                                </view>
+                                                <constraints>
+                                                    <constraint firstItem="Uu6-49-Fwb" firstAttribute="top" secondItem="XLa-pg-V2Q" secondAttribute="top" id="45z-Xm-6CC"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Uu6-49-Fwb" secondAttribute="bottom" id="OH9-MP-swG"/>
+                                                    <constraint firstAttribute="bottom" secondItem="kzX-mj-kHc" secondAttribute="bottom" id="P3o-hk-NBG"/>
+                                                    <constraint firstAttribute="centerY" secondItem="kzX-mj-kHc" secondAttribute="centerY" id="XhM-NO-atl"/>
+                                                    <constraint firstAttribute="bottom" secondItem="evm-ua-h26" secondAttribute="bottom" id="aWY-4I-TJ7"/>
+                                                    <constraint firstItem="Uu6-49-Fwb" firstAttribute="leading" secondItem="XLa-pg-V2Q" secondAttribute="leading" constant="8" id="cXl-ag-m60"/>
+                                                    <constraint firstAttribute="trailing" secondItem="kzX-mj-kHc" secondAttribute="trailing" constant="8" id="cxu-He-yZf"/>
+                                                    <constraint firstItem="evm-ua-h26" firstAttribute="top" secondItem="XLa-pg-V2Q" secondAttribute="top" id="fDK-PY-zf6"/>
+                                                    <constraint firstAttribute="centerX" secondItem="evm-ua-h26" secondAttribute="centerX" id="jr9-Xm-w4G"/>
+                                                    <constraint firstAttribute="centerY" secondItem="Uu6-49-Fwb" secondAttribute="centerY" id="wKQ-oi-qd3"/>
+                                                    <constraint firstItem="kzX-mj-kHc" firstAttribute="top" secondItem="XLa-pg-V2Q" secondAttribute="top" id="xYb-eu-dre"/>
+                                                </constraints>
+                                            </view>
+                                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="102" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nj9-zE-Q3M">
+                                                <rect key="frame" x="0.0" y="176" width="600" height="311"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <prototypes>
                                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TrackCell" id="myF-EP-gGk" customClass="TrailTableCell" customModule="MTB_BG_Trails" customModuleProvider="target">
                                                         <rect key="frame" x="160" y="208" width="600" height="89"/>
@@ -189,12 +188,15 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="nj9-zE-Q3M" secondAttribute="trailing" id="3FT-CR-6bR"/>
-                                            <constraint firstItem="nj9-zE-Q3M" firstAttribute="top" secondItem="3HU-jj-ZpV" secondAttribute="bottom" id="3I0-mr-qga"/>
+                                            <constraint firstItem="nj9-zE-Q3M" firstAttribute="top" secondItem="XLa-pg-V2Q" secondAttribute="bottom" id="5iK-C2-5KD"/>
+                                            <constraint firstAttribute="trailing" secondItem="XLa-pg-V2Q" secondAttribute="trailing" id="7Kn-O3-8IN"/>
                                             <constraint firstItem="nj9-zE-Q3M" firstAttribute="leading" secondItem="P9G-dC-S2P" secondAttribute="leading" id="F30-c5-nnf"/>
                                             <constraint firstItem="3HU-jj-ZpV" firstAttribute="height" secondItem="P9G-dC-S2P" secondAttribute="height" multiplier="0.3" id="PLr-o9-jdm"/>
                                             <constraint firstItem="3HU-jj-ZpV" firstAttribute="leading" secondItem="P9G-dC-S2P" secondAttribute="leading" id="X3c-pP-GPa"/>
+                                            <constraint firstItem="XLa-pg-V2Q" firstAttribute="top" secondItem="3HU-jj-ZpV" secondAttribute="bottom" id="Y5E-cx-EW3"/>
                                             <constraint firstAttribute="bottom" secondItem="nj9-zE-Q3M" secondAttribute="bottom" id="Zss-Qw-HW7"/>
                                             <constraint firstItem="3HU-jj-ZpV" firstAttribute="top" secondItem="P9G-dC-S2P" secondAttribute="top" id="abZ-EG-oCP"/>
+                                            <constraint firstItem="XLa-pg-V2Q" firstAttribute="leading" secondItem="P9G-dC-S2P" secondAttribute="leading" id="c6S-DY-W8e"/>
                                             <constraint firstAttribute="trailing" secondItem="3HU-jj-ZpV" secondAttribute="trailing" id="nR6-hX-LTb"/>
                                         </constraints>
                                     </view>
@@ -235,6 +237,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="P9G-dC-S2P" id="xaV-HM-LX8"/>
+                        <outlet property="filterView" destination="XLa-pg-V2Q" id="Byy-sZ-6Mp"/>
                         <outlet property="mainView" destination="LzN-0Y-2Wc" id="7qr-VP-roZ"/>
                         <outlet property="mapHeight" destination="C85-MO-ydG" id="rH8-gU-bkk"/>
                         <outlet property="mapView" destination="vt8-7c-SF1" id="dkd-X9-5f5"/>

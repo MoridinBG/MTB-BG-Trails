@@ -24,6 +24,8 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 	@IBOutlet weak var trailsTable: UITableView!
 	@IBOutlet weak var containerView: UIView!
     @IBOutlet var mainView: UIView!
+    @IBOutlet weak var filterView: UIView!
+    
 	@IBOutlet var mapHeight: NSLayoutConstraint!
 
 	
@@ -34,6 +36,9 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 	
     private var currentFilters = [TrailFilter]()
     
+    private var filterViewY = CGFloat(0)
+    private var trailsTableY = CGFloat(0)
+    private var isMapOpening = false
     
 	// MARK: - IB Actions
 	
@@ -75,25 +80,40 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 	{
 		self.navigationItem.leftBarButtonItem?.enabled = true
 		self.navigationItem.leftBarButtonItem?.tintColor = nil
-		
+        
+        isMapOpening = true
+        self.trailsTable.contentOffset.y = 0
+        
 		UIView.animateWithDuration(1, animations: {
                 self.mainView.bringSubviewToFront(self.mapView)
+            
+                self.trailsTable.frame.origin.y = self.trailsTableY + 0.7 * self.mainView.frame.height
+                self.filterView.frame.origin.y = self.filterViewY + 0.7 * self.mainView.frame.height
+            
                 self.mainView.removeConstraint(self.mapHeight)
                 self.mapView.layoutIfNeeded()
             },
 			completion: { (success) in
+                self.filterView.frame.origin.y = 455
+                self.mapHeight.constant = 0
                 self.fitTrailsInMap(animated: true)
 			})
 	}
 	
 	@IBAction func backClicked(sender: UIBarButtonItem)
 	{
+        self.isMapOpening = false
 		self.navigationItem.leftBarButtonItem?.enabled = false
 		self.navigationItem.leftBarButtonItem?.tintColor = UIColor.clearColor()
         
         UIView.animateWithDuration(1, animations: {
                 self.mainView.addConstraint(self.mapHeight)
+                self.filterView.frame.origin.y = self.filterViewY
+                self.mapView.setNeedsLayout()
                 self.mapView.layoutIfNeeded()
+            
+                self.trailsTable.setNeedsLayout()
+                self.trailsTable.layoutIfNeeded()
             },
             completion: { (success) in
                 self.mainView.bringSubviewToFront(self.containerView)
@@ -130,6 +150,12 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 		trailsLoader.delegate = self
 		trailsLoader.requestTrails(NSURL(string:Constants.Values.vJSONTrailsURL)!, sender: self)
 	}
+    
+    override func viewDidLayoutSubviews()
+    {
+        filterViewY = filterView.frame.origin.y
+        trailsTableY = self.trailsTable.frame.origin.y
+    }
 
 	override func didReceiveMemoryWarning()
 	{
@@ -258,8 +284,11 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 					mapClicked(UIButton())
 				} else
 				{
-					mapHeight.constant = scrollView.contentOffset.y
-                    self.fitTrailsInMap(animated: false)
+                    if !isMapOpening
+                    {
+                        filterView.frame.origin.y = filterViewY - scrollView.contentOffset.y
+                        mapHeight.constant = scrollView.contentOffset.y
+                    }
 				}
 			}
 		}
