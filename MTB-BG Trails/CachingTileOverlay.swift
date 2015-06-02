@@ -22,7 +22,7 @@ class CachingTileOverlay: MKTileOverlay
         let urlstr = URLForTilePath(path).absoluteString!
         if let cachedData = self.cache.dataFromDiskCacheForKey(urlstr)
         {
-            println("Cached")
+//            println("Cached")
             result(cachedData, nil)
         } else
         {

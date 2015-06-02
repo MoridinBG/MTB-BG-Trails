@@ -60,8 +60,8 @@ class TrailsLoader
     }
 	
 	
-    private let concurrentRegionQueue = dispatch_queue_create("com.techLight.mtb-bg.appendTrailsQueue", DISPATCH_QUEUE_CONCURRENT)
-    private let concurrentStatisticsQueue = dispatch_queue_create("com.techLight.mtb-bg.appendTrailsQueue", DISPATCH_QUEUE_CONCURRENT)
+    private let concurrentRegionQueue = dispatch_queue_create("com.techLight.mtb-bg.loaderAccessRegionQueue", DISPATCH_QUEUE_CONCURRENT)
+    private let concurrentStatisticsQueue = dispatch_queue_create("com.techLight.mtb-bg.loaderAccessStatisticsQueue", DISPATCH_QUEUE_CONCURRENT)
     
     private var upper = CLLocationCoordinate2DMake(-91.0, -181.0)
 	private var lower = CLLocationCoordinate2DMake(91.0, 181.0)
@@ -79,7 +79,10 @@ class TrailsLoader
 				for(index: String, trailJson: JSON) in json["routes"]
 				{
                     self.processTrailFromJSON(trailJson, index: index, colorForTrail: colours[index.toInt()!])
-
+                    if index == "15"
+                    {
+                        break
+                    }
 				}
 				
 			} else

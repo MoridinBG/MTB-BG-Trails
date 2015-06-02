@@ -23,6 +23,7 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 	
 	@IBOutlet weak var trailsTable: UITableView!
 	@IBOutlet weak var containerView: UIView!
+    @IBOutlet var mainView: UIView!
 	@IBOutlet var mapHeight: NSLayoutConstraint!
 
 	
@@ -76,10 +77,10 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 		self.navigationItem.leftBarButtonItem?.tintColor = nil
 		
 		UIView.animateWithDuration(1, animations: {
-			self.containerView.bringSubviewToFront(self.mapView)
-			self.containerView.removeConstraint(self.mapHeight)
-			self.mapView.layoutIfNeeded()
-			},
+                self.mainView.bringSubviewToFront(self.mapView)
+                self.mainView.removeConstraint(self.mapHeight)
+                self.mapView.layoutIfNeeded()
+            },
 			completion: { (success) in
                 self.fitTrailsInMap(animated: true)
 			})
@@ -91,11 +92,11 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 		self.navigationItem.leftBarButtonItem?.tintColor = UIColor.clearColor()
         
         UIView.animateWithDuration(1, animations: {
-                self.containerView.bringSubviewToFront(self.containerView)
-                self.containerView.addConstraint(self.mapHeight)
+                self.mainView.addConstraint(self.mapHeight)
                 self.mapView.layoutIfNeeded()
             },
             completion: { (success) in
+                self.mainView.bringSubviewToFront(self.containerView)
                 self.fitTrailsInMap(animated: true)
         })
 	}

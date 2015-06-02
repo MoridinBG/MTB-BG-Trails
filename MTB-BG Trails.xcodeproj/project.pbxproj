@@ -39,6 +39,7 @@
 		00A802B21B09FF070022731B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00702E031B0138EF00A77F63 /* Main.storyboard */; };
 		00A802B31B09FF090022731B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00702E081B0138EF00A77F63 /* LaunchScreen.xib */; };
 		00B141421B06BF2D0075D694 /* RootViewController+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B141411B06BF2D0075D694 /* RootViewController+Map.swift */; };
+		00B964091B1C8B7F00ED5CEE /* TrailsTableFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00B964081B1C8B7F00ED5CEE /* TrailsTableFilterView.xib */; };
 		00BEF8B81B186E5500FBB93D /* CachingTileOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BEF8B71B186E5500FBB93D /* CachingTileOverlay.swift */; };
 		00C4C0411B0E4E8C0026AACD /* DistinctColorGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C4C0401B0E4E8C0026AACD /* DistinctColorGenerator.swift */; };
 		00D58ABE1B1117BA0068B5FA /* TrailDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D58ABD1B1117BA0068B5FA /* TrailDetailsController.swift */; };
@@ -108,6 +109,7 @@
 		008C34D21B09ECEB00597B0D /* NSDate+Compare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Compare.swift"; sourceTree = "<group>"; };
 		0098EAF41B0C0229002DCFA1 /* Array+Index.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Index.swift"; sourceTree = "<group>"; };
 		00B141411B06BF2D0075D694 /* RootViewController+Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Map.swift"; sourceTree = "<group>"; };
+		00B964081B1C8B7F00ED5CEE /* TrailsTableFilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrailsTableFilterView.xib; sourceTree = "<group>"; };
 		00BEF8B71B186E5500FBB93D /* CachingTileOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachingTileOverlay.swift; sourceTree = "<group>"; };
 		00C4C0401B0E4E8C0026AACD /* DistinctColorGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistinctColorGenerator.swift; sourceTree = "<group>"; };
 		00D58ABD1B1117BA0068B5FA /* TrailDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailDetailsController.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				00702E081B0138EF00A77F63 /* LaunchScreen.xib */,
 				00702E061B0138EF00A77F63 /* Images.xcassets */,
 				00C4C0401B0E4E8C0026AACD /* DistinctColorGenerator.swift */,
+				00B964081B1C8B7F00ED5CEE /* TrailsTableFilterView.xib */,
 			);
 			name = Interface;
 			path = ..;
@@ -384,6 +387,7 @@
 			files = (
 				00A802B31B09FF090022731B /* LaunchScreen.xib in Resources */,
 				00A802B21B09FF070022731B /* Main.storyboard in Resources */,
+				00B964091B1C8B7F00ED5CEE /* TrailsTableFilterView.xib in Resources */,
 				00702E201B01392F00A77F63 /* .gitignore in Resources */,
 				00702E071B0138EF00A77F63 /* Images.xcassets in Resources */,
 				00D8E8061B155477004F5A91 /* TrailColorSelect.xib in Resources */,

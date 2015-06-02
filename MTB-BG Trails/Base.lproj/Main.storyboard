@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wso-hv-17S" userLabel="Container View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LzN-0Y-2Wc">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vt8-7c-SF1">
@@ -201,24 +201,24 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="P9G-dC-S2P" firstAttribute="top" secondItem="Wso-hv-17S" secondAttribute="top" id="3Tc-mA-58R"/>
-                                    <constraint firstAttribute="bottom" secondItem="P9G-dC-S2P" secondAttribute="bottom" id="DkY-70-22x"/>
-                                    <constraint firstAttribute="trailing" secondItem="vt8-7c-SF1" secondAttribute="trailing" id="Gjk-cW-tpj"/>
-                                    <constraint firstItem="3HU-jj-ZpV" firstAttribute="height" secondItem="vt8-7c-SF1" secondAttribute="height" id="dr6-q0-EdB"/>
-                                    <constraint firstAttribute="height" secondItem="vt8-7c-SF1" secondAttribute="height" priority="1" id="hE8-fn-UuO"/>
-                                    <constraint firstItem="vt8-7c-SF1" firstAttribute="top" secondItem="Wso-hv-17S" secondAttribute="top" id="iuQ-kJ-xzT"/>
-                                    <constraint firstAttribute="trailing" secondItem="P9G-dC-S2P" secondAttribute="trailing" id="kSL-Ja-QFK"/>
-                                    <constraint firstItem="P9G-dC-S2P" firstAttribute="leading" secondItem="Wso-hv-17S" secondAttribute="leading" id="nuE-Bt-xn5"/>
-                                    <constraint firstItem="vt8-7c-SF1" firstAttribute="leading" secondItem="Wso-hv-17S" secondAttribute="leading" id="yHz-hp-C9X"/>
+                                    <constraint firstAttribute="trailing" secondItem="vt8-7c-SF1" secondAttribute="trailing" id="11J-43-03Y"/>
+                                    <constraint firstItem="P9G-dC-S2P" firstAttribute="leading" secondItem="LzN-0Y-2Wc" secondAttribute="leading" id="1ta-bV-AGY"/>
+                                    <constraint firstAttribute="bottom" secondItem="P9G-dC-S2P" secondAttribute="bottom" id="6P0-WG-Jf3"/>
+                                    <constraint firstItem="3HU-jj-ZpV" firstAttribute="height" secondItem="vt8-7c-SF1" secondAttribute="height" id="C85-MO-ydG"/>
+                                    <constraint firstAttribute="height" secondItem="vt8-7c-SF1" secondAttribute="height" priority="1" id="NFo-S5-KIz"/>
+                                    <constraint firstAttribute="trailing" secondItem="P9G-dC-S2P" secondAttribute="trailing" id="R4q-5j-ttN"/>
+                                    <constraint firstItem="vt8-7c-SF1" firstAttribute="leading" secondItem="LzN-0Y-2Wc" secondAttribute="leading" id="SGB-TM-L5A"/>
+                                    <constraint firstItem="P9G-dC-S2P" firstAttribute="top" secondItem="LzN-0Y-2Wc" secondAttribute="top" id="USp-ra-880"/>
+                                    <constraint firstItem="vt8-7c-SF1" firstAttribute="top" secondItem="LzN-0Y-2Wc" secondAttribute="top" id="d0t-bQ-MAB"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Wso-hv-17S" secondAttribute="trailing" id="BxU-M2-Tzp"/>
-                            <constraint firstItem="Wso-hv-17S" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Vd2-iY-ik7"/>
-                            <constraint firstItem="Wso-hv-17S" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="fzr-Hu-cJF"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Wso-hv-17S" secondAttribute="bottom" id="tjO-Lu-Pbd"/>
+                            <constraint firstItem="LzN-0Y-2Wc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="00L-fb-xNb"/>
+                            <constraint firstAttribute="trailing" secondItem="LzN-0Y-2Wc" secondAttribute="trailing" id="3Y1-ut-bIr"/>
+                            <constraint firstItem="LzN-0Y-2Wc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="jJT-ue-ha5"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="LzN-0Y-2Wc" secondAttribute="bottom" id="tga-Ck-YWL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FyQ-jT-3eO">
@@ -234,15 +234,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="containerView" destination="Wso-hv-17S" id="sth-Z1-8l9"/>
-                        <outlet property="mapHeight" destination="dr6-q0-EdB" id="zYg-Q1-ke2"/>
+                        <outlet property="containerView" destination="P9G-dC-S2P" id="xaV-HM-LX8"/>
+                        <outlet property="mainView" destination="LzN-0Y-2Wc" id="7qr-VP-roZ"/>
+                        <outlet property="mapHeight" destination="C85-MO-ydG" id="rH8-gU-bkk"/>
                         <outlet property="mapView" destination="vt8-7c-SF1" id="dkd-X9-5f5"/>
                         <outlet property="trailsTable" destination="nj9-zE-Q3M" id="cYr-SU-C5q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1822" y="375"/>
+            <point key="canvasLocation" x="1821" y="311"/>
         </scene>
         <!--Trail Details Table Controller-->
         <scene sceneID="uwV-lZ-bBA">
