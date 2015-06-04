@@ -48,6 +48,8 @@ class TrailsFilterController: UIViewController
 	var statistics = Statistics()
 	var delegate: TrailsFilterDelegate?
 	
+    
+    //UISlider works in Floats and not Doubles
 	private let lengthStep: Float = 0.5
 	private let ascentStep: Float = 1.0
 	private let effortStep: Float = 1.0

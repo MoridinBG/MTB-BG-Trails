@@ -1,0 +1,10 @@
+framework module IDDataCache {
+  umbrella header "IDDataCache.h"
+
+  export *
+  module * { export * }
+}
+
+module IDDataCache.Swift {
+    header "IDDataCache-Swift.h"
+}

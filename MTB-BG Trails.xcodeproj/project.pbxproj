@@ -10,13 +10,13 @@
 		000B82661B014756002ED8DF /* Trail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000B82651B014756002ED8DF /* Trail.swift */; };
 		000B82681B0148B2002ED8DF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000B82671B0148B2002ED8DF /* Constants.swift */; };
 		000B826A1B016ED1002ED8DF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000B82691B016ED1002ED8DF /* MapKit.framework */; };
-		0017C6D31B1A7E36000709DB /* IDDataCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0017C6D21B1A7E36000709DB /* IDDataCache.framework */; };
-		0017C6D41B1A7F3D000709DB /* IDDataCache.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0017C6D21B1A7E36000709DB /* IDDataCache.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		000F41171B1E0D24009CD09C /* SettingsCacheController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000F41161B1E0D24009CD09C /* SettingsCacheController.swift */; };
 		001BC0A81B16885C000B62C6 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 001BC0A71B16885B000B62C6 /* Settings.storyboard */; };
 		001BC0AA1B168C21000B62C6 /* SettingsMapSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001BC0A91B168C21000B62C6 /* SettingsMapSelectController.swift */; };
 		0021719C1B0F3F9000319147 /* AttributedTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0021719B1B0F3F9000319147 /* AttributedTrack.swift */; };
 		002D0ECF1B0B2FE600FA024C /* TrailsFilterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 002D0ECE1B0B2FE600FA024C /* TrailsFilterController.xib */; };
 		002D0ED11B0B351000FA024C /* TrailsFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D0ED01B0B351000FA024C /* TrailsFilterController.swift */; };
+		003D51ED1B1F0D5700049533 /* SettingsDownloadOffline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D51EC1B1F0D5700049533 /* SettingsDownloadOffline.swift */; };
 		003F88281B14D45200BD51E4 /* MapViewCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F88271B14D45200BD51E4 /* MapViewCommon.swift */; };
 		006491951B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006491931B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift */; };
 		006491961B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006491941B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift */; };
@@ -27,6 +27,8 @@
 		00702E071B0138EF00A77F63 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00702E061B0138EF00A77F63 /* Images.xcassets */; };
 		00702E201B01392F00A77F63 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 00702E1F1B01392F00A77F63 /* .gitignore */; };
 		007D1C5D1B0A005D00934769 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007D1C5C1B0A005D00934769 /* SwiftyJSON.swift */; };
+		0082E3441B1F739F007158CA /* IDDataCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0082E3431B1F739F007158CA /* IDDataCache.framework */; };
+		0082E3451B1F73A9007158CA /* IDDataCache.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0082E3431B1F739F007158CA /* IDDataCache.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		008C34C71B08CBF700597B0D /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 008C34BD1B08CBF700597B0D /* ioapi.c */; };
 		008C34C81B08CBF700597B0D /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 008C34BF1B08CBF700597B0D /* mztools.c */; };
 		008C34C91B08CBF700597B0D /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 008C34C11B08CBF700597B0D /* unzip.c */; };
@@ -38,6 +40,7 @@
 		0098EAF51B0C0229002DCFA1 /* Array+Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0098EAF41B0C0229002DCFA1 /* Array+Index.swift */; };
 		00A802B21B09FF070022731B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00702E031B0138EF00A77F63 /* Main.storyboard */; };
 		00A802B31B09FF090022731B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00702E081B0138EF00A77F63 /* LaunchScreen.xib */; };
+		00B05D811B20C86D002D4990 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B05D801B20C86D002D4990 /* MBProgressHUD.m */; };
 		00B141421B06BF2D0075D694 /* RootViewController+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B141411B06BF2D0075D694 /* RootViewController+Map.swift */; };
 		00B964091B1C8B7F00ED5CEE /* TrailsTableFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00B964081B1C8B7F00ED5CEE /* TrailsTableFilterView.xib */; };
 		00BEF8B81B186E5500FBB93D /* CachingTileOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BEF8B71B186E5500FBB93D /* CachingTileOverlay.swift */; };
@@ -63,7 +66,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				006E9D361B0A03AD0023244E /* GPX.framework in Embed Frameworks */,
-				0017C6D41B1A7F3D000709DB /* IDDataCache.framework in Embed Frameworks */,
+				0082E3451B1F73A9007158CA /* IDDataCache.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,12 +77,13 @@
 		000B82651B014756002ED8DF /* Trail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trail.swift; sourceTree = "<group>"; };
 		000B82671B0148B2002ED8DF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		000B82691B016ED1002ED8DF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		0017C6D21B1A7E36000709DB /* IDDataCache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDDataCache.framework; path = "../../../../Developer/Xcode/DerivedData/IDDataCache-amsfacexebsafwdfxcxjpsjlpqak/Build/Products/Debug-iphoneos/IDDataCache.framework"; sourceTree = "<group>"; };
+		000F41161B1E0D24009CD09C /* SettingsCacheController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCacheController.swift; sourceTree = "<group>"; };
 		001BC0A71B16885B000B62C6 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = "MTB-BG Trails/Settings.storyboard"; sourceTree = "<group>"; };
 		001BC0A91B168C21000B62C6 /* SettingsMapSelectController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMapSelectController.swift; sourceTree = "<group>"; };
 		0021719B1B0F3F9000319147 /* AttributedTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedTrack.swift; sourceTree = "<group>"; };
 		002D0ECE1B0B2FE600FA024C /* TrailsFilterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TrailsFilterController.xib; path = "MTB-BG Trails/TrailsFilterController.xib"; sourceTree = "<group>"; };
 		002D0ED01B0B351000FA024C /* TrailsFilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailsFilterController.swift; sourceTree = "<group>"; };
+		003D51EC1B1F0D5700049533 /* SettingsDownloadOffline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDownloadOffline.swift; sourceTree = "<group>"; };
 		003F88271B14D45200BD51E4 /* MapViewCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewCommon.swift; sourceTree = "<group>"; };
 		006491931B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GPXTrackPoint+MapKit.swift"; sourceTree = "<group>"; };
 		006491941B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GPXTrackSegment+MapKit.swift"; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 		00702E091B0138EF00A77F63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		00702E1F1B01392F00A77F63 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		007D1C5C1B0A005D00934769 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		0082E3431B1F739F007158CA /* IDDataCache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IDDataCache.framework; sourceTree = "<group>"; };
 		008C34BC1B08CBF700597B0D /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		008C34BD1B08CBF700597B0D /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
 		008C34BE1B08CBF700597B0D /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
@@ -108,6 +113,8 @@
 		008C34CE1B08D16E00597B0D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		008C34D21B09ECEB00597B0D /* NSDate+Compare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Compare.swift"; sourceTree = "<group>"; };
 		0098EAF41B0C0229002DCFA1 /* Array+Index.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Index.swift"; sourceTree = "<group>"; };
+		00B05D801B20C86D002D4990 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		00B05D821B20C880002D4990 /* MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		00B141411B06BF2D0075D694 /* RootViewController+Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Map.swift"; sourceTree = "<group>"; };
 		00B964081B1C8B7F00ED5CEE /* TrailsTableFilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrailsTableFilterView.xib; sourceTree = "<group>"; };
 		00BEF8B71B186E5500FBB93D /* CachingTileOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachingTileOverlay.swift; sourceTree = "<group>"; };
@@ -134,8 +141,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				006E9D351B0A03AD0023244E /* GPX.framework in Frameworks */,
-				0017C6D31B1A7E36000709DB /* IDDataCache.framework in Frameworks */,
 				008C34CD1B08D0A900597B0D /* SystemConfiguration.framework in Frameworks */,
+				0082E3441B1F739F007158CA /* IDDataCache.framework in Frameworks */,
 				00F845AA1B08C9BD00660FA6 /* libz.dylib in Frameworks */,
 				000B826A1B016ED1002ED8DF /* MapKit.framework in Frameworks */,
 			);
@@ -153,9 +160,29 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		003D51EE1B1F0D5C00049533 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				001BC0A91B168C21000B62C6 /* SettingsMapSelectController.swift */,
+				000F41161B1E0D24009CD09C /* SettingsCacheController.swift */,
+				003D51EC1B1F0D5700049533 /* SettingsDownloadOffline.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		003D51EF1B1F0EBA00049533 /* Filters & Colors */ = {
+			isa = PBXGroup;
+			children = (
+				00D8E7FF1B155422004F5A91 /* TrailColorSelectController.swift */,
+				002D0ED01B0B351000FA024C /* TrailsFilterController.swift */,
+			);
+			name = "Filters & Colors";
+			sourceTree = "<group>";
+		};
 		003F88261B14D3F900BD51E4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				00B05D7F1B20C847002D4990 /* MBProgressHUD */,
 				008C34BA1B08CBF700597B0D /* SSZipArchive */,
 				007D1C5B1B0A005D00934769 /* SwiftyJSON */,
 				00FA37EC1B062201007F9A23 /* MarqueeLabel.swift */,
@@ -248,9 +275,8 @@
 				00D58ABD1B1117BA0068B5FA /* TrailDetailsController.swift */,
 				00F79F731B11EC6F0000496A /* TrailDetailsController+Map.swift */,
 				00F79F711B11C3080000496A /* TrailDetailsTableController.swift */,
-				00D8E7FF1B155422004F5A91 /* TrailColorSelectController.swift */,
-				002D0ED01B0B351000FA024C /* TrailsFilterController.swift */,
-				001BC0A91B168C21000B62C6 /* SettingsMapSelectController.swift */,
+				003D51EF1B1F0EBA00049533 /* Filters & Colors */,
+				003D51EE1B1F0D5C00049533 /* Settings */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -289,6 +315,15 @@
 			path = minizip;
 			sourceTree = "<group>";
 		};
+		00B05D7F1B20C847002D4990 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				00B05D801B20C86D002D4990 /* MBProgressHUD.m */,
+				00B05D821B20C880002D4990 /* MBProgressHUD.h */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		00EFD41F1B13411D00F6459D /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,7 +352,7 @@
 		F70A74DE9D2FAFCF1100F6CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0017C6D21B1A7E36000709DB /* IDDataCache.framework */,
+				0082E3431B1F739F007158CA /* IDDataCache.framework */,
 				006E9D301B0A017C0023244E /* GPX.framework */,
 				000B82691B016ED1002ED8DF /* MapKit.framework */,
 				008C34CC1B08D0A900597B0D /* SystemConfiguration.framework */,
@@ -404,11 +439,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				003F88281B14D45200BD51E4 /* MapViewCommon.swift in Sources */,
+				000F41171B1E0D24009CD09C /* SettingsCacheController.swift in Sources */,
 				00FA37E81B0607FA007F9A23 /* TrailsLoader.swift in Sources */,
 				00702E021B0138EF00A77F63 /* RootViewController.swift in Sources */,
 				008C34C81B08CBF700597B0D /* mztools.c in Sources */,
 				00EFD4211B13433C00F6459D /* TrailAscentProfileView.swift in Sources */,
 				000B82661B014756002ED8DF /* Trail.swift in Sources */,
+				00B05D811B20C86D002D4990 /* MBProgressHUD.m in Sources */,
 				008C34C91B08CBF700597B0D /* unzip.c in Sources */,
 				00D58ABE1B1117BA0068B5FA /* TrailDetailsController.swift in Sources */,
 				00702E001B0138EF00A77F63 /* AppDelegate.swift in Sources */,
@@ -421,6 +458,7 @@
 				000B82681B0148B2002ED8DF /* Constants.swift in Sources */,
 				006491961B0647A200A5ACDB /* GPXTrackSegment+MapKit.swift in Sources */,
 				00D8E8011B155422004F5A91 /* TrailColorSelectController.swift in Sources */,
+				003D51ED1B1F0D5700049533 /* SettingsDownloadOffline.swift in Sources */,
 				008C34C71B08CBF700597B0D /* ioapi.c in Sources */,
 				001BC0AA1B168C21000B62C6 /* SettingsMapSelectController.swift in Sources */,
 				0098EAF51B0C0229002DCFA1 /* Array+Index.swift in Sources */,
@@ -555,6 +593,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/IDDataCache-amsfacexebsafwdfxcxjpsjlpqak/Build/Products/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/IDDataCache-amsfacexebsafwdfxcxjpsjlpqak/Build/Products/Debug-iphonesimulator",
 				);
 				INFOPLIST_FILE = "MTB-BG Trails/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -576,6 +615,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/IDDataCache-amsfacexebsafwdfxcxjpsjlpqak/Build/Products/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/IDDataCache-amsfacexebsafwdfxcxjpsjlpqak/Build/Products/Debug-iphonesimulator",
 				);
 				INFOPLIST_FILE = "MTB-BG Trails/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;

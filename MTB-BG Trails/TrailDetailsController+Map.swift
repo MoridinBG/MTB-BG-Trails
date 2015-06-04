@@ -21,20 +21,20 @@ extension TrailDetailsController: MKMapViewDelegate
             }
             
             let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-            let r = CGFloat(arc4random_uniform(256))
-            let g = CGFloat(arc4random_uniform(256))
-            let b = CGFloat(arc4random_uniform(256))
-            let alpha: CGFloat
+            
             if polyline.attributes.optional
             {
-                alpha = 0.3
+                let r = CGFloat(arc4random_uniform(256))
+                let g = CGFloat(arc4random_uniform(256))
+                let b = CGFloat(arc4random_uniform(256))
+                let alpha = CGFloat(0.3)
+                let color = UIColor(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: alpha)
+                polylineRenderer.strokeColor = color
             } else
             {
-                alpha = 0.7
+                polylineRenderer.strokeColor = polyline.attributes.colour
             }
-            let color = UIColor(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: alpha)
             
-            polylineRenderer.strokeColor = color
             polylineRenderer.lineWidth = 3
             
             return polylineRenderer

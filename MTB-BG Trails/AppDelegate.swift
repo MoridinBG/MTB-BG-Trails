@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IDDataCache
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate
@@ -22,6 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         {
             defaults.setObject(Constants.Values.vDefaultsMapStyleOCM, forKey: Constants.Keys.kDefaultsMapStyle)
         }
+        
+        if defaults.objectForKey(Constants.Keys.kDefaultsMaxMapCache) == nil
+        {
+            defaults.setInteger(Constants.Values.vDefaultsMaxMapCache, forKey: Constants.Keys.kDefaultsMaxMapCache)
+        }
+        
+        let maxCache = defaults.integerForKey(Constants.Keys.kDefaultsMaxMapCache)
+        let cache = IDDataCache.sharedCache(named: Constants.Keys.kCacheMapTemporary)
+        cache.maxCacheSize = maxCache
         
 		return true
 	}

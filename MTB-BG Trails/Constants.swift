@@ -49,8 +49,9 @@ struct Constants
         static let kTrailTerrainTrails         = "пътеки"
         
         static let kDefaultsMapStyle           = "defaults.mapStyle"
+        static let kDefaultsMaxMapCache        = "defaults.maxMapCache"
         
-        static let kCacheMapGeneral            = "mapcache.general"
+        static let kCacheMapTemporary          = "mapcache.temporary"
         static let kCacheMapPersistant         = "mapcache.persistant"
 	}
     
@@ -68,6 +69,10 @@ struct Constants
         static let vMapTilesOSMOut             = "http://a.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png"
         static let vMapTilesOSMLand            = "http://a.tile.thunderforest.com/landscape/{z}/{x}/{y}.png"
         
+        static let vMapTilesFormatOSM          = "http://a.tile.opencyclemap.org/cycle/%d/%d/%d.png"
+        
+        static let vMapMaxZoomLevel            = 18
+        
         static let vDefaultsMapStyleOCM        = "ocm"
         static let vDefaultsMapStyleOSMStd     = "osm.standard"
         static let vDefaultsMapStyleOSMOut     = "osm.outdoors"
@@ -76,5 +81,7 @@ struct Constants
         static let vDefaultsMapStyleAppleStd   = "apple.standard"
         static let vDefaultsMapStyleAppleSat   = "apple.satellite"
         static let vDefaultsMapStyleAppleHyb   = "apple.hybride"
+        
+        static let vDefaultsMaxMapCache        = 10485760
 	}
 }
