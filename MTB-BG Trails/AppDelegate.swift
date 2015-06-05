@@ -18,20 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
 	{
-        let defaults = NSUserDefaults.standardUserDefaults()
-		if defaults.objectForKey(Constants.Keys.kDefaultsMapStyle) == nil
-        {
-            defaults.setObject(Constants.Values.vDefaultsMapStyleOCM, forKey: Constants.Keys.kDefaultsMapStyle)
-        }
+        let cache = IDDataCache.sharedNamedInstance(Constants.Keys.kCacheMapTemporary)
+        cache.maxCacheSize = Settings.Cache.maxMapTileCache
         
-        if defaults.objectForKey(Constants.Keys.kDefaultsMaxMapCache) == nil
+        Settings.initializeSettings()
+        if let downloads = Settings.OfflineMaps.maps
         {
-            defaults.setInteger(Constants.Values.vDefaultsMaxMapCache, forKey: Constants.Keys.kDefaultsMaxMapCache)
+            println("here")
         }
-        
-        let maxCache = defaults.integerForKey(Constants.Keys.kDefaultsMaxMapCache)
-        let cache = IDDataCache.sharedCache(named: Constants.Keys.kCacheMapTemporary)
-        cache.maxCacheSize = maxCache
         
 		return true
 	}

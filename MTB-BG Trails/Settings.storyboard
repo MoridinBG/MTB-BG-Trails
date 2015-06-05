@@ -17,7 +17,7 @@
                         <sections>
                             <tableViewSection headerTitle="Map Settings" id="udt-mO-eyE">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="HxG-5y-ISE" style="IBUITableViewCellStyleDefault" id="MeA-4U-oZz">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="HxG-5y-ISE" style="IBUITableViewCellStyleDefault" id="MeA-4U-oZz">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MeA-4U-oZz" id="WUs-Nh-Kfh">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -34,7 +34,7 @@
                                             <segue destination="zTL-t9-AGJ" kind="show" id="XcV-qq-SqJ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="LZj-Id-6uD" style="IBUITableViewCellStyleDefault" id="bPD-ra-POY">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="LZj-Id-6uD" style="IBUITableViewCellStyleDefault" id="bPD-ra-POY">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bPD-ra-POY" id="vWH-Wj-L7F">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -48,7 +48,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="9az-lk-Jby" kind="show" id="u60-XZ-XXl"/>
+                                            <segue destination="9az-lk-Jby" kind="show" identifier="" id="u60-XZ-XXl"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -76,7 +76,7 @@
                         <sections>
                             <tableViewSection headerTitle="OpenStreetMap Based" id="0JB-rE-e8H">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="8Y5-ey-fph" style="IBUITableViewCellStyleDefault" id="1qA-g1-ruo">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="8Y5-ey-fph" style="IBUITableViewCellStyleDefault" id="1qA-g1-ruo">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1qA-g1-ruo" id="Mvv-Up-Pc5">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -90,7 +90,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="smA-Wf-hBP" style="IBUITableViewCellStyleDefault" id="1Zn-dg-Ap8">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="smA-Wf-hBP" style="IBUITableViewCellStyleDefault" id="1Zn-dg-Ap8">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Zn-dg-Ap8" id="wVj-Fy-8mO">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -104,7 +104,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="qRj-7u-oeI" style="IBUITableViewCellStyleDefault" id="ToJ-a2-jAK">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="qRj-7u-oeI" style="IBUITableViewCellStyleDefault" id="ToJ-a2-jAK">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ToJ-a2-jAK" id="uR3-DZ-tbY">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -118,7 +118,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="tkt-IY-erC" style="IBUITableViewCellStyleDefault" id="bEJ-UW-g5E">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="tkt-IY-erC" style="IBUITableViewCellStyleDefault" id="bEJ-UW-g5E">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bEJ-UW-g5E" id="Q7A-6H-PFv">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -136,7 +136,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Apple Maps" id="a4O-x6-33u">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="FNI-yF-QWJ" style="IBUITableViewCellStyleDefault" id="a0P-Gs-zj5">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="FNI-yF-QWJ" style="IBUITableViewCellStyleDefault" id="a0P-Gs-zj5">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a0P-Gs-zj5" id="f96-yN-R0M">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -150,7 +150,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="u1b-o8-cNw" style="IBUITableViewCellStyleDefault" id="43h-h7-wDA">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="u1b-o8-cNw" style="IBUITableViewCellStyleDefault" id="43h-h7-wDA">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="43h-h7-wDA" id="0TU-rL-5RP">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -164,7 +164,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="UJZ-Cl-vt1" style="IBUITableViewCellStyleDefault" id="C5a-fZ-lvD">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="UJZ-Cl-vt1" style="IBUITableViewCellStyleDefault" id="C5a-fZ-lvD">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C5a-fZ-lvD" id="IAS-Xg-N6c">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -203,7 +203,7 @@
                         <sections>
                             <tableViewSection headerTitle="Caching" footerTitle="Caching improves map scrolling performance and reduces data usage by temporarily storing already viewed map areas" id="n3R-zY-CQg">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Mwb-oB-dWt" detailTextLabel="vgh-Xs-dOB" style="IBUITableViewCellStyleValue1" id="m0d-9A-njF">
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="Mwb-oB-dWt" detailTextLabel="vgh-Xs-dOB" style="IBUITableViewCellStyleValue1" id="m0d-9A-njF">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m0d-9A-njF" id="Mbn-lv-n1V">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -223,7 +223,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="hVR-F0-Kko" detailTextLabel="BzD-oy-hlS" style="IBUITableViewCellStyleValue1" id="Gub-Qf-E7Z">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="hVR-F0-Kko" detailTextLabel="BzD-oy-hlS" style="IBUITableViewCellStyleValue1" id="Gub-Qf-E7Z">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gub-Qf-E7Z" id="ygc-eE-Koe">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -243,7 +243,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="sBc-C4-Xyf" style="IBUITableViewCellStyleDefault" id="LIc-sk-haz">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="sBc-C4-Xyf" style="IBUITableViewCellStyleDefault" id="LIc-sk-haz">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LIc-sk-haz" id="Amb-YU-c1f">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -259,9 +259,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Offline maps" footerTitle="Offline maps allows you to download map areas for permanent storage on your device and avoid future data use to display them" id="29d-rA-W5g">
+                            <tableViewSection headerTitle="Offline maps" id="29d-rA-W5g">
+                                <string key="footerTitle">Offline maps allows you to download map areas for permanent storage on your device and avoid future data use to display them. Offline maps are not available for Apple standard maps.</string>
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="EId-a1-wwR" style="IBUITableViewCellStyleDefault" id="ltA-cj-Hy7">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="EId-a1-wwR" style="IBUITableViewCellStyleDefault" id="ltA-cj-Hy7">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ltA-cj-Hy7" id="v9J-AF-d9g">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -275,7 +276,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="HQQ-bA-gQS" style="IBUITableViewCellStyleDefault" id="noI-1L-WFY">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="HQQ-bA-gQS" style="IBUITableViewCellStyleDefault" id="noI-1L-WFY">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="noI-1L-WFY" id="IdG-jI-nUv">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -289,7 +290,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Zgz-u2-USS" kind="show" id="f1h-AG-CtY"/>
+                                            <segue destination="Zgz-u2-USS" kind="show" identifier="settings.map.download" id="f1h-AG-CtY"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -349,7 +350,7 @@
                                     <action selector="minZoomChanged:" destination="Zgz-u2-USS" eventType="valueChanged" id="mdx-BQ-vAq"/>
                                 </connections>
                             </slider>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="0.0" maxValue="18" translatesAutoresizingMaskIntoConstraints="NO" id="qlF-SX-lGA">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="16" minValue="0.0" maxValue="16" translatesAutoresizingMaskIntoConstraints="NO" id="qlF-SX-lGA">
                                 <rect key="frame" x="221" y="388" width="158" height="31"/>
                                 <connections>
                                     <action selector="maxZoomChanged:" destination="Zgz-u2-USS" eventType="valueChanged" id="ClR-Be-BuV"/>
@@ -379,7 +380,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSI-B9-71L">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSI-B9-71L">
                                 <rect key="frame" x="385" y="392" width="20" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

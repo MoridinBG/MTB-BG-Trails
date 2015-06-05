@@ -41,6 +41,8 @@
 		00A802B21B09FF070022731B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00702E031B0138EF00A77F63 /* Main.storyboard */; };
 		00A802B31B09FF090022731B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00702E081B0138EF00A77F63 /* LaunchScreen.xib */; };
 		00B05D811B20C86D002D4990 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B05D801B20C86D002D4990 /* MBProgressHUD.m */; };
+		00B05D851B20D344002D4990 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B05D841B20D344002D4990 /* Settings.swift */; };
+		00B05D891B211B90002D4990 /* DownloadedMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B05D881B211B90002D4990 /* DownloadedMap.swift */; };
 		00B141421B06BF2D0075D694 /* RootViewController+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B141411B06BF2D0075D694 /* RootViewController+Map.swift */; };
 		00B964091B1C8B7F00ED5CEE /* TrailsTableFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00B964081B1C8B7F00ED5CEE /* TrailsTableFilterView.xib */; };
 		00BEF8B81B186E5500FBB93D /* CachingTileOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BEF8B71B186E5500FBB93D /* CachingTileOverlay.swift */; };
@@ -115,6 +117,8 @@
 		0098EAF41B0C0229002DCFA1 /* Array+Index.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Index.swift"; sourceTree = "<group>"; };
 		00B05D801B20C86D002D4990 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		00B05D821B20C880002D4990 /* MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		00B05D841B20D344002D4990 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		00B05D881B211B90002D4990 /* DownloadedMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadedMap.swift; sourceTree = "<group>"; };
 		00B141411B06BF2D0075D694 /* RootViewController+Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Map.swift"; sourceTree = "<group>"; };
 		00B964081B1C8B7F00ED5CEE /* TrailsTableFilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrailsTableFilterView.xib; sourceTree = "<group>"; };
 		00BEF8B71B186E5500FBB93D /* CachingTileOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachingTileOverlay.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 			children = (
 				000B82651B014756002ED8DF /* Trail.swift */,
 				00FA37E71B0607FA007F9A23 /* TrailsLoader.swift */,
+				00B05D881B211B90002D4990 /* DownloadedMap.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -227,6 +232,7 @@
 		00702DFC1B0138EF00A77F63 /* MTB-BG Trails */ = {
 			isa = PBXGroup;
 			children = (
+				00B05D831B20D338002D4990 /* Settings */,
 				00EFD41F1B13411D00F6459D /* Views */,
 				006491971B0647A700A5ACDB /* GPS */,
 				00FA37E91B061972007F9A23 /* Cells */,
@@ -322,6 +328,14 @@
 				00B05D821B20C880002D4990 /* MBProgressHUD.h */,
 			);
 			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		00B05D831B20D338002D4990 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				00B05D841B20D344002D4990 /* Settings.swift */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		00EFD41F1B13411D00F6459D /* Views */ = {
@@ -439,9 +453,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				003F88281B14D45200BD51E4 /* MapViewCommon.swift in Sources */,
+				00B05D891B211B90002D4990 /* DownloadedMap.swift in Sources */,
 				000F41171B1E0D24009CD09C /* SettingsCacheController.swift in Sources */,
 				00FA37E81B0607FA007F9A23 /* TrailsLoader.swift in Sources */,
 				00702E021B0138EF00A77F63 /* RootViewController.swift in Sources */,
+				00B05D851B20D344002D4990 /* Settings.swift in Sources */,
 				008C34C81B08CBF700597B0D /* mztools.c in Sources */,
 				00EFD4211B13433C00F6459D /* TrailAscentProfileView.swift in Sources */,
 				000B82661B014756002ED8DF /* Trail.swift in Sources */,

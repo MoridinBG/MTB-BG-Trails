@@ -23,58 +23,53 @@ class MapViewCommon: UIViewController, MKMapViewDelegate
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
-        
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let mapStyle = defaults.objectForKey(Constants.Keys.kDefaultsMapStyle) as! String
+
+        let mapStyle = Settings.Maps.style
         let template: String
         
         switch mapStyle
         {
-            case Constants.Values.vDefaultsMapStyleOCM:
-                template = Constants.Values.vMapTilesOCM
+            case .OpenCycleMap:
+                template = Constants.Values.vMapTilesTemplateOCM
                 
-            case Constants.Values.vDefaultsMapStyleOSMStd:
-                template = Constants.Values.vMapTilesOSM
+            case .OpenStreetMapStandard:
+                template = Constants.Values.vMapTilesTemplateOSM
                 
-            case Constants.Values.vDefaultsMapStyleOSMOut:
-                template = Constants.Values.vMapTilesOSMOut
+            case .OpenStreetMapOutdoors:
+                template = Constants.Values.vMapTilesTemplateOSMOut
 
-            case Constants.Values.vDefaultsMapStyleOSMLand:
-                template = Constants.Values.vMapTilesOSMLand
+            case .OpenStreetMapLandscae:
+                template = Constants.Values.vMapTilesTemplateOSMLand
                 
             
             
-            case Constants.Values.vDefaultsMapStyleAppleStd:
-                template = Constants.Values.vDefaultsMapStyleAppleStd
+            case .AppleStandard:
+                template = Settings.Maps.MapStyle.AppleStandard.rawValue
                 
-            case Constants.Values.vDefaultsMapStyleAppleSat:
-                template = Constants.Values.vDefaultsMapStyleAppleSat
+            case .AppleSatellite:
+                template = Settings.Maps.MapStyle.AppleSatellite.rawValue
                 
-            case Constants.Values.vDefaultsMapStyleAppleHyb:
-                template = Constants.Values.vDefaultsMapStyleAppleHyb
-            
-            default:
-                println("Weird value for Map Style in Settings")
-                template = Constants.Values.vDefaultsMapStyleOCM
+            case .AppleHybrid:
+                template = Settings.Maps.MapStyle.AppleHybrid.rawValue
         }
         
         switch template
         {
-            case Constants.Values.vDefaultsMapStyleAppleStd:
+            case Settings.Maps.MapStyle.AppleStandard.rawValue:
                 mapView.mapType = .Standard
                 if let tileOverlay = tileOverlay
                 {
                     self.mapView.removeOverlay(tileOverlay)
                 }
             
-            case Constants.Values.vDefaultsMapStyleAppleSat:
+            case Settings.Maps.MapStyle.AppleSatellite.rawValue:
                 mapView.mapType = .Satellite
                 if let tileOverlay = tileOverlay
                 {
                     self.mapView.removeOverlay(tileOverlay)
                 }
             
-            case Constants.Values.vDefaultsMapStyleAppleHyb:
+            case Settings.Maps.MapStyle.AppleHybrid.rawValue:
                 mapView.mapType = .Hybrid
                 if let tileOverlay = tileOverlay
                 {

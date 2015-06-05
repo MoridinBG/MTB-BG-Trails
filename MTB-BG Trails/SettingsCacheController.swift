@@ -16,15 +16,13 @@ class SettingsCacheController: UITableViewController
     @IBOutlet weak var maxCacheSize: UILabel!
     
     let cacheFormat = "%dMB"
-    let cache = IDDataCache.sharedCache(named: Constants.Keys.kCacheMapTemporary)
+    let cache = IDDataCache.sharedNamedInstance(Constants.Keys.kCacheMapTemporary)
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        let maxCache = NSUserDefaults.standardUserDefaults().integerForKey(Constants.Keys.kDefaultsMaxMapCache)
-        maxCacheSize.text = String(format: cacheFormat, (maxCache / 1024) / 1024)
-        
+        maxCacheSize.text = String(format: cacheFormat, (Settings.Cache.maxMapTileCache / 1024) / 1024)
         
         cache.calculateSizeWithCompletionBlock() { (toalCount, fileSize) in
             dispatch_async(dispatch_get_main_queue()) {
@@ -32,6 +30,24 @@ class SettingsCacheController: UITableViewController
             }
         }
 
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        if indexPath.section == 1 && indexPath.row == 1
+        {
+            switch Settings.Maps.style
+            {
+                case .AppleHybrid, .AppleSatellite, .AppleStandard:
+                    cell.selectionStyle = .None
+                    cell.userInteractionEnabled = false
+                    cell.textLabel!.enabled = false
+                default: ()
+            }
+        }
+        
+        return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
@@ -49,6 +65,24 @@ class SettingsCacheController: UITableViewController
         }
     }
 
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool
+    {
+        if let identifier = identifier
+        {
+            if identifier == Constants.Keys.kSegueIDMapsDownloadSettings
+            {
+                switch Settings.Maps.style
+                {
+                    case .AppleHybrid, .AppleSatellite, .AppleStandard:
+                        return false
+                    default: ()
+                }
+            }
+        }
+        
+        return true
+    }
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()

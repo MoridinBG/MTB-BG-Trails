@@ -16,6 +16,7 @@ class SettingsMapSelectController: UITableViewController
         super.viewDidLoad()
     }
     
+    //Put a checkmark on the row of the currently set map style
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -33,9 +34,9 @@ class SettingsMapSelectController: UITableViewController
         // Dispose of any resources that can be recreated.
     }
     
+    //Move the checkmark to the currently selected map style and store it in settings
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        let defaults = NSUserDefaults.standardUserDefaults()
         let oldIndex = indexPathForCurrentStyle()
         
         switch indexPath.section
@@ -44,13 +45,13 @@ class SettingsMapSelectController: UITableViewController
                 switch indexPath.row
                 {
                     case 0:
-                        defaults.setObject(Constants.Values.vDefaultsMapStyleOCM, forKey: Constants.Keys.kDefaultsMapStyle)
+                        Settings.Maps.style = .OpenCycleMap
                     case 1:
-                        defaults.setObject(Constants.Values.vDefaultsMapStyleOSMStd, forKey: Constants.Keys.kDefaultsMapStyle)
+                        Settings.Maps.style = .OpenStreetMapStandard
                     case 2:
-                        defaults.setObject(Constants.Values.vDefaultsMapStyleOSMOut, forKey: Constants.Keys.kDefaultsMapStyle)
+                        Settings.Maps.style = .OpenStreetMapOutdoors
                     case 3:
-                        defaults.setObject(Constants.Values.vDefaultsMapStyleOSMLand, forKey: Constants.Keys.kDefaultsMapStyle)
+                        Settings.Maps.style = .OpenStreetMapLandscae
                     
                     default:
                         println("Setting unimplemented OpenStreetMap map style in Map Style in Settings")
@@ -60,11 +61,11 @@ class SettingsMapSelectController: UITableViewController
                 switch indexPath.row
                 {
                 case 0:
-                    defaults.setObject(Constants.Values.vDefaultsMapStyleAppleStd, forKey: Constants.Keys.kDefaultsMapStyle)
+                    Settings.Maps.style = .AppleStandard
                 case 1:
-                    defaults.setObject(Constants.Values.vDefaultsMapStyleAppleSat, forKey: Constants.Keys.kDefaultsMapStyle)
+                    Settings.Maps.style = .AppleSatellite
                 case 2:
-                    defaults.setObject(Constants.Values.vDefaultsMapStyleAppleHyb, forKey: Constants.Keys.kDefaultsMapStyle)
+                    Settings.Maps.style = .AppleHybrid
                 default:
                     println("Setting unimplemented Apple map style in Map Style in Settings")
                 }
@@ -80,40 +81,36 @@ class SettingsMapSelectController: UITableViewController
         }
     }
 
+    //Generate the index path in the table view of the row associated with a map style
     private func indexPathForCurrentStyle() -> NSIndexPath
     {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let currentStyle = defaults.objectForKey(Constants.Keys.kDefaultsMapStyle) as! String
+        let currentStyle = Settings.Maps.style
         let index: NSIndexPath
         
         switch currentStyle
         {
-            case Constants.Values.vDefaultsMapStyleOCM:
+            case .OpenCycleMap:
                 index = NSIndexPath(forRow: 0, inSection: 0)
                 
-            case Constants.Values.vDefaultsMapStyleOSMStd:
+            case .OpenStreetMapStandard:
                 index = NSIndexPath(forRow: 1, inSection: 0)
                 
-            case Constants.Values.vDefaultsMapStyleOSMOut:
+            case .OpenStreetMapOutdoors:
                 index = NSIndexPath(forRow: 2, inSection: 0)
                 
-            case Constants.Values.vDefaultsMapStyleOSMLand:
+            case .OpenStreetMapLandscae:
                 index = NSIndexPath(forRow: 3, inSection: 0)
                 
                 
                 
-            case Constants.Values.vDefaultsMapStyleAppleStd:
+            case .AppleStandard:
                 index = NSIndexPath(forRow: 0, inSection: 1)
                 
-            case Constants.Values.vDefaultsMapStyleAppleSat:
+            case .AppleSatellite:
                 index = NSIndexPath(forRow: 1, inSection: 1)
                 
-            case Constants.Values.vDefaultsMapStyleAppleHyb:
+            case .AppleHybrid:
                 index = NSIndexPath(forRow: 2, inSection: 1)
-                
-            default:
-                println("Weird value for Map Style in Settings")
-                index = NSIndexPath(forRow: -1, inSection: -1)
         }
         
         return index

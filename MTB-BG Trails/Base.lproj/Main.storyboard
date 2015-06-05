@@ -175,7 +175,7 @@
                                                             <outlet property="lengthLabel" destination="KMP-v8-c5d" id="rlA-DH-gQI"/>
                                                             <outlet property="nameLabel" destination="jCR-M3-f8M" id="25U-zF-7GQ"/>
                                                             <outlet property="strenLabel" destination="3wr-13-O32" id="5rI-sS-6Ru"/>
-                                                            <segue destination="thk-d0-RP9" kind="show" identifier="trailDetails" id="i7t-nI-18B"/>
+                                                            <segue destination="thk-d0-RP9" kind="show" identifier="trail.Details" id="i7t-nI-18B"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
@@ -742,7 +742,7 @@
                                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W9V-QL-1Dx">
                                                         <rect key="frame" x="0.0" y="146" width="600" height="341"/>
                                                         <connections>
-                                                            <segue destination="TYp-7F-TH7" kind="embed" identifier="trailDetailsTable" id="kBG-39-Q2g"/>
+                                                            <segue destination="TYp-7F-TH7" kind="embed" identifier="trail.DetailsTable" id="kBG-39-Q2g"/>
                                                         </connections>
                                                     </containerView>
                                                 </subviews>
