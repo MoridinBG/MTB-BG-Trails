@@ -12,7 +12,7 @@ import IDDataCache
 
 class CachingTileOverlay: MKTileOverlay
 {
-    let cache = IDDataCache(namespace: Constants.Keys.kCacheMapTemporary)
+    let cache = IDDataCache.sharedNamedInstance(Constants.Keys.kCacheMapTemporary)
     let operationQueue = NSOperationQueue()
     
     
@@ -20,27 +20,48 @@ class CachingTileOverlay: MKTileOverlay
     {
         
         let urlstr = URLForTilePath(path).absoluteString!
+        
+        //First try to find the tile in the temporary cache
         if let cachedData = self.cache.dataFromDiskCacheForKey(urlstr)
         {
             let newData = markXYZ(cachedData, path: path)
-//            println("Cached")
+            println("Map tile found in temporary cache")
             result(newData, nil)
         } else
         {
+            //Then look in the downloaded maps persistent cache
+            for map in Settings.OfflineMaps.namedMaps.values.array
+            {
+                if let ((nwx, nwy), (nex, ney), (swx, swy)) = map.coordinatesPerZ[path.z]
+                {
+                    if (path.x >= nwx) && (path.x <= nex) && (path.y >= nwy) && (path.y <= swy)
+                    {
+                        let persistentCache = IDDataCache.sharedNamedPersistentInstance(map.dataCacheName)
+                        if let data = persistentCache.dataFromDiskCacheForKey(urlstr)
+                        {
+                            println("Map til found in persistent storage")
+                            self.cache.storeData(data, forKey: urlstr)
+                            result(data, nil)
+                            return
+                        }
+                    }
+                }
+            }
+            
+            //Finally try to download it
             let request = NSURLRequest(URL: URLForTilePath(path))
-            println("Not cached")
             NSURLConnection.sendAsynchronousRequest(request, queue: operationQueue) { response, data, error in
                 if data != nil
                 {
+                    println("Map tile downloaded online")
                     self.cache.storeData(data, forKey: urlstr)
                     let newData = self.markXYZ(data, path: path)
                     result(newData, nil)
                     return
                 } else
                 {
-                    println("Panic")
+                    println("Unable to retrieve map tile \(urlstr)")
                 }
-                
 
                 result(data, error)
             }

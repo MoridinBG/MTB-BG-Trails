@@ -13,6 +13,7 @@
 		000F41171B1E0D24009CD09C /* SettingsCacheController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000F41161B1E0D24009CD09C /* SettingsCacheController.swift */; };
 		001BC0A81B16885C000B62C6 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 001BC0A71B16885B000B62C6 /* Settings.storyboard */; };
 		001BC0AA1B168C21000B62C6 /* SettingsMapSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001BC0A91B168C21000B62C6 /* SettingsMapSelectController.swift */; };
+		002054401B250E56003F74E0 /* SettingsDownloadedMapsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020543F1B250E56003F74E0 /* SettingsDownloadedMapsController.swift */; };
 		0021719C1B0F3F9000319147 /* AttributedTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0021719B1B0F3F9000319147 /* AttributedTrack.swift */; };
 		002D0ECF1B0B2FE600FA024C /* TrailsFilterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 002D0ECE1B0B2FE600FA024C /* TrailsFilterController.xib */; };
 		002D0ED11B0B351000FA024C /* TrailsFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D0ED01B0B351000FA024C /* TrailsFilterController.swift */; };
@@ -27,8 +28,6 @@
 		00702E071B0138EF00A77F63 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00702E061B0138EF00A77F63 /* Images.xcassets */; };
 		00702E201B01392F00A77F63 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 00702E1F1B01392F00A77F63 /* .gitignore */; };
 		007D1C5D1B0A005D00934769 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007D1C5C1B0A005D00934769 /* SwiftyJSON.swift */; };
-		0082E3441B1F739F007158CA /* IDDataCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0082E3431B1F739F007158CA /* IDDataCache.framework */; };
-		0082E3451B1F73A9007158CA /* IDDataCache.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0082E3431B1F739F007158CA /* IDDataCache.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		008C34C71B08CBF700597B0D /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 008C34BD1B08CBF700597B0D /* ioapi.c */; };
 		008C34C81B08CBF700597B0D /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 008C34BF1B08CBF700597B0D /* mztools.c */; };
 		008C34C91B08CBF700597B0D /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 008C34C11B08CBF700597B0D /* unzip.c */; };
@@ -37,12 +36,15 @@
 		008C34CD1B08D0A900597B0D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008C34CC1B08D0A900597B0D /* SystemConfiguration.framework */; };
 		008C34CF1B08D16E00597B0D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C34CE1B08D16E00597B0D /* Reachability.swift */; };
 		008C34D31B09ECEB00597B0D /* NSDate+Compare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C34D21B09ECEB00597B0D /* NSDate+Compare.swift */; };
+		009616171B21B953003E5027 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009616161B21B953003E5027 /* DownloadManager.swift */; };
 		0098EAF51B0C0229002DCFA1 /* Array+Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0098EAF41B0C0229002DCFA1 /* Array+Index.swift */; };
 		00A802B21B09FF070022731B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00702E031B0138EF00A77F63 /* Main.storyboard */; };
 		00A802B31B09FF090022731B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00702E081B0138EF00A77F63 /* LaunchScreen.xib */; };
 		00B05D811B20C86D002D4990 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B05D801B20C86D002D4990 /* MBProgressHUD.m */; };
 		00B05D851B20D344002D4990 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B05D841B20D344002D4990 /* Settings.swift */; };
 		00B05D891B211B90002D4990 /* DownloadedMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B05D881B211B90002D4990 /* DownloadedMap.swift */; };
+		00B07E461B21EDB3006A1F07 /* IDDataCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 009616211B21ED22003E5027 /* IDDataCache.framework */; };
+		00B07E471B21EDB7006A1F07 /* IDDataCache.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 009616211B21ED22003E5027 /* IDDataCache.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		00B141421B06BF2D0075D694 /* RootViewController+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B141411B06BF2D0075D694 /* RootViewController+Map.swift */; };
 		00B964091B1C8B7F00ED5CEE /* TrailsTableFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00B964081B1C8B7F00ED5CEE /* TrailsTableFilterView.xib */; };
 		00BEF8B81B186E5500FBB93D /* CachingTileOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BEF8B71B186E5500FBB93D /* CachingTileOverlay.swift */; };
@@ -60,6 +62,23 @@
 		00FA37ED1B062201007F9A23 /* MarqueeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA37EC1B062201007F9A23 /* MarqueeLabel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		009616201B21ED22003E5027 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0096161A1B21ED21003E5027 /* IDDataCache.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 00BEF8C51B18B18700FBB93D;
+			remoteInfo = IDDataCache;
+		};
+		009616221B21ED22003E5027 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0096161A1B21ED21003E5027 /* IDDataCache.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0089F04D1B19DC02003DF759;
+			remoteInfo = CommonCrypto;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		006E9D371B0A03AD0023244E /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -68,7 +87,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				006E9D361B0A03AD0023244E /* GPX.framework in Embed Frameworks */,
-				0082E3451B1F73A9007158CA /* IDDataCache.framework in Embed Frameworks */,
+				00B07E471B21EDB7006A1F07 /* IDDataCache.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,6 +101,7 @@
 		000F41161B1E0D24009CD09C /* SettingsCacheController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCacheController.swift; sourceTree = "<group>"; };
 		001BC0A71B16885B000B62C6 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = "MTB-BG Trails/Settings.storyboard"; sourceTree = "<group>"; };
 		001BC0A91B168C21000B62C6 /* SettingsMapSelectController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMapSelectController.swift; sourceTree = "<group>"; };
+		0020543F1B250E56003F74E0 /* SettingsDownloadedMapsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDownloadedMapsController.swift; sourceTree = "<group>"; };
 		0021719B1B0F3F9000319147 /* AttributedTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedTrack.swift; sourceTree = "<group>"; };
 		002D0ECE1B0B2FE600FA024C /* TrailsFilterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TrailsFilterController.xib; path = "MTB-BG Trails/TrailsFilterController.xib"; sourceTree = "<group>"; };
 		002D0ED01B0B351000FA024C /* TrailsFilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailsFilterController.swift; sourceTree = "<group>"; };
@@ -99,7 +119,6 @@
 		00702E091B0138EF00A77F63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		00702E1F1B01392F00A77F63 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		007D1C5C1B0A005D00934769 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		0082E3431B1F739F007158CA /* IDDataCache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IDDataCache.framework; sourceTree = "<group>"; };
 		008C34BC1B08CBF700597B0D /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		008C34BD1B08CBF700597B0D /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
 		008C34BE1B08CBF700597B0D /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
@@ -114,6 +133,8 @@
 		008C34CC1B08D0A900597B0D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		008C34CE1B08D16E00597B0D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		008C34D21B09ECEB00597B0D /* NSDate+Compare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Compare.swift"; sourceTree = "<group>"; };
+		009616161B21B953003E5027 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		0096161A1B21ED21003E5027 /* IDDataCache.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IDDataCache.xcodeproj; path = ../IDDataCache/IDDataCache.xcodeproj; sourceTree = "<group>"; };
 		0098EAF41B0C0229002DCFA1 /* Array+Index.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Index.swift"; sourceTree = "<group>"; };
 		00B05D801B20C86D002D4990 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		00B05D821B20C880002D4990 /* MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -146,8 +167,8 @@
 			files = (
 				006E9D351B0A03AD0023244E /* GPX.framework in Frameworks */,
 				008C34CD1B08D0A900597B0D /* SystemConfiguration.framework in Frameworks */,
-				0082E3441B1F739F007158CA /* IDDataCache.framework in Frameworks */,
 				00F845AA1B08C9BD00660FA6 /* libz.dylib in Frameworks */,
+				00B07E461B21EDB3006A1F07 /* IDDataCache.framework in Frameworks */,
 				000B826A1B016ED1002ED8DF /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,6 +192,7 @@
 				001BC0A91B168C21000B62C6 /* SettingsMapSelectController.swift */,
 				000F41161B1E0D24009CD09C /* SettingsCacheController.swift */,
 				003D51EC1B1F0D5700049533 /* SettingsDownloadOffline.swift */,
+				0020543F1B250E56003F74E0 /* SettingsDownloadedMapsController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -194,6 +216,7 @@
 				008C34CE1B08D16E00597B0D /* Reachability.swift */,
 				008C34D21B09ECEB00597B0D /* NSDate+Compare.swift */,
 				0098EAF41B0C0229002DCFA1 /* Array+Index.swift */,
+				009616161B21B953003E5027 /* DownloadManager.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -213,6 +236,7 @@
 		00702DF11B0138EF00A77F63 = {
 			isa = PBXGroup;
 			children = (
+				0096161A1B21ED21003E5027 /* IDDataCache.xcodeproj */,
 				00702E1F1B01392F00A77F63 /* .gitignore */,
 				00702DFC1B0138EF00A77F63 /* MTB-BG Trails */,
 				00702DFB1B0138EF00A77F63 /* Products */,
@@ -321,6 +345,15 @@
 			path = minizip;
 			sourceTree = "<group>";
 		};
+		0096161B1B21ED22003E5027 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				009616211B21ED22003E5027 /* IDDataCache.framework */,
+				009616231B21ED22003E5027 /* CommonCrypto.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		00B05D7F1B20C847002D4990 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,7 +399,6 @@
 		F70A74DE9D2FAFCF1100F6CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0082E3431B1F739F007158CA /* IDDataCache.framework */,
 				006E9D301B0A017C0023244E /* GPX.framework */,
 				000B82691B016ED1002ED8DF /* MapKit.framework */,
 				008C34CC1B08D0A900597B0D /* SystemConfiguration.framework */,
@@ -422,12 +454,35 @@
 			mainGroup = 00702DF11B0138EF00A77F63;
 			productRefGroup = 00702DFB1B0138EF00A77F63 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 0096161B1B21ED22003E5027 /* Products */;
+					ProjectRef = 0096161A1B21ED21003E5027 /* IDDataCache.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				00702DF91B0138EF00A77F63 /* MTB-BG Trails */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		009616211B21ED22003E5027 /* IDDataCache.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = IDDataCache.framework;
+			remoteRef = 009616201B21ED22003E5027 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		009616231B21ED22003E5027 /* CommonCrypto.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CommonCrypto.framework;
+			remoteRef = 009616221B21ED22003E5027 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00702DF81B0138EF00A77F63 /* Resources */ = {
@@ -460,6 +515,7 @@
 				00B05D851B20D344002D4990 /* Settings.swift in Sources */,
 				008C34C81B08CBF700597B0D /* mztools.c in Sources */,
 				00EFD4211B13433C00F6459D /* TrailAscentProfileView.swift in Sources */,
+				009616171B21B953003E5027 /* DownloadManager.swift in Sources */,
 				000B82661B014756002ED8DF /* Trail.swift in Sources */,
 				00B05D811B20C86D002D4990 /* MBProgressHUD.m in Sources */,
 				008C34C91B08CBF700597B0D /* unzip.c in Sources */,
@@ -469,6 +525,7 @@
 				0021719C1B0F3F9000319147 /* AttributedTrack.swift in Sources */,
 				006491951B0647A200A5ACDB /* GPXTrackPoint+MapKit.swift in Sources */,
 				007D1C5D1B0A005D00934769 /* SwiftyJSON.swift in Sources */,
+				002054401B250E56003F74E0 /* SettingsDownloadedMapsController.swift in Sources */,
 				00C4C0411B0E4E8C0026AACD /* DistinctColorGenerator.swift in Sources */,
 				00FA37ED1B062201007F9A23 /* MarqueeLabel.swift in Sources */,
 				000B82681B0148B2002ED8DF /* Constants.swift in Sources */,

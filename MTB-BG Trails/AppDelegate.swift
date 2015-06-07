@@ -22,10 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         cache.maxCacheSize = Settings.Cache.maxMapTileCache
         
         Settings.initializeSettings()
-        if let downloads = Settings.OfflineMaps.maps
-        {
-            println("here")
-        }
+        
+        println("Documents dir: \((NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as! [String])[0])")
         
 		return true
 	}

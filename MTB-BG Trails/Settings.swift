@@ -23,6 +23,12 @@ struct Settings
             defaults.setInteger(Constants.Values.vDefaultsMaxMapCache, forKey: Constants.Keys.kDefaultsMaxMapCache)
         }
         
+        if defaults.objectForKey(Constants.Keys.kDefaultsOfflineMaps) == nil
+        {
+            defaults.setObject([NSData](), forKey: Constants.Keys.kDefaultsOfflineMaps)
+        }
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
     }
     
     static func clearSettings()
@@ -31,10 +37,36 @@ struct Settings
         
         defaults.setObject(Maps.MapStyle.OpenCycleMap.rawValue, forKey: Constants.Keys.kDefaultsMapStyle)
         defaults.setInteger(Constants.Values.vDefaultsMaxMapCache, forKey: Constants.Keys.kDefaultsMaxMapCache)
+        defaults.removeObjectForKey(Constants.Keys.kDefaultsOfflineMaps)
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     struct OfflineMaps
     {
+        //Private storage for computed property
+        static private var _namedMaps = [String : DownloadedMap]()
+        static private var once = dispatch_once_t()
+        
+        //Cache of downloaded maps
+        static var namedMaps: [String : DownloadedMap]
+        {
+            get
+            {
+                //Populate the maps dictionary the first time it is requested
+                dispatch_once(&once) {
+                    if let maps = self.maps
+                    {
+                        for map in maps
+                        {
+                            self._namedMaps[map.name] = map
+                        }
+                    }
+                }
+                return _namedMaps
+            }
+        }
+        
+        // Get/set all the downloaded maps
         static var maps: [DownloadedMap]?
         {
             get
@@ -60,25 +92,31 @@ struct Settings
                 if let maps = newValue
                 {
                     var codedMaps = [NSData]()
+                    _namedMaps = [String : DownloadedMap]()
                     for map in newValue!
                     {
+                        _namedMaps[map.name] = map
                         codedMaps.append(NSKeyedArchiver.archivedDataWithRootObject(map))
                     }
                     NSUserDefaults.standardUserDefaults().setObject(codedMaps, forKey: Constants.Keys.kDefaultsOfflineMaps)
+                    NSUserDefaults.standardUserDefaults().synchronize()
                 }
             }
         }
         
+        // Add a map to the stored maps and to the cache
         static func addMap(map: DownloadedMap)
         {
-            if OfflineMaps.maps == nil
+            var codedMaps = NSUserDefaults.standardUserDefaults().objectForKey(Constants.Keys.kDefaultsOfflineMaps) as? [NSData]
+            if codedMaps == nil
             {
-                OfflineMaps.maps = [DownloadedMap]()
+                codedMaps = [NSData]()
             }
             
-            var maps = OfflineMaps.maps!
-            maps.append(map)
-            OfflineMaps.maps = maps
+            _namedMaps[map.name] = map
+            codedMaps!.append(NSKeyedArchiver.archivedDataWithRootObject(map))
+            NSUserDefaults.standardUserDefaults().setObject(codedMaps, forKey: Constants.Keys.kDefaultsOfflineMaps)
+            NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
     

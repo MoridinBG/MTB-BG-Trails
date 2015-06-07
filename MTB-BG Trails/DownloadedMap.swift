@@ -14,7 +14,7 @@ import Foundation
 class DownloadedMap: NSObject, NSCoding
 {
     var name: String
-    var directory: String
+    var dataCacheName: String
     
     //Conveninet dictionary with NW, NE & SW coordinates (x,y as in tile urls) of the downloaded region for each Z level
     lazy var coordinatesPerZ: [Int : ((Int, Int), (Int, Int), (Int, Int))] = {
@@ -23,9 +23,8 @@ class DownloadedMap: NSObject, NSCoding
         var zDict = [Int : ((Int, Int), (Int, Int), (Int, Int))]()
         for (index, z) in enumerate(self.zLevels)
         {
-            zDict[z] = ((self.nwX[z], self.nwY[z]), (self.neX[z], self.neY[z]), (self.swX[z], self.swY[z]))
+            zDict[z] = ((self.nwX[index], self.nwY[index]), (self.neX[index], self.neY[index]), (self.swX[index], self.swY[index]))
         }
-        
         return zDict
         
     }()
@@ -44,7 +43,7 @@ class DownloadedMap: NSObject, NSCoding
     
     
     private let nameKey      = "key.name"
-    private let directoryKey = "key.directory"
+    private let dataCacheKey = "key.directory"
 
     private let nwXKey       = "key.nw.x"
     private let nwYKey       = "key.nw.y"
@@ -55,10 +54,10 @@ class DownloadedMap: NSObject, NSCoding
     private let zLevelsKey   = "key.zLevels"
     
     
-    init(name: String, directory: String, coordinatesPerZ: [Int : ((Int, Int), (Int, Int), (Int, Int))])
+    init(name: String, dataCacheName: String, coordinatesPerZ: [Int : ((Int, Int), (Int, Int), (Int, Int))])
     {
         self.name = name
-        self.directory = directory
+        self.dataCacheName = dataCacheName
         
         for z in coordinatesPerZ.keys
         {
@@ -79,7 +78,7 @@ class DownloadedMap: NSObject, NSCoding
     required init(coder aDecoder: NSCoder)
     {
         self.name = aDecoder.decodeObjectForKey(nameKey) as! String
-        self.directory = aDecoder.decodeObjectForKey(directoryKey) as! String
+        self.dataCacheName = aDecoder.decodeObjectForKey(dataCacheKey) as! String
         
         self.nwX = aDecoder.decodeObjectForKey(nwXKey) as! Array
         self.nwY = aDecoder.decodeObjectForKey(nwYKey) as! Array
@@ -95,8 +94,8 @@ class DownloadedMap: NSObject, NSCoding
     
     func encodeWithCoder(aCoder: NSCoder)
     {
-        aCoder.encodeObject(self.nameKey, forKey: nameKey)
-        aCoder.encodeObject(self.directory, forKey: directoryKey)
+        aCoder.encodeObject(self.name, forKey: nameKey)
+        aCoder.encodeObject(self.dataCacheName, forKey: dataCacheKey)
         
         aCoder.encodeObject(self.nwX, forKey: nwXKey)
         aCoder.encodeObject(self.nwY, forKey: nwYKey)

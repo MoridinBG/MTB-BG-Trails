@@ -37,7 +37,7 @@ class SettingsDownloadOffline: MapViewCommon, NSURLSessionTaskDelegate
     private var tileRangesPerLevel = [Int : ((Int, Int), (Int, Int), (Int, Int))]()
     
     //Used to sync access to shared resources
-    private let concurrentDownloadSizeQueue = dispatch_queue_create("com.techLight.mtb-bg.settingsDownloadSizeQueue", DISPATCH_QUEUE_SERIAL)
+    private let serialSessionSyncQueue = dispatch_queue_create("com.techLight.mtb-bg.settingsDownloadSessionSyncQueue", DISPATCH_QUEUE_SERIAL)
     
     private var headTasks: Set<NSURLSessionTask> = Set<NSURLSessionTask>()
     {
@@ -45,16 +45,14 @@ class SettingsDownloadOffline: MapViewCommon, NSURLSessionTaskDelegate
         {
             if headTasks.count == 0
             {
-                dispatch_async(concurrentDownloadSizeQueue) {
+                dispatch_async(serialSessionSyncQueue) {
                     //I think the main queue dispatch should be sync, so  that the outer custom queue dispatch wouldn't return (and advance the queue) before the main one is finished
                     dispatch_sync(dispatch_get_main_queue()) {
                         
                         let sizeMB = String(format: "%.1f", (Double(self.totalTileSize) / 1024.0) / 1024.0)
                         self.toDownload.text = String(format: self.downloadSizeStringFormat, sizeMB)
                         
-                        self.downloadButton.enabled = true
-                        self.minZoom.enabled = true
-                        self.maxZoom.enabled = true
+                        self.setUIUserInteractionEnabled(true)
                     }
                 }
             }
@@ -111,6 +109,8 @@ class SettingsDownloadOffline: MapViewCommon, NSURLSessionTaskDelegate
             let alert = UIAlertController(title: "Trying to download a large mapset", message: "You are trying to download a very large mapset. Are you sure you need it? This can be very taxing for the voluntarily ran map servers and take large amounts of storage on your device.", preferredStyle: UIAlertControllerStyle.Alert)
             let okAction = UIAlertAction(title: "Yes", style: .Default) { (action: UIAlertAction!) in
                 self.askForMapsetNameAndDownload()
+                
+                self.setUIUserInteractionEnabled(false)
             }
             alert.addAction(okAction)
             alert.addAction(UIAlertAction(title: "No", style: .Default, handler: nil))
@@ -165,7 +165,7 @@ class SettingsDownloadOffline: MapViewCommon, NSURLSessionTaskDelegate
     {
         if let response = task.response
         {
-            dispatch_async(concurrentDownloadSizeQueue) {
+            dispatch_async(serialSessionSyncQueue) {
                 let size = response.expectedContentLength * self.tilesForTask[task]!
                 self.totalTileSize += size
                 
@@ -175,7 +175,7 @@ class SettingsDownloadOffline: MapViewCommon, NSURLSessionTaskDelegate
         //Usually - canceled
         } else
         {
-            dispatch_async(concurrentDownloadSizeQueue) {
+            dispatch_async(serialSessionSyncQueue) {
                 self.headTasks.remove(task)
                 self.tilesForTask.removeValueForKey(task)
             }
@@ -192,16 +192,35 @@ class SettingsDownloadOffline: MapViewCommon, NSURLSessionTaskDelegate
         let okAction = UIAlertAction(title: "OK", style: .Default) { (action: UIAlertAction!) in
             let nameField = alert.textFields![0] as! UITextField
             let name = nameField.text
-            
-            let downloadedMap = DownloadedMap(name: name, directory: name, coordinatesPerZ: self.tileRangesPerLevel)
-            Settings.OfflineMaps.addMap(downloadedMap)
+            let uniqueName = NSUUID().UUIDString + name
+            let downloadManager = DownloadManager.TileDownloadManager(dataCacheName: uniqueName,
+                urlTemplate: self.tileServerTemplate,
+                coordinatesForZ: self.tileRangesPerLevel,
+                progressUpdateHandler: { (progress) -> Void in
+                    println("Downloaded \(progress)")
+            }, completionHandler: {
+                let downloadedMap = DownloadedMap(name: name, dataCacheName: uniqueName, coordinatesPerZ: self.tileRangesPerLevel)
+                Settings.OfflineMaps.addMap(downloadedMap)
+                self.setUIUserInteractionEnabled(true)
+            })
+            downloadManager.startDownload(maxHTTPConnections: 2)
         }
         alert.addAction(okAction)
         alert.addAction(UIAlertAction(title: "Cancel", style: .Default) { (_) in
-            self.minZoom.enabled = true
-            self.maxZoom.enabled = true
+            self.setUIUserInteractionEnabled(true)
         })
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    private func setUIUserInteractionEnabled(enabled: Bool)
+    {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.mapView.userInteractionEnabled = enabled
+            self.minZoom.userInteractionEnabled = enabled
+            self.maxZoom.userInteractionEnabled = enabled
+            self.downloadButton.userInteractionEnabled = enabled
+            self.downloadButton.enabled = enabled
+        }
     }
     
     // Very crude at the moment - takes the center tile for each zoom level and uses it as the average size for the entire zoom level
@@ -212,7 +231,7 @@ class SettingsDownloadOffline: MapViewCommon, NSURLSessionTaskDelegate
     private func calculateDownloadSize()
     {
         //Cancel all currently running taks
-        dispatch_sync(concurrentDownloadSizeQueue) {
+        dispatch_sync(serialSessionSyncQueue) {
             self.totalTileSize = 0
             for headTask in self.headTasks
             {
@@ -268,7 +287,7 @@ class SettingsDownloadOffline: MapViewCommon, NSURLSessionTaskDelegate
             let request = NSMutableURLRequest(URL: NSURL(string: tileURL)!)
             request.HTTPMethod = "Head"
             let headTask = session.dataTaskWithRequest(request)
-            dispatch_async(concurrentDownloadSizeQueue) {
+            dispatch_async(serialSessionSyncQueue) {
                 self.headTasks.insert(headTask)
                 self.tilesForTask[headTask] = Int64(xSpan * ySpan)
             }

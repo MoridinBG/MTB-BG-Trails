@@ -78,6 +78,8 @@ struct Constants
 
         static let vMapMaxZoomLevel             = 16
 
+        static let vMapDownloadsFolder          = "OfflineMaps"
+        
         static let vDefaultsMaxMapCache         = 10485760
 	}
 }
