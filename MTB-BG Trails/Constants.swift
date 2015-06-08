@@ -39,6 +39,7 @@ struct Constants
 	{
         static let kCellIdTracks                = "TrackCell"
         static let kCellIdTracksHeader          = "TracksHeaderCell"
+        static let kCellIdDownloadedMap         = "DownloadedMapCell"
 
         static let kSegueIdTracksFilterPopover  = "TracksFilterPopoverSegue"
         static let kSegueIdTrailDetails         = "trail.Details"

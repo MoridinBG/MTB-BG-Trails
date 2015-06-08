@@ -118,6 +118,14 @@ struct Settings
             NSUserDefaults.standardUserDefaults().setObject(codedMaps, forKey: Constants.Keys.kDefaultsOfflineMaps)
             NSUserDefaults.standardUserDefaults().synchronize()
         }
+        
+        //Directly set the cached maps values minus the removed map as the new maps array
+        //Only one [Map] -> [NSData]
+        static func removeMap(map: DownloadedMap)
+        {
+            _namedMaps.removeValueForKey(map.name)
+            self.maps = _namedMaps.values.array
+        }
     }
     
     struct Maps

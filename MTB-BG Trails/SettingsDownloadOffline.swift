@@ -36,6 +36,8 @@ class SettingsDownloadOffline: MapViewCommon, NSURLSessionTaskDelegate
     private var tilesForTask = [NSURLSessionTask : Int64]()
     private var tileRangesPerLevel = [Int : ((Int, Int), (Int, Int), (Int, Int))]()
     
+    private var hud: MBProgressHUD?
+    
     //Used to sync access to shared resources
     private let serialSessionSyncQueue = dispatch_queue_create("com.techLight.mtb-bg.settingsDownloadSessionSyncQueue", DISPATCH_QUEUE_SERIAL)
     
@@ -48,9 +50,24 @@ class SettingsDownloadOffline: MapViewCommon, NSURLSessionTaskDelegate
                 dispatch_async(serialSessionSyncQueue) {
                     //I think the main queue dispatch should be sync, so  that the outer custom queue dispatch wouldn't return (and advance the queue) before the main one is finished
                     dispatch_sync(dispatch_get_main_queue()) {
-                        
-                        let sizeMB = String(format: "%.1f", (Double(self.totalTileSize) / 1024.0) / 1024.0)
-                        self.toDownload.text = String(format: self.downloadSizeStringFormat, sizeMB)
+                        var sizeString = ""
+                        if self.totalTileSize < 1024
+                        {
+                            sizeString = "\(self.totalTileSize) bytes"
+                        } else if self.totalTileSize >= 1024 && self.totalTileSize < 838860
+                        {
+                            let size = Double(self.totalTileSize) / 1024.0
+                            sizeString = String(format: "%.2fKB", size)
+                        } else if self.totalTileSize >= 838860 && self.totalTileSize < 858993459
+                        {
+                            let size = (Double(self.totalTileSize) / 1024.0) / 1024.0
+                            sizeString = String(format: "%.2fMB", size)
+                        } else if self.totalTileSize >= 858993459
+                        {
+                            let size = ((Double(self.totalTileSize) / 1024.0) / 1024.0) / 1024.0
+                            sizeString = String(format: "%.2fGB", size)
+                        }
+                        self.toDownload.text = String(format: self.downloadSizeStringFormat, sizeString)
                         
                         self.setUIUserInteractionEnabled(true)
                     }
@@ -193,15 +210,31 @@ class SettingsDownloadOffline: MapViewCommon, NSURLSessionTaskDelegate
             let nameField = alert.textFields![0] as! UITextField
             let name = nameField.text
             let uniqueName = NSUUID().UUIDString + name
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                self.hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                self.hud!.mode = .Determinate
+                self.hud!.labelText = "Downloading"
+            }
+            
             let downloadManager = DownloadManager.TileDownloadManager(dataCacheName: uniqueName,
                 urlTemplate: self.tileServerTemplate,
                 coordinatesForZ: self.tileRangesPerLevel,
                 progressUpdateHandler: { (progress) -> Void in
-                    println("Downloaded \(progress)")
+                    ()
+                    dispatch_async(dispatch_get_main_queue()) {
+                        ()
+                        self.hud?.progress = Float(progress)
+                    }
             }, completionHandler: {
                 let downloadedMap = DownloadedMap(name: name, dataCacheName: uniqueName, coordinatesPerZ: self.tileRangesPerLevel)
                 Settings.OfflineMaps.addMap(downloadedMap)
                 self.setUIUserInteractionEnabled(true)
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.hud?.hide(true)
+                    self.hud = nil
+                }
             })
             downloadManager.startDownload(maxHTTPConnections: 2)
         }
