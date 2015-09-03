@@ -10,7 +10,7 @@ import Foundation
 
 class DistinctColourGenerator
 {
-    class func isValidLABColour(var l: Double, var a: Double, var b: Double) -> Bool
+    class func isValidLABColour(l: Double, a: Double, b: Double) -> Bool
     {
         let (r, g, b) = LabtoRGB(l, a: a, b: b)
         
@@ -35,14 +35,14 @@ class DistinctColourGenerator
         
         for i in 1...steps
         {
-            for (index, _) in enumerate(forceVectors)
+            for (index, _) in forceVectors.enumerate()
             {
                 forceVectors[index] = (0, 0, 0)
             }
             
-            for (indexOuter, (la, aa, ba)) in enumerate(labColours)
+            for (indexOuter, (la, aa, ba)) in labColours.enumerate()
             {
-                for (indexInner, (lb, ab, bb)) in enumerate(labColours[0..<indexOuter])
+                for (indexInner, (lb, ab, bb)) in labColours[0..<indexOuter].enumerate()
                 {
                     let dl = la - lb
                     let da = aa - ab
@@ -68,7 +68,7 @@ class DistinctColourGenerator
                     forceVectors[indexInner] = (innerDlForce, innerDaForce, innerDbForce)
                 }
             }
-            for (index, (l, a, b)) in enumerate(labColours)
+            for (index, (l, a, b)) in labColours.enumerate()
             {
                 var (dlForce, daForce, dbForce) = forceVectors[index]
                 let displacement = speed * sqrt(pow(dlForce, 2) + pow(daForce, 2) + pow(dbForce, 2))
@@ -86,7 +86,7 @@ class DistinctColourGenerator
         }
         
         var rgbColours = [UIColor]()
-        for (index, (l, a, b)) in enumerate(labColours)
+        for (index, (l, a, b)) in labColours.enumerate()
         {
             let (R, G, B) = LabtoRGB(l, a: a, b: b)
             rgbColours.append(UIColor(red: CGFloat(R / 255.0), green: CGFloat(G / 255.0), blue: CGFloat(B / 255.0), alpha: 1.0))
@@ -104,14 +104,14 @@ class DistinctColourGenerator
         return (r, g, b)
     }
     
-    class func RGBtoLab(var r: Double, var g: Double, var b: Double) -> (Double, Double, Double)
+    class func RGBtoLab(r: Double, g: Double, b: Double) -> (Double, Double, Double)
     {
         let (x, y, z) = RGBtoXYZ(r, g: g, b: b)
         
         return XYZtoLab(x, y: y, z: z)
     }
     
-    class func LabtoRGB(var l: Double, var a: Double, var b: Double) -> (Double, Double, Double)
+    class func LabtoRGB(l: Double, a: Double, b: Double) -> (Double, Double, Double)
     {
         let (x, y, z) = LabtoXYZ(l, a: a, b: b)
         
@@ -247,7 +247,7 @@ class DistinctColourGenerator
         return (l, a, b)
     }
     
-    class func LabtoXYZ(var l: Double, var a: Double, var b: Double) -> (Double, Double, Double)
+    class func LabtoXYZ(l: Double, a: Double, b: Double) -> (Double, Double, Double)
     {
         var y = (l + 16) / 116
         var x = a / 500 + y

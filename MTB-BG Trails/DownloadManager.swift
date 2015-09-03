@@ -102,7 +102,7 @@ class DownloadManager
                                     self.cache.storeData(data, forKey: tileURL)
                                 } else
                                 {
-                                    println("Download error at \(tileURL)" + error.localizedDescription)
+                                    print("Download error at \(tileURL)" + error.localizedDescription)
                                 }
                                 
                                 if self.downloadTasksToUpdateLeft < 1

@@ -54,7 +54,7 @@ class SettingsMapSelectController: UITableViewController
                         Settings.Maps.style = .OpenStreetMapLandscae
                     
                     default:
-                        println("Setting unimplemented OpenStreetMap map style in Map Style in Settings")
+                        print("Setting unimplemented OpenStreetMap map style in Map Style in Settings")
                 }
             
             case 1:
@@ -67,11 +67,11 @@ class SettingsMapSelectController: UITableViewController
                 case 2:
                     Settings.Maps.style = .AppleHybrid
                 default:
-                    println("Setting unimplemented Apple map style in Map Style in Settings")
+                    print("Setting unimplemented Apple map style in Map Style in Settings")
                 }
             
             default:
-                println("Setting unimplemented map style in Map Style in Settings")
+                print("Setting unimplemented map style in Map Style in Settings")
         }
         
         if oldIndex != indexPath

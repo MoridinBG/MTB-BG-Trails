@@ -93,7 +93,7 @@ class MapViewCommon: UIViewController, MKMapViewDelegate
         }
     }
     
-    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer!
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer!
     {
         if let overlay = overlay as? MKTileOverlay
         {
@@ -147,7 +147,7 @@ class MapViewCommon: UIViewController, MKMapViewDelegate
             (upper.longitude - lower.longitude) * 1.1)
         let trailsCenter = CLLocationCoordinate2DMake((upper.latitude + lower.latitude) / 2,
             (upper.longitude + lower.longitude) / 2)
-        var region = MKCoordinateRegionMake(trailsCenter, trailsSpan)
+        let region = MKCoordinateRegionMake(trailsCenter, trailsSpan)
         
         let mapViewRegion = mapView.regionThatFits(region)
         mapView.setRegion(mapViewRegion, animated: true)

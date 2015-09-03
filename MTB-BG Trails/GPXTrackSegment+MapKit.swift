@@ -46,7 +46,7 @@ extension GPXTrackSegment
                     elevations.append(elevation)
                 } else
                 {
-                    println("No valid elevation data")
+                    print("No valid elevation data")
                 }
                 
             }

@@ -124,7 +124,7 @@ class SettingsDownloadOffline: MapViewCommon, NSURLSessionTaskDelegate
         if (Double(self.totalTileSize) / 1024.0) / 1024.0 > 512
         {
             let alert = UIAlertController(title: "Trying to download a large mapset", message: "You are trying to download a very large mapset. Are you sure you need it? This can be very taxing for the voluntarily ran map servers and take large amounts of storage on your device.", preferredStyle: UIAlertControllerStyle.Alert)
-            let okAction = UIAlertAction(title: "Yes", style: .Default) { (action: UIAlertAction!) in
+            let okAction = UIAlertAction(title: "Yes", style: .Default) { (action: UIAlertAction) in
                 self.askForMapsetNameAndDownload()
                 
                 self.setUIUserInteractionEnabled(false)
@@ -206,8 +206,8 @@ class SettingsDownloadOffline: MapViewCommon, NSURLSessionTaskDelegate
         let alert = UIAlertController(title: "Mapset name", message: "Enter a name for this mapset", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addTextFieldWithConfigurationHandler(nil)
         
-        let okAction = UIAlertAction(title: "OK", style: .Default) { (action: UIAlertAction!) in
-            let nameField = alert.textFields![0] as! UITextField
+        let okAction = UIAlertAction(title: "OK", style: .Default) { (action: UIAlertAction) in
+            let nameField = alert.textFields![0] 
             let name = nameField.text
             let uniqueName = NSUUID().UUIDString + name
             

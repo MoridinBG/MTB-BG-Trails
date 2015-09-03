@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         Settings.initializeSettings()
         
-        println("Documents dir: \((NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as! [String])[0])")
+        print("Documents dir: \((NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) )[0])")
         
 		return true
 	}

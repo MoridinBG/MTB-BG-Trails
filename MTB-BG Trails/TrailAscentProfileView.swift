@@ -53,10 +53,10 @@ class TrailAscentProfileView: UIView
                 CGContextMoveToPoint(context, 0, rect.height)
                 CGContextAddLineToPoint(context, 0, start)
                 
-                for (index, point) in enumerate(track.pointElevations[1..<count])
+                for (index, point) in track.pointElevations[1..<count].enumerate()
                 {
-                    var x = CGFloat(Double(index + 2) / Double(count)) * rect.width     //+2 because zero based and we skip actual 0 index ([1..])
-                    var y = CGFloat((maxHeight - point) / difference) * heightFactor + heightOffset
+                    let x = CGFloat(Double(index + 2) / Double(count)) * rect.width     //+2 because zero based and we skip actual 0 index ([1..])
+                    let y = CGFloat((maxHeight - point) / difference) * heightFactor + heightOffset
                     CGContextAddLineToPoint(context, x, y)
                 }
             }
@@ -82,7 +82,7 @@ class TrailAscentProfileView: UIView
             
             for i in 1...4
             {
-                var altitude = Int(minHeight + Double(i) * altitudeStep)
+                let altitude = Int(minHeight + Double(i) * altitudeStep)
                 text = NSAttributedString(string: "\(altitude)", attributes: textAttributes)
                 
                 height = height - (textSpacing + textHeight)

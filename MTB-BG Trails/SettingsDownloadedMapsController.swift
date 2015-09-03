@@ -40,7 +40,7 @@ class SettingsDownloadedMapsController: UITableViewController
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Keys.kCellIdDownloadedMap, forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Keys.kCellIdDownloadedMap, forIndexPath: indexPath) 
         let map = maps[indexPath.row]
         cell.textLabel?.text = map.name
         

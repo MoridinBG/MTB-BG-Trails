@@ -80,7 +80,7 @@ public class MarqueeLabel: UILabel {
 					self.addGestureRecognizer(tapRecognizer)
 					userInteractionEnabled = true
 				} else {
-					if let recognizer = self.gestureRecognizers!.first as! UIGestureRecognizer? {
+					if let recognizer = self.gestureRecognizers!.first {
 						self.removeGestureRecognizer(recognizer)
 					}
 					userInteractionEnabled = false
@@ -241,7 +241,7 @@ public class MarqueeLabel: UILabel {
 		setup()
 	}
 	
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		setup()
 	}
@@ -624,7 +624,7 @@ public class MarqueeLabel: UILabel {
 		let scrolls = scroller(interval: interval, delay: delay)
 		
 		// Perform all animations in scrolls
-		for (index, scroll) in enumerate(scrolls) {
+		for (index, scroll) in scrolls.enumerate() {
 			let layer = scroll.layer
 			let anim = scroll.anim
 			
@@ -936,7 +936,7 @@ public class MarqueeLabel: UILabel {
 		}
 	}
 	
-	override public func animationDidStop(anim: CAAnimation!, finished flag: Bool) {
+	override public func animationDidStop(anim: CAAnimation, finished flag: Bool) {
 		let completion = anim.valueForKey(MarqueeKeys.CompletionClosure.rawValue) as? CompletionBlock<(Bool) -> ()>
 		completion?.f(flag)
 	}
@@ -1020,7 +1020,7 @@ public class MarqueeLabel: UILabel {
 	//
 	
 	
-	override public func viewForBaselineLayout() -> UIView? {
+	override public func viewForBaselineLayout() -> UIView {
 		// Use subLabel view for handling baseline layouts
 		return sublabel
 	}
@@ -1313,7 +1313,7 @@ extension CAMediaTimingFunction {
 		}
 		
 		// Give up - shouldn't ever get here...I hope
-		println("MarqueeLabel: Failed to find t for Y input!")
+		print("MarqueeLabel: Failed to find t for Y input!")
 		return t0
 	}
 	

@@ -65,20 +65,17 @@ class SettingsCacheController: UITableViewController
         }
     }
 
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool
     {
-        if let identifier = identifier
-        {
-            if identifier == Constants.Keys.kSegueIDMapsDownloadSettings
-            {
-                switch Settings.Maps.style
-                {
-                    case .AppleHybrid, .AppleSatellite, .AppleStandard:
-                        return false
-                    default: ()
-                }
-            }
-        }
+		if identifier == Constants.Keys.kSegueIDMapsDownloadSettings
+		{
+			switch Settings.Maps.style
+			{
+				case .AppleHybrid, .AppleSatellite, .AppleStandard:
+					return false
+				default: ()
+			}
+		}
         
         return true
     }

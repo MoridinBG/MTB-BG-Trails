@@ -167,11 +167,10 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 	{
 		if segue.identifier == Constants.Keys.kSegueIdTracksFilterPopover
 		{
-			let controller = segue.destinationViewController as! UIViewController
+			let controller = segue.destinationViewController 
 			let popoverController2 = controller.popoverPresentationController
 			if let popoverController = popoverController2
 			{
-				println("Here")
 				popoverController.delegate = self
 				popoverController.sourceRect = popoverAnchor.frame
 				popoverController.sourceView = popoverAnchor
@@ -195,7 +194,7 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 	{
 		let cell = trailsTable.dequeueReusableCellWithIdentifier(Constants.Keys.kCellIdTracks) as! TrailTableCell
-		var trail = filteredTrails[indexPath.row]
+		let trail = filteredTrails[indexPath.row]
         cell.trail = trail
 		
 		cell.nameLabel.text = trail.name

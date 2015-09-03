@@ -10,9 +10,9 @@ import Foundation
 
 extension Array
 {
-	func find(includedElement: T -> Bool) -> Int?
+	func find(includedElement: Element -> Bool) -> Int?
 	{
-		for (idx, element) in enumerate(self)
+		for (idx, element) in self.enumerate()
 		{
 			if includedElement(element)
 			{

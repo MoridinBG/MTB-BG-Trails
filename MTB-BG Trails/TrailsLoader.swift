@@ -76,9 +76,9 @@ class TrailsLoader
 				let trailsCount = json["routes"].count
                 let colours = DistinctColourGenerator.generateDistinctColours(trailsCount, quality: 1, highPrecision: false)
                 
-				for(index: String, trailJson: JSON) in json["routes"]
+				for(index, trailJson): (String, JSON) in json["routes"]
 				{
-                    self.processTrailFromJSON(trailJson, index: index, colorForTrail: colours[index.toInt()!])
+                    self.processTrailFromJSON(trailJson, index: index, colorForTrail: colours[Int(index)!])
                     if index == "10"
                     {
                         break
@@ -87,7 +87,7 @@ class TrailsLoader
 				
 			} else
 			{
-				println("Error getting remote JSON data: \(error?.localizedDescription)")
+				print("Error getting remote JSON data: \(error?.localizedDescription)")
 			}
 		})
 	}
@@ -163,7 +163,7 @@ class TrailsLoader
                 }
             }
             
-            for(index: String, diff: JSON) in trailJson["difficulty"]
+			for(index: String, diff: Json) in trailJson["difficulty"]
             {
                 if trail.difficulty == nil
                 {
@@ -240,7 +240,7 @@ class TrailsLoader
             trail.water = trailJson["water"].string
             trail.food = trailJson["food"].string
             
-            for(index: String, subTerrain: JSON) in trailJson["terrains"]
+			for(index: String, subTerrain: JSON) in trailJson["terrains"]
             {
                 if trail.terrains == nil
                 {
@@ -253,7 +253,7 @@ class TrailsLoader
                 }
             }
             
-            for(index: String, subTrace: JSON) in trailJson["traces"]
+			for(index: String, subTrace: JSON) in trailJson["traces"]
             {
                 if trail.traces == nil
                 {
@@ -329,7 +329,7 @@ class TrailsLoader
 			if traces.count > 0
 			{
 				let url = traces[0]
-				let documentsPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as! String
+				let documentsPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] 
 				var filename = url.lastPathComponent!
 				
 				if filename.rangeOfString(".zip") != nil
@@ -376,14 +376,21 @@ class TrailsLoader
 		let reachability = Reachability.reachabilityForInternetConnection()
 		
 		
-		let documentsPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as! String
+		let documentsPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] 
 
 		let tracksFile = documentsPath.stringByAppendingPathComponent(Constants.Values.vJSONTrailsFilename)
 		
 		if true//!reachability.isReachable()
 		{
 			var error: NSError? = nil
-			let documentsFiles = NSFileManager.defaultManager().contentsOfDirectoryAtPath(documentsPath, error: &error)
+			let documentsFiles: [AnyObject]?
+            do
+			{
+                documentsFiles = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(documentsPath)
+            } catch var error1 as NSError {
+                error = error1
+                documentsFiles = nil
+            }
 			
 			for file in documentsFiles as! [String]
 			{
@@ -399,7 +406,7 @@ class TrailsLoader
 		
 		let session = NSURLSession.sharedSession()
 		//Use NSURLSession to get data from an NSURL
-		let loadDataTask = session.dataTaskWithURL(NSURL(string:Constants.Values.vJSONTrailsURL)!) { (data: NSData!, response: NSURLResponse!, error: NSError!) in
+		let loadDataTask = session.dataTaskWithURL(NSURL(string:Constants.Values.vJSONTrailsURL)!) { (data: NSData?, response: NSURLResponse?, error: NSError?) in
 			if let responseError = error
 			{
 				onComplete(data: nil, error: responseError)
@@ -424,23 +431,23 @@ class TrailsLoader
 	{
 		let session = NSURLSession.sharedSession()
 		//Use NSURLSession to get data from an NSURL
-		let loadDataTask = session.dataTaskWithURL(url, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+		let loadDataTask = session.dataTaskWithURL(url, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
 			
 			if let responseError = error
 			{
-				println("Error loading GPX file: \(responseError.localizedDescription)")
+				print("Error loading GPX file: \(responseError.localizedDescription)")
 			} else if let httpResponse = response as? NSHTTPURLResponse
 			{
 				if httpResponse.statusCode != 200
 				{
-					println("Bad HTTP status code when loading GPX: \(httpResponse.statusCode)")
+					print("Bad HTTP status code when loading GPX: \(httpResponse.statusCode)")
 				} else
 				{
 					let root: GPXRoot
-					let documentsPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as! String
+					let documentsPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] 
 					var file = documentsPath.stringByAppendingPathComponent(url.lastPathComponent!)
 					
-					if url.absoluteString?.rangeOfString(".zip", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) != nil
+					if url.absoluteString.rangeOfString(".zip", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) != nil
 					{
 						data.writeToFile(file, atomically: false)
 						SSZipArchive.unzipFileAtPath(file, toDestination: documentsPath)
@@ -474,9 +481,19 @@ class TrailsLoader
 						filename = filename.stringByReplacingOccurrencesOfString(".gpx", withString: ".gdb")
 						if NSFileManager.defaultManager().fileExistsAtPath(filename)
 						{
-							NSFileManager.defaultManager().removeItemAtPath(filename, error: nil)
+							do
+							{
+                                try NSFileManager.defaultManager().removeItemAtPath(filename)
+                            } catch _
+							{
+                            }
 						}
-						NSFileManager.defaultManager().removeItemAtPath(file, error: nil)
+						do
+						{
+                            try NSFileManager.defaultManager().removeItemAtPath(file)
+                        } catch _
+						{
+                        }
 						
 					} else
 					{

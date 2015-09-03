@@ -434,6 +434,8 @@
 		00702DF21B0138EF00A77F63 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = TechLight;
 				TargetAttributes = {

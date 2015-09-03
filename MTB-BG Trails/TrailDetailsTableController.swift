@@ -161,7 +161,7 @@ class TrailDetailsTableController: UITableViewController
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        println(indexPath.row)
+        print(indexPath.row)
         if indexPath.row == 3 && trail.link != nil
         {
             let sharedApp = UIApplication.sharedApplication()

@@ -16,16 +16,16 @@ class CachingTileOverlay: MKTileOverlay
     let operationQueue = NSOperationQueue()
     
     
-    override func loadTileAtPath(path: MKTileOverlayPath, result: ((NSData!, NSError!) -> Void)!)
+    override func loadTileAtPath(path: MKTileOverlayPath, result: ((NSData?, NSError?) -> Void))
     {
         
-        let urlstr = URLForTilePath(path).absoluteString!
+        let urlstr = URLForTilePath(path).absoluteString
         
         //First try to find the tile in the temporary cache
         if let cachedData = self.cache.dataFromDiskCacheForKey(urlstr)
         {
             let newData = markXYZ(cachedData, path: path)
-            println("Map tile found in temporary cache")
+            print("Map tile found in temporary cache")
             result(newData, nil)
         } else
         {
@@ -39,7 +39,7 @@ class CachingTileOverlay: MKTileOverlay
                         let persistentCache = IDDataCache.sharedNamedPersistentInstance(map.dataCacheName)
                         if let data = persistentCache.dataFromDiskCacheForKey(urlstr)
                         {
-                            println("Map til found in persistent storage")
+                            print("Map til found in persistent storage")
                             self.cache.storeData(data, forKey: urlstr)
                             result(data, nil)
                             return
@@ -53,14 +53,14 @@ class CachingTileOverlay: MKTileOverlay
             NSURLConnection.sendAsynchronousRequest(request, queue: operationQueue) { response, data, error in
                 if data != nil
                 {
-                    println("Map tile downloaded online")
+                    print("Map tile downloaded online")
                     self.cache.storeData(data, forKey: urlstr)
                     let newData = self.markXYZ(data, path: path)
                     result(newData, nil)
                     return
                 } else
                 {
-                    println("Unable to retrieve map tile \(urlstr)")
+                    print("Unable to retrieve map tile \(urlstr)")
                 }
 
                 result(data, error)
@@ -85,7 +85,7 @@ class CachingTileOverlay: MKTileOverlay
         let font = UIFont.systemFontOfSize(17)
         let textColour = UIColor.blackColor()
         let textAttributes = [NSFontAttributeName : font, NSForegroundColorAttributeName : textColour]
-        var text = NSAttributedString(string: String(format: "X=%d\nY=%d\nZ=%d", path.x, path.y, path.z), attributes: textAttributes)
+        let text = NSAttributedString(string: String(format: "X=%d\nY=%d\nZ=%d", path.x, path.y, path.z), attributes: textAttributes)
         text.drawInRect(rect)
         
         let drawnImage = UIGraphicsGetImageFromCurrentImageContext()

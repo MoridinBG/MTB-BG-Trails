@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-class Trail: Printable
+class Trail: CustomStringConvertible
 {
 	var name: String?
 	var date: NSDate?

@@ -21,7 +21,7 @@ class DownloadedMap: NSObject, NSCoding
         [unowned self] in
         
         var zDict = [Int : ((Int, Int), (Int, Int), (Int, Int))]()
-        for (index, z) in enumerate(self.zLevels)
+        for (index, z) in self.zLevels.enumerate()
         {
             zDict[z] = ((self.nwX[index], self.nwY[index]), (self.neX[index], self.neY[index]), (self.swX[index], self.swY[index]))
         }
@@ -75,7 +75,7 @@ class DownloadedMap: NSObject, NSCoding
         }
     }
     
-    required init(coder aDecoder: NSCoder)
+    required init?(coder aDecoder: NSCoder)
     {
         self.name = aDecoder.decodeObjectForKey(nameKey) as! String
         self.dataCacheName = aDecoder.decodeObjectForKey(dataCacheKey) as! String
