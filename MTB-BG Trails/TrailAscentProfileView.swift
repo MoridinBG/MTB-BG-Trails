@@ -98,10 +98,4 @@ class TrailAscentProfileView: UIView
             CGContextStrokePath(context)
         }
     }
-    
-    private func drawElevations(inrect rect: CGRect)
-    {
-        let context = UIGraphicsGetCurrentContext()
-
-    }
 }

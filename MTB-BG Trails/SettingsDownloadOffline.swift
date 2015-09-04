@@ -208,7 +208,7 @@ class SettingsDownloadOffline: MapViewCommon, NSURLSessionTaskDelegate
         
         let okAction = UIAlertAction(title: "OK", style: .Default) { (action: UIAlertAction) in
             let nameField = alert.textFields![0] 
-            let name = nameField.text
+            let name = nameField.text!
             let uniqueName = NSUUID().UUIDString + name
             
             dispatch_async(dispatch_get_main_queue()) {
@@ -286,13 +286,11 @@ class SettingsDownloadOffline: MapViewCommon, NSURLSessionTaskDelegate
         let nePoint = CGPointMake(mapView.bounds.origin.x + mapView.bounds.size.width, mapView.bounds.origin.y)
         
         let swPoint = CGPointMake(mapView.bounds.origin.x, mapView.bounds.origin.y + mapView.bounds.size.height)
-        let sePoint = CGPointMake(mapView.bounds.origin.x + mapView.bounds.size.width, mapView.bounds.origin.y + mapView.bounds.size.height)
         
         let neCoord = mapView.convertPoint(nePoint, toCoordinateFromView: mapView)
         let nwCoord = mapView.convertPoint(nwPoint, toCoordinateFromView: mapView)
         
         let swCoord = mapView.convertPoint(swPoint, toCoordinateFromView: mapView)
-        let seCoord = mapView.convertPoint(sePoint, toCoordinateFromView: mapView)
         
         let minZ = Int(minZoom.value)
         let maxZ = Int(maxZoom.value)
@@ -309,7 +307,6 @@ class SettingsDownloadOffline: MapViewCommon, NSURLSessionTaskDelegate
             let (neX, neY) = coordZToXY(neCoord, z: z)
         
             let (swX, swY) = coordZToXY(swCoord, z: z)
-            let (seX, seY) = coordZToXY(seCoord, z: z)
             
             self.tileRangesPerLevel[z] = ((nwX, nwY), (neX, neY), (swX, swY))
             

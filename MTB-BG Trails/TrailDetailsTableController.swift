@@ -46,7 +46,7 @@ class TrailDetailsTableController: UITableViewController
                 nameLabel.text = name
             }
             
-            if let link = trail.link
+            if trail.link != nil
             {
                 let link = NSMutableAttributedString(string: "@MTB Weб Page")
                 link.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange(0, link.length))
@@ -138,7 +138,6 @@ class TrailDetailsTableController: UITableViewController
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
-        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         var hideRow = false
         
         for index in hiddenRows

@@ -11,6 +11,7 @@ import IDDataCache
 
 class DownloadManager
 {
+	
     class TileDownloadManager
     {
         let urlTemplate: String
@@ -25,7 +26,6 @@ class DownloadManager
         private var downloadTasksSuccessful: Double
         
         //A progress update notification should be sent at each whole % progress
-        //Count how many more tasks to notify
         private let downloadTasksBetweenUpdates: Double
         private var downloadTasksToUpdateLeft: Double
         
@@ -74,7 +74,7 @@ class DownloadManager
             downloadTasksToUpdateLeft = downloadTasksBetweenUpdates
         }
         
-        func startDownload(maxHTTPConnections: Int = 2)
+        func startDownload(maxHTTPConnections maxHTTPConnections: Int = 2)
         {
             let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
             sessionConfig.HTTPMaximumConnectionsPerHost = maxHTTPConnections
@@ -92,18 +92,19 @@ class DownloadManager
                         let tileURL = String(format: urlTemplate, z, x, y)
                         let request = NSMutableURLRequest(URL: NSURL(string: tileURL)!)
                         let headTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+							guard let data = data
+								else
+								{
+									print("Download error at \(tileURL) " + error!.localizedDescription)
+									return
+								}
+							
                             dispatch_async(self.serialSessionSyncQueue) {
                                 self.downloadTasksLeft--
                                 self.downloadTasksToUpdateLeft--
-                                
-                                if data != nil
-                                {
-                                    self.downloadTasksSuccessful++
-                                    self.cache.storeData(data, forKey: tileURL)
-                                } else
-                                {
-                                    print("Download error at \(tileURL)" + error.localizedDescription)
-                                }
+								
+								self.downloadTasksSuccessful++
+								self.cache.storeData(data, forKey: tileURL)
                                 
                                 if self.downloadTasksToUpdateLeft < 1
                                 {

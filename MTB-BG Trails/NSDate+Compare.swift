@@ -22,5 +22,5 @@ public func == (left : NSDate, right : NSDate) -> Bool
 {
 	return left.isEqualToDate(right)
 }
-extension NSDate : Equatable {}
+
 extension NSDate : Comparable {}

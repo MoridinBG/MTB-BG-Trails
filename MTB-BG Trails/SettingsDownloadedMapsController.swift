@@ -12,7 +12,7 @@ import IDDataCache
 class SettingsDownloadedMapsController: UITableViewController
 {
 
-    private var maps = Settings.OfflineMaps.namedMaps.values.array
+    private var maps = [DownloadedMap](Settings.OfflineMaps.namedMaps.values)
     
     override func viewDidLoad()
     {

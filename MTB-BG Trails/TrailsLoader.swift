@@ -9,6 +9,8 @@
 import Foundation
 import MapKit
 
+import SwiftyJSON
+
 protocol TrailsLoaderDelegate
 {
 	func processedGPXIntoTracks(tracks: [AttributedTrack])
@@ -96,7 +98,7 @@ class TrailsLoader
     {
         dispatch_async(GlobalBackgroundQueue)
         {
-            var trail = Trail()
+            let trail = Trail()
             trail.name = trailJson["name"].string
             trail.colour = colorForTrail
             
@@ -163,7 +165,7 @@ class TrailsLoader
                 }
             }
             
-			for(index: String, diff: Json) in trailJson["difficulty"]
+			for(_, diff) : (String, JSON) in trailJson["difficulty"]
             {
                 if trail.difficulty == nil
                 {
@@ -240,11 +242,11 @@ class TrailsLoader
             trail.water = trailJson["water"].string
             trail.food = trailJson["food"].string
             
-			for(index: String, subTerrain: JSON) in trailJson["terrains"]
+			for(_, subTerrain) : (String, JSON) in trailJson["terrains"]
             {
                 if trail.terrains == nil
                 {
-                    trail.terrains = [String: Double]()
+                    trail.terrains = [String : Double]()
                 }
                 
                 if let terrain = subTerrain["terrain"].string, let length = subTerrain["length"].double
@@ -253,7 +255,7 @@ class TrailsLoader
                 }
             }
             
-			for(index: String, subTrace: JSON) in trailJson["traces"]
+			for(_, subTrace) : (String, JSON) in trailJson["traces"]
             {
                 if trail.traces == nil
                 {
@@ -266,7 +268,7 @@ class TrailsLoader
                 }
             }
             
-            if let traces = trail.traces
+            if let _ = trail.traces
             {
                 self.loadGPXFromTrail(trail) { gpx in
                     var tempTracks = [AttributedTrack]()
@@ -277,10 +279,9 @@ class TrailsLoader
                         var (coordinates, elevations, length) = ([CLLocationCoordinate2D](), [CLLocationDistance](), 0.0)
                         for segment in track.tracksegments as! [GPXTrackSegment]
                         {
-                            var segmentPoints = segment.points
-                            coordinates += segmentPoints.0
-                            elevations += segmentPoints.1
-                            length += segmentPoints.2
+                            coordinates += segment.points.0
+                            elevations += segment.points.1
+                            length += segment.points.2
                             
                         }
                         let attribTrack = AttributedTrack(coords: &coordinates, count: coordinates.count, pointElevations: elevations, length: length, colour: trail.colour, name: track.name, optional: true)
@@ -373,48 +374,52 @@ class TrailsLoader
 	
 	private func requestTrailsJSON(url: NSURL, onComplete: (data: NSData?, error: NSError?) -> Void)
 	{
-		let reachability = Reachability.reachabilityForInternetConnection()
-		
-		
-		let documentsPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] 
-
+		let documentsPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0]
 		let tracksFile = documentsPath.stringByAppendingPathComponent(Constants.Values.vJSONTrailsFilename)
-		
-		if true//!reachability.isReachable()
+
+		if true// !Reachability.isConnectedToNetwork()
 		{
-			var error: NSError? = nil
 			let documentsFiles: [AnyObject]?
             do
 			{
                 documentsFiles = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(documentsPath)
-            } catch var error1 as NSError {
-                error = error1
+				
+				for file in documentsFiles as! [String]
+				{
+					if file == "trails.json"
+					{
+						let data = NSData(contentsOfFile: tracksFile)
+						onComplete(data: data, error: nil)
+					}
+				}
+            } catch
+			{
                 documentsFiles = nil
+				let statusError = NSError(domain:"com.techlight", code:404, userInfo:[NSLocalizedDescriptionKey : "Error opening stored trails JSON file"])
+				onComplete(data: nil, error: statusError)
             }
 			
-			for file in documentsFiles as! [String]
-			{
-				if file == "trails.json"
-				{
-					let data = NSData(contentsOfFile: tracksFile)
-					onComplete(data: data, error: nil)
-					
-					return
-				}
-			}
+			return
 		}
 		
 		let session = NSURLSession.sharedSession()
 		//Use NSURLSession to get data from an NSURL
-		let loadDataTask = session.dataTaskWithURL(NSURL(string:Constants.Values.vJSONTrailsURL)!) { (data: NSData?, response: NSURLResponse?, error: NSError?) in
+		let loadDataTask = session.dataTaskWithURL(NSURL(string:Constants.Values.vJSONTrailsURL)!) { (data, response, error) in
 			if let responseError = error
 			{
 				onComplete(data: nil, error: responseError)
-			} else if let httpResponse = response as? NSHTTPURLResponse
+			} else
 			{
+				guard let data = data, httpResponse = response as? NSHTTPURLResponse
+					else
+					{
+						print("Error downloading trails JSON from server")
+						return
+					}
+				
 				if httpResponse.statusCode != 200
 				{
-					var statusError = NSError(domain:"com.techlight", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "Unexpected HTTP status."])
+					let statusError = NSError(domain:"com.techlight", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "Unexpected HTTP status."])
 					onComplete(data: nil, error: statusError)
 				} else
 				{
@@ -436,8 +441,14 @@ class TrailsLoader
 			if let responseError = error
 			{
 				print("Error loading GPX file: \(responseError.localizedDescription)")
-			} else if let httpResponse = response as? NSHTTPURLResponse
+			} else
 			{
+				guard let data = data, httpResponse = response as? NSHTTPURLResponse else
+				{
+					print("Error getting gpx file at URL \(url.absoluteString)")
+					return
+				}
+				
 				if httpResponse.statusCode != 200
 				{
 					print("Bad HTTP status code when loading GPX: \(httpResponse.statusCode)")
@@ -445,7 +456,7 @@ class TrailsLoader
 				{
 					let root: GPXRoot
 					let documentsPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] 
-					var file = documentsPath.stringByAppendingPathComponent(url.lastPathComponent!)
+					let file = documentsPath.stringByAppendingPathComponent(url.lastPathComponent!)
 					
 					if url.absoluteString.rangeOfString(".zip", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: nil) != nil
 					{

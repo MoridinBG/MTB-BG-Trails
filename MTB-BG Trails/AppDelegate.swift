@@ -7,7 +7,9 @@
 //
 
 import UIKit
+
 import IDDataCache
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate
@@ -18,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
 	{
+		
         let cache = IDDataCache.sharedNamedInstance(Constants.Keys.kCacheMapTemporary)
         cache.maxCacheSize = Settings.Cache.maxMapTileCache
         

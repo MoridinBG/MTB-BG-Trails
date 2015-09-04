@@ -144,8 +144,8 @@ public class MarqueeLabel: UILabel {
 	private var sublabel = UILabel()
 	private var animationDuration: CGFloat = 0.0
 	
-	private var homeLabelFrame: CGRect = CGRect.zeroRect
-	private var awayLabelFrame: CGRect = CGRect.zeroRect
+	private var homeLabelFrame: CGRect = CGRect.zero
+	private var awayLabelFrame: CGRect = CGRect.zero
 	
 	
 	//
@@ -254,7 +254,7 @@ public class MarqueeLabel: UILabel {
 		// Create sublabel
 		sublabel = UILabel(frame: self.bounds)
 		sublabel.tag = 700
-		sublabel.layer.anchorPoint = CGPoint.zeroPoint
+		sublabel.layer.anchorPoint = CGPoint.zero
 		
 		// Add sublabel
 		addSubview(sublabel)
@@ -354,8 +354,8 @@ public class MarqueeLabel: UILabel {
 			sublabel.textAlignment = super.textAlignment
 			sublabel.lineBreakMode = super.lineBreakMode
 			
-			var unusedFrame = CGRect.zeroRect
-			var labelFrame = CGRect.zeroRect
+			var unusedFrame = CGRect.zero
+			var labelFrame = CGRect.zero
 			
 			switch type {
 			case .ContinuousReverse, .RightLeft:
@@ -463,8 +463,8 @@ public class MarqueeLabel: UILabel {
 			
 		default:
 			// Something strange happened!
-			homeLabelFrame = CGRect.zeroRect
-			awayLabelFrame = CGRect.zeroRect
+			homeLabelFrame = CGRect.zero
+			awayLabelFrame = CGRect.zero
 			
 			// Do not attempt to scroll
 			return
@@ -595,7 +595,7 @@ public class MarqueeLabel: UILabel {
 		// Create gradient animation, if needed
 		if fadeLength != 0.0 {
 			let gradientAnimation = keyFrameAnimationForGradient(fadeLength, interval: interval, delay: delay)
-			self.layer.mask.addAnimation(gradientAnimation, forKey: "gradient")
+			self.layer.mask!.addAnimation(gradientAnimation, forKey: "gradient")
 		}
 		
 		let completion = CompletionBlock<(Bool) -> ()>({ (finished: Bool) -> () in
@@ -777,7 +777,7 @@ public class MarqueeLabel: UILabel {
 	private func keyFrameAnimationForGradient(fadeLength: CGFloat, interval: CGFloat, delay: CGFloat) -> CAKeyframeAnimation {
 		// Setup
 		var values: [AnyObject]? = nil
-		var keyTimes: [AnyObject]? = nil
+		var keyTimes: [NSNumber]? = nil
 		let fadeFraction = fadeLength/self.bounds.size.width
 		
 		// Create new animation
@@ -911,7 +911,7 @@ public class MarqueeLabel: UILabel {
 	}
 	
 	private func timingFunctionForAnimationCurve(curve: UIViewAnimationCurve) -> CAMediaTimingFunction {
-		let timingFunction: String?
+		let timingFunction: String
 		
 		switch curve {
 		case .EaseIn:
@@ -961,8 +961,8 @@ public class MarqueeLabel: UILabel {
 	
 	public func resetLabel() {
 		returnLabelToHome()
-		homeLabelFrame = CGRect.nullRect
-		awayLabelFrame = CGRect.nullRect
+		homeLabelFrame = CGRect.null
+		awayLabelFrame = CGRect.null
 	}
 	
 	public func shutdownLabel() {
@@ -996,7 +996,7 @@ public class MarqueeLabel: UILabel {
 		self.layer.mask?.speed = 1.0;
 		self.layer.mask?.timeOffset = 0.0;
 		self.layer.mask?.beginTime = 0.0;
-		self.layer.mask?.beginTime = self.layer.mask.convertTime(CACurrentMediaTime(), fromLayer:nil) - gradientPauseTime!
+		self.layer.mask?.beginTime = self.layer.mask!.convertTime(CACurrentMediaTime(), fromLayer:nil) - gradientPauseTime!
 	}
 	
 	private func labelWasTapped(recognizer: UIGestureRecognizer) {

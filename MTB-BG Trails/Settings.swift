@@ -93,7 +93,7 @@ struct Settings
                 {
                     var codedMaps = [NSData]()
                     _namedMaps = [String : DownloadedMap]()
-                    for map in newValue!
+                    for map in maps
                     {
                         _namedMaps[map.name] = map
                         codedMaps.append(NSKeyedArchiver.archivedDataWithRootObject(map))
@@ -124,7 +124,7 @@ struct Settings
         static func removeMap(map: DownloadedMap)
         {
             _namedMaps.removeValueForKey(map.name)
-            self.maps = _namedMaps.values.array
+            self.maps = [DownloadedMap](_namedMaps.values)
         }
     }
     

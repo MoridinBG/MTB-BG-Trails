@@ -123,7 +123,7 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
 	
     @IBAction func settingsClicked(sender: UIBarButtonItem)
     {
-        let destination = UIStoryboard(name: Constants.Values.vStoryboardSettings, bundle: nil).instantiateInitialViewController() as! UIViewController
+        let destination = UIStoryboard(name: Constants.Values.vStoryboardSettings, bundle: nil).instantiateInitialViewController()!
         let segue = UIStoryboardSegue(identifier: nil, source: self, destination: destination) {
             self.navigationController?.pushViewController(destination, animated: true)
         }
@@ -559,13 +559,11 @@ class RootViewController: MapViewCommon, UITableViewDelegate, UITableViewDataSou
                         track.colour = colour
                     }
                 }
-            default: ()
         }
         
         let overlays = mapView.overlays
         mapView.removeOverlays(overlays)
         mapView.addOverlays(overlays)
     }
-    
 }
 

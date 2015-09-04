@@ -21,7 +21,7 @@ class DistinctColourGenerator
     {
         var labColours = [(Double, Double, Double)]()
         var forceVectors = [(Double, Double, Double)]()
-        for i in 1...count
+        for _ in 1...count
         {
             var colour = randomRGB()
             colour = RGBtoLab(colour.0, g: colour.1, b: colour.2)
@@ -33,7 +33,7 @@ class DistinctColourGenerator
         let speed = 0.1
         let steps = quality * 20
         
-        for i in 1...steps
+        for _ in 1...steps
         {
             for (index, _) in forceVectors.enumerate()
             {
@@ -70,7 +70,7 @@ class DistinctColourGenerator
             }
             for (index, (l, a, b)) in labColours.enumerate()
             {
-                var (dlForce, daForce, dbForce) = forceVectors[index]
+                let (dlForce, daForce, dbForce) = forceVectors[index]
                 let displacement = speed * sqrt(pow(dlForce, 2) + pow(daForce, 2) + pow(dbForce, 2))
                 let ratio = speed * min(0.1, displacement) / displacement
                 
@@ -86,7 +86,7 @@ class DistinctColourGenerator
         }
         
         var rgbColours = [UIColor]()
-        for (index, (l, a, b)) in labColours.enumerate()
+        for (l, a, b) in labColours
         {
             let (R, G, B) = LabtoRGB(l, a: a, b: b)
             rgbColours.append(UIColor(red: CGFloat(R / 255.0), green: CGFloat(G / 255.0), blue: CGFloat(B / 255.0), alpha: 1.0))

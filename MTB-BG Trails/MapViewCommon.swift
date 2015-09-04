@@ -93,15 +93,15 @@ class MapViewCommon: UIViewController, MKMapViewDelegate
         }
     }
     
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer!
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer
     {
         if let overlay = overlay as? MKTileOverlay
         {
             return MKTileOverlayRenderer(tileOverlay: overlay)
         } else
-        {
-            return nil
-        }
+		{
+			return MKOverlayRenderer(overlay: overlay)
+		}
     }
     
     func fitTrailInMap(trail: Trail)
@@ -111,7 +111,7 @@ class MapViewCommon: UIViewController, MKMapViewDelegate
         
         for track in trail.gpsTracks()
         {
-            var coordsPointer = UnsafeMutablePointer<CLLocationCoordinate2D>.alloc(track.trackPolyline.pointCount)
+            let coordsPointer = UnsafeMutablePointer<CLLocationCoordinate2D>.alloc(track.trackPolyline.pointCount)
             track.trackPolyline.getCoordinates(coordsPointer, range: NSMakeRange(0, track.trackPolyline.pointCount))
             
             var coords: [CLLocationCoordinate2D] = []

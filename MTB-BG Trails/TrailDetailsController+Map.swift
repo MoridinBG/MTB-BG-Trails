@@ -9,15 +9,15 @@
 import Foundation
 import MapKit
 
-extension TrailDetailsController: MKMapViewDelegate
+extension TrailDetailsController
 {
-    override func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer!
+    override func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer
     {
         if let polyline = overlay as? MKAttribuedPolyline
         {
             if polyline.attributes.optional && !isRenderingOptionals
             {
-                return nil
+                return MKOverlayRenderer(overlay: overlay)
             }
             
             let polylineRenderer = MKPolylineRenderer(overlay: overlay)

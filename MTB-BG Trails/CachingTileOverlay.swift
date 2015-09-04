@@ -30,16 +30,16 @@ class CachingTileOverlay: MKTileOverlay
         } else
         {
             //Then look in the downloaded maps persistent cache
-            for map in Settings.OfflineMaps.namedMaps.values.array
+            for map in [DownloadedMap](Settings.OfflineMaps.namedMaps.values)
             {
-                if let ((nwx, nwy), (nex, ney), (swx, swy)) = map.coordinatesPerZ[path.z]
+                if let ((nwx, nwy), (nex, _), (_, swy)) = map.coordinatesPerZ[path.z]
                 {
                     if (path.x >= nwx) && (path.x <= nex) && (path.y >= nwy) && (path.y <= swy)
                     {
                         let persistentCache = IDDataCache.sharedNamedPersistentInstance(map.dataCacheName)
                         if let data = persistentCache.dataFromDiskCacheForKey(urlstr)
                         {
-                            print("Map til found in persistent storage")
+                            print("Map tile found in persistent storage")
                             self.cache.storeData(data, forKey: urlstr)
                             result(data, nil)
                             return
@@ -51,7 +51,7 @@ class CachingTileOverlay: MKTileOverlay
             //Finally try to download it
             let request = NSURLRequest(URL: URLForTilePath(path))
             NSURLConnection.sendAsynchronousRequest(request, queue: operationQueue) { response, data, error in
-                if data != nil
+                if let data = data
                 {
                     print("Map tile downloaded online")
                     self.cache.storeData(data, forKey: urlstr)
@@ -91,6 +91,6 @@ class CachingTileOverlay: MKTileOverlay
         let drawnImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return UIImagePNGRepresentation(drawnImage)
+        return UIImagePNGRepresentation(drawnImage)!
     }
 }
